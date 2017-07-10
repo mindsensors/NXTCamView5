@@ -1,0 +1,376 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>class Pin – control I/O pins &mdash; MicroPython 1.8 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../_static/customstyle.css" type="text/css" />
+  
+
+  
+    <link rel="top" title="MicroPython 1.8 documentation" href="../index.html"/>
+        <link rel="up" title="machine — functions related to the board" href="machine.html"/>
+        <link rel="next" title="class RTC – real time clock" href="machine.RTC.html"/>
+        <link rel="prev" title="class I2C – a two-wire serial protocol" href="machine.I2C.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> MicroPython
+          
+
+          
+            
+            <img src="../_static/web-logo-sticky.png" class="logo" />
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.8
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul>
+<li class="toctree-l1"><a class="reference internal" href="../openmvcam/quickref.html">Quick reference for the openmvcam</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../openmvcam/tutorial/index.html">OpenMV Cam Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index.html">MicroPython libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/index.html">The MicroPython language</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">MicroPython license information</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">MicroPython</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="index.html">MicroPython libraries</a> &raquo;</li>
+      
+          <li><a href="machine.html"><code class="docutils literal"><span class="pre">machine</span></code> &#8212; functions related to the board</a> &raquo;</li>
+      
+    <li>class Pin &#8211; control I/O pins</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/library/machine.Pin.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="class-pin-control-i-o-pins">
+<span id="machine-pin"></span><h1>class Pin &#8211; control I/O pins<a class="headerlink" href="#class-pin-control-i-o-pins" title="Permalink to this headline">¶</a></h1>
+<p>A pin is the basic object to control I/O pins. It has methods to set
+the mode of the pin (input, output, etc) and methods to get and set the
+digital logic level. For analog control of a pin, see the ADC class.</p>
+<p>Usage Model:</p>
+<div class="section" id="constructors">
+<h2>Constructors<a class="headerlink" href="#constructors" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="machine.Pin">
+<em class="property">class </em><code class="descclassname">machine.</code><code class="descname">Pin</code><span class="sig-paren">(</span><em>id</em>, <em>...</em><span class="sig-paren">)</span><a class="headerlink" href="#machine.Pin" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a new Pin object associated with the id. If additional arguments are given,
+they are used to initialize the pin. See <a class="reference internal" href="pyb.Pin.html#pin.init" title="pin.init"><code class="xref py py-meth docutils literal"><span class="pre">pin.init()</span></code></a>.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="methods">
+<h2>Methods<a class="headerlink" href="#methods" title="Permalink to this headline">¶</a></h2>
+<dl class="method">
+<dt id="pin.value">
+<code class="descclassname">pin.</code><code class="descname">value</code><span class="sig-paren">(</span><span class="optional">[</span><em>value</em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#pin.value" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get or set the digital logic level of the pin:</p>
+<blockquote>
+<div><ul class="simple">
+<li>With no argument, return 0 or 1 depending on the logic level of the pin.</li>
+<li>With <code class="docutils literal"><span class="pre">value</span></code> given, set the logic level of the pin. <code class="docutils literal"><span class="pre">value</span></code> can be
+anything that converts to a boolean. If it converts to <code class="docutils literal"><span class="pre">True</span></code>, the pin
+is set high, otherwise it is set low.</li>
+</ul>
+</div></blockquote>
+</dd></dl>
+
+<dl class="method">
+<dt id="pin">
+<code class="descname">pin</code><span class="sig-paren">(</span><span class="optional">[</span><em>value</em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#pin" title="Permalink to this definition">¶</a></dt>
+<dd><p>Pin objects are callable. The call method provides a (fast) shortcut to set and get the value of the pin.
+See <strong>pin.value</strong> for more details.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pin.alt_list">
+<code class="descclassname">pin.</code><code class="descname">alt_list</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pin.alt_list" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a list of the alternate functions supported by the pin. List items are
+a tuple of the form: <code class="docutils literal"><span class="pre">('ALT_FUN_NAME',</span> <span class="pre">ALT_FUN_INDEX)</span></code></p>
+<p>Availability: WiPy.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="attributes">
+<h2>Attributes<a class="headerlink" href="#attributes" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="Pin.board">
+<em class="property">class </em><code class="descclassname">Pin.</code><code class="descname">board</code><a class="headerlink" href="#Pin.board" title="Permalink to this definition">¶</a></dt>
+<dd><p>Contains all <code class="docutils literal"><span class="pre">Pin</span></code> objects supported by the board. Examples:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">Pin</span><span class="o">.</span><span class="n">board</span><span class="o">.</span><span class="n">GP25</span>
+<span class="n">led</span> <span class="o">=</span> <span class="n">Pin</span><span class="p">(</span><span class="n">Pin</span><span class="o">.</span><span class="n">board</span><span class="o">.</span><span class="n">GP25</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="n">Pin</span><span class="o">.</span><span class="n">OUT</span><span class="p">)</span>
+<span class="n">Pin</span><span class="o">.</span><span class="n">board</span><span class="o">.</span><span class="n">GP2</span><span class="o">.</span><span class="n">alt_list</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Availability: WiPy.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="constants">
+<h2>Constants<a class="headerlink" href="#constants" title="Permalink to this headline">¶</a></h2>
+<p>The following constants are used to configure the pin objects. Note that
+not all constants are available on all ports.</p>
+<dl class="data">
+<dt id="IN">
+<code class="descname">IN</code><a class="headerlink" href="#IN" title="Permalink to this definition">¶</a></dt>
+<dt id="OUT">
+<code class="descname">OUT</code><a class="headerlink" href="#OUT" title="Permalink to this definition">¶</a></dt>
+<dt id="OPEN_DRAIN">
+<code class="descname">OPEN_DRAIN</code><a class="headerlink" href="#OPEN_DRAIN" title="Permalink to this definition">¶</a></dt>
+<dt id="ALT">
+<code class="descname">ALT</code><a class="headerlink" href="#ALT" title="Permalink to this definition">¶</a></dt>
+<dt id="ALT_OPEN_DRAIN">
+<code class="descname">ALT_OPEN_DRAIN</code><a class="headerlink" href="#ALT_OPEN_DRAIN" title="Permalink to this definition">¶</a></dt>
+<dd><p>Selects the pin mode.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="PULL_UP">
+<code class="descname">PULL_UP</code><a class="headerlink" href="#PULL_UP" title="Permalink to this definition">¶</a></dt>
+<dt id="PULL_DOWN">
+<code class="descname">PULL_DOWN</code><a class="headerlink" href="#PULL_DOWN" title="Permalink to this definition">¶</a></dt>
+<dd><p>Selects the whether there is a pull up/down resistor.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="LOW_POWER">
+<code class="descname">LOW_POWER</code><a class="headerlink" href="#LOW_POWER" title="Permalink to this definition">¶</a></dt>
+<dt id="MED_POWER">
+<code class="descname">MED_POWER</code><a class="headerlink" href="#MED_POWER" title="Permalink to this definition">¶</a></dt>
+<dt id="HIGH_POWER">
+<code class="descname">HIGH_POWER</code><a class="headerlink" href="#HIGH_POWER" title="Permalink to this definition">¶</a></dt>
+<dd><p>Selects the pin drive strength.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="IRQ_FALLING">
+<code class="descname">IRQ_FALLING</code><a class="headerlink" href="#IRQ_FALLING" title="Permalink to this definition">¶</a></dt>
+<dt id="IRQ_RISING">
+<code class="descname">IRQ_RISING</code><a class="headerlink" href="#IRQ_RISING" title="Permalink to this definition">¶</a></dt>
+<dt id="IRQ_LOW_LEVEL">
+<code class="descname">IRQ_LOW_LEVEL</code><a class="headerlink" href="#IRQ_LOW_LEVEL" title="Permalink to this definition">¶</a></dt>
+<dt id="IRQ_HIGH_LEVEL">
+<code class="descname">IRQ_HIGH_LEVEL</code><a class="headerlink" href="#IRQ_HIGH_LEVEL" title="Permalink to this definition">¶</a></dt>
+<dd><p>Selects the IRQ trigger type.</p>
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="machine.RTC.html" class="btn btn-neutral float-right" title="class RTC – real time clock" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="machine.I2C.html" class="btn btn-neutral" title="class I2C – a two-wire serial protocol" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2014-2017, Damien P. George, OpenMV LLC, and contributors.
+      Last updated on 27 Mar 2017.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  <!--
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    <span class="fa fa-book"> Ports and Versions</span>
+    openmvcam (latest)
+    <span class="fa fa-caret-down"></span>
+  </span>
+  <div class="rst-other-versions">
+    <dl>
+      <dt>Ports</dt>
+      
+        <dd><a href="//en/latest/unix">unix</a></dd>
+      
+        <dd><a href="//en/latest/pyboard">pyboard</a></dd>
+      
+        <dd><a href="//en/latest/wipy">wipy</a></dd>
+      
+        <dd><a href="//en/latest/esp8266">esp8266</a></dd>
+      
+        <dd><a href="//en/latest/openmvcam">openmvcam</a></dd>
+      
+    </dl>
+    <dl>
+      <dt>Versions</dt>
+      
+        <dd><a href="//en/latest/openmvcam">latest</a></dd>
+      
+    </dl>
+    -->
+    <!--
+    <dl>
+      <dt>Downloads</dt>
+      
+    </dl>
+    -->
+    <!--
+    <hr/>
+    <dl>
+      <dt>External links</dt>
+        <dd>
+          <a href="http://www.micropython.org">micropython.org</a>
+        </dd>
+        <dd>
+          <a href="http://github.com/micropython/micropython">GitHub</a>
+        </dd>
+    </dl>
+  </div>
+</div>
+-->
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'1.8',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

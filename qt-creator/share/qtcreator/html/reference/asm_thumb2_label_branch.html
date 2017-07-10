@@ -1,0 +1,370 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>7. Branch instructions &mdash; MicroPython 1.8 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../_static/customstyle.css" type="text/css" />
+  
+
+  
+    <link rel="top" title="MicroPython 1.8 documentation" href="../index.html"/>
+        <link rel="up" title="Inline Assembler for Thumb2 architectures" href="asm_thumb2_index.html"/>
+        <link rel="next" title="8. Stack push and pop" href="asm_thumb2_stack.html"/>
+        <link rel="prev" title="6. Comparison instructions" href="asm_thumb2_compare.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> MicroPython
+          
+
+          
+            
+            <img src="../_static/web-logo-sticky.png" class="logo" />
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.8
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../openmvcam/quickref.html">Quick reference for the openmvcam</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../openmvcam/tutorial/index.html">OpenMV Cam Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../library/index.html">MicroPython libraries</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">The MicroPython language</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="repl.html">The MicroPython Interactive Interpreter Mode (aka REPL)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="isr_rules.html">Writing interrupt handlers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="speed_python.html">Maximizing Python Speed</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="asm_thumb2_index.html">Inline Assembler for Thumb2 architectures</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="asm_thumb2_index.html#document-conventions">Document conventions</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="asm_thumb2_index.html#instruction-categories">Instruction Categories</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="asm_thumb2_mov.html">1. Register move instructions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="asm_thumb2_ldr.html">2. Load register from memory</a></li>
+<li class="toctree-l4"><a class="reference internal" href="asm_thumb2_str.html">3. Store register to memory</a></li>
+<li class="toctree-l4"><a class="reference internal" href="asm_thumb2_logical_bit.html">4. Logical &amp; Bitwise instructions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="asm_thumb2_arith.html">5. Arithmetic instructions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="asm_thumb2_compare.html">6. Comparison instructions</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="">7. Branch instructions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="asm_thumb2_stack.html">8. Stack push and pop</a></li>
+<li class="toctree-l4"><a class="reference internal" href="asm_thumb2_misc.html">9. Miscellaneous instructions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="asm_thumb2_float.html">10. Floating Point instructions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="asm_thumb2_directives.html">11. Assembler Directives</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="asm_thumb2_index.html#usage-examples">Usage examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="asm_thumb2_index.html#references">References</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">MicroPython license information</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">MicroPython</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="index.html">The MicroPython language</a> &raquo;</li>
+      
+          <li><a href="asm_thumb2_index.html">Inline Assembler for Thumb2 architectures</a> &raquo;</li>
+      
+    <li>7. Branch instructions</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/reference/asm_thumb2_label_branch.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="branch-instructions">
+<h1>7. Branch instructions<a class="headerlink" href="#branch-instructions" title="Permalink to this headline">¶</a></h1>
+<p>These cause execution to jump to a target location usually specified by a label (see the <code class="docutils literal"><span class="pre">label</span></code>
+assembler directive). Conditional branches and the <code class="docutils literal"><span class="pre">it</span></code> and <code class="docutils literal"><span class="pre">ite</span></code> instructions test
+the Application Program Status Register (APSR) N (negative), Z (zero), C (carry) and V
+(overflow) flags to determine whether the branch should be executed.</p>
+<p>Most of the exposed assembler instructions (including move operations) set the flags but
+there are explicit comparison instructions to enable values to be tested.</p>
+<p>Further detail on the meaning of the condition flags is provided in the section
+describing comparison functions.</p>
+<div class="section" id="document-conventions">
+<h2>7.1. Document conventions<a class="headerlink" href="#document-conventions" title="Permalink to this headline">¶</a></h2>
+<p>Notation: <code class="docutils literal"><span class="pre">Rm</span></code> denotes ARM registers R0-R15. <code class="docutils literal"><span class="pre">LABEL</span></code> denotes a label defined with the
+<code class="docutils literal"><span class="pre">label()</span></code> assembler directive. <code class="docutils literal"><span class="pre">&lt;condition&gt;</span></code> indicates one of the following condition
+specifiers:</p>
+<ul class="simple">
+<li>eq Equal to (result was zero)</li>
+<li>ne Not equal</li>
+<li>cs Carry set</li>
+<li>cc Carry clear</li>
+<li>mi Minus (negative)</li>
+<li>pl Plus (positive)</li>
+<li>vs Overflow set</li>
+<li>vc Overflow clear</li>
+<li>hi &gt; (unsigned comparison)</li>
+<li>ls &lt;= (unsigned comparison)</li>
+<li>ge &gt;= (signed comparison)</li>
+<li>lt &lt; (signed comparison)</li>
+<li>gt &gt; (signed comparison)</li>
+<li>le &lt;= (signed comparison)</li>
+</ul>
+</div>
+<div class="section" id="branch-to-label">
+<h2>7.2. Branch to label<a class="headerlink" href="#branch-to-label" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>b(LABEL) Unconditional branch</li>
+<li>beq(LABEL) branch if equal</li>
+<li>bne(LABEL) branch if not equal</li>
+<li>bge(LABEL) branch if greater than or equal</li>
+<li>bgt(LABEL) branch if greater than</li>
+<li>blt(LABEL) branch if less than (&lt;) (signed)</li>
+<li>ble(LABEL) branch if less than or equal to (&lt;=) (signed)</li>
+<li>bcs(LABEL) branch if carry flag is set</li>
+<li>bcc(LABEL) branch if carry flag is clear</li>
+<li>bmi(LABEL) branch if negative</li>
+<li>bpl(LABEL) branch if positive</li>
+<li>bvs(LABEL) branch if overflow flag set</li>
+<li>bvc(LABEL) branch if overflow flag is clear</li>
+<li>bhi(LABEL) branch if higher (unsigned)</li>
+<li>bls(LABEL) branch if lower or equal (unsigned)</li>
+</ul>
+</div>
+<div class="section" id="long-branches">
+<h2>7.3. Long branches<a class="headerlink" href="#long-branches" title="Permalink to this headline">¶</a></h2>
+<p>The code produced by the branch instructions listed above use a fixed bit width to specify the
+branch destination, which is PC relative. Consequently in long programs where the
+branch instruction is remote from its destination the assembler will produce a &#8220;branch not in
+range&#8221; error. This can be overcome with the &#8220;wide&#8221; variants such as</p>
+<ul class="simple">
+<li>beq_w(LABEL) long branch if equal</li>
+</ul>
+<p>Wide branches use 4 bytes to encode the instruction (compared with 2 bytes for standard branch instructions).</p>
+</div>
+<div class="section" id="subroutines-functions">
+<h2>7.4. Subroutines (functions)<a class="headerlink" href="#subroutines-functions" title="Permalink to this headline">¶</a></h2>
+<p>When entering a subroutine the processor stores the return address in register r14, also
+known as the link register (lr). Returning to the instruction after the subroutine call is
+performed by updating the program counter (r15 or pc) from the link register, This
+process is handled by the following instructions.</p>
+<ul class="simple">
+<li>bl(LABEL)</li>
+</ul>
+<p>Transfer execution to the instruction after <code class="docutils literal"><span class="pre">LABEL</span></code> storing the return address in
+the link register (r14).</p>
+<ul class="simple">
+<li>bx(Rm) Branch to address specified by Rm.</li>
+</ul>
+<p>Typically <code class="docutils literal"><span class="pre">bx(lr)</span></code> is issued to return from a subroutine. For nested subroutines the
+link register of outer scopes must be saved (usually on the stack) before performing
+inner subroutine calls.</p>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="asm_thumb2_stack.html" class="btn btn-neutral float-right" title="8. Stack push and pop" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="asm_thumb2_compare.html" class="btn btn-neutral" title="6. Comparison instructions" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2014-2017, Damien P. George, OpenMV LLC, and contributors.
+      Last updated on 27 Mar 2017.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  <!--
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    <span class="fa fa-book"> Ports and Versions</span>
+    openmvcam (latest)
+    <span class="fa fa-caret-down"></span>
+  </span>
+  <div class="rst-other-versions">
+    <dl>
+      <dt>Ports</dt>
+      
+        <dd><a href="//en/latest/unix">unix</a></dd>
+      
+        <dd><a href="//en/latest/pyboard">pyboard</a></dd>
+      
+        <dd><a href="//en/latest/wipy">wipy</a></dd>
+      
+        <dd><a href="//en/latest/esp8266">esp8266</a></dd>
+      
+        <dd><a href="//en/latest/openmvcam">openmvcam</a></dd>
+      
+    </dl>
+    <dl>
+      <dt>Versions</dt>
+      
+        <dd><a href="//en/latest/openmvcam">latest</a></dd>
+      
+    </dl>
+    -->
+    <!--
+    <dl>
+      <dt>Downloads</dt>
+      
+    </dl>
+    -->
+    <!--
+    <hr/>
+    <dl>
+      <dt>External links</dt>
+        <dd>
+          <a href="http://www.micropython.org">micropython.org</a>
+        </dd>
+        <dd>
+          <a href="http://github.com/micropython/micropython">GitHub</a>
+        </dd>
+    </dl>
+  </div>
+</div>
+-->
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'1.8',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

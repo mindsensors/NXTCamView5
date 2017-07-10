@@ -1,0 +1,8 @@
+*.bat binary
+*.cat binary
+*.cmd binary
+*.exe binary
+*.inf binary
+*.pdf binary
+*.sys binary
+*.txt binary

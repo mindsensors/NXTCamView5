@@ -1,0 +1,816 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>MicroPython documentation contents &mdash; MicroPython 1.8 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="_static/customstyle.css" type="text/css" />
+  
+
+  
+    <link rel="top" title="MicroPython 1.8 documentation" href="index.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> MicroPython
+          
+
+          
+            
+            <img src="_static/web-logo-sticky.png" class="logo" />
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.8
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul>
+<li class="toctree-l1"><a class="reference internal" href="openmvcam/quickref.html">Quick reference for the openmvcam</a></li>
+<li class="toctree-l1"><a class="reference internal" href="openmvcam/tutorial/index.html">OpenMV Cam Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="library/index.html">MicroPython libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reference/index.html">The MicroPython language</a></li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">MicroPython license information</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">MicroPython</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+    <li>MicroPython documentation contents</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/openmvcam_contents.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="micropython-documentation-contents">
+<h1>MicroPython documentation contents<a class="headerlink" href="#micropython-documentation-contents" title="Permalink to this headline">¶</a></h1>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="openmvcam/quickref.html">Quick reference for the openmvcam</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="openmvcam/quickref.html#openmv-cam">OpenMV Cam</a></li>
+<li class="toctree-l2"><a class="reference internal" href="openmvcam/quickref.html#general-board-control">General board control</a></li>
+<li class="toctree-l2"><a class="reference internal" href="openmvcam/quickref.html#leds">LEDs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="openmvcam/quickref.html#pins-and-gpio">Pins and GPIO</a></li>
+<li class="toctree-l2"><a class="reference internal" href="openmvcam/quickref.html#servo-control">Servo control</a></li>
+<li class="toctree-l2"><a class="reference internal" href="openmvcam/quickref.html#external-interrupts">External interrupts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="openmvcam/quickref.html#timers">Timers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="openmvcam/quickref.html#pwm-pulse-width-modulation">PWM (pulse width modulation)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="openmvcam/quickref.html#adc-analog-to-digital-conversion">ADC (analog to digital conversion)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="openmvcam/quickref.html#dac-digital-to-analog-conversion">DAC (digital to analog conversion)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="openmvcam/quickref.html#uart-serial-bus">UART (serial bus)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="openmvcam/quickref.html#spi-bus">SPI bus</a></li>
+<li class="toctree-l2"><a class="reference internal" href="openmvcam/quickref.html#i2c-bus">I2C bus</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="openmvcam/tutorial/index.html">OpenMV Cam Tutorial</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="openmvcam/tutorial/software_setup.html">1. Software Setup</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="openmvcam/tutorial/software_setup.html#windows">1.1. Windows</a></li>
+<li class="toctree-l3"><a class="reference internal" href="openmvcam/tutorial/software_setup.html#mac">1.2. Mac</a></li>
+<li class="toctree-l3"><a class="reference internal" href="openmvcam/tutorial/software_setup.html#linux">1.3. Linux</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="openmvcam/tutorial/hardware_setup.html">2. Hardware Setup</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="openmvcam/tutorial/hardware_setup.html#usb-flash-drive-notes">2.1. USB Flash Drive Notes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="openmvcam/tutorial/openmvide_overview.html">3. OpenMV IDE Overview</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="openmvcam/tutorial/openmvide_overview.html#file-menu-and-examples">3.1. File Menu and Examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="openmvcam/tutorial/openmvide_overview.html#text-editing">3.2. Text Editing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="openmvcam/tutorial/openmvide_overview.html#connecting-to-your-openmv-cam">3.3. Connecting to your OpenMV Cam</a></li>
+<li class="toctree-l3"><a class="reference internal" href="openmvcam/tutorial/openmvide_overview.html#running-scripts">3.4. Running scripts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="openmvcam/tutorial/openmvide_overview.html#frame-buffer-viewer">3.5. Frame Buffer Viewer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="openmvcam/tutorial/openmvide_overview.html#histogram-display">3.6. Histogram Display</a></li>
+<li class="toctree-l3"><a class="reference internal" href="openmvcam/tutorial/openmvide_overview.html#serial-terminal">3.7. Serial Terminal</a></li>
+<li class="toctree-l3"><a class="reference internal" href="openmvcam/tutorial/openmvide_overview.html#status-bar">3.8. Status Bar</a></li>
+<li class="toctree-l3"><a class="reference internal" href="openmvcam/tutorial/openmvide_overview.html#tools">3.9. Tools</a></li>
+<li class="toctree-l3"><a class="reference internal" href="openmvcam/tutorial/openmvide_overview.html#open-terminal">3.10. Open Terminal</a></li>
+<li class="toctree-l3"><a class="reference internal" href="openmvcam/tutorial/openmvide_overview.html#machine-vision">3.11. Machine Vision</a></li>
+<li class="toctree-l3"><a class="reference internal" href="openmvcam/tutorial/openmvide_overview.html#options">3.12. Options</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="openmvcam/tutorial/io_tutorial.html">4. I/O Tutorial</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="openmvcam/tutorial/io_tutorial.html#the-pyb-module">4.1. The PYB Module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="openmvcam/tutorial/led_control.html">4.1.1. LED Control</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="openmvcam/tutorial/led_control.html">4.1.1. LED Control</a></li>
+<li class="toctree-l2"><a class="reference internal" href="openmvcam/tutorial/more_information.html">5. More Information</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="library/index.html">MicroPython libraries</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="library/index.html#python-standard-libraries-and-micro-libraries">Python standard libraries and micro-libraries</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="library/gc.html"><code class="docutils literal"><span class="pre">gc</span></code> &#8211; control the garbage collector</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="library/gc.html#functions">Functions</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="library/math.html"><code class="docutils literal"><span class="pre">math</span></code> &#8211; mathematical functions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="library/math.html#functions">Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="library/math.html#constants">Constants</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="library/select.html"><code class="docutils literal"><span class="pre">select</span></code> &#8211; wait for events on a set of streams</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="library/select.html#pyboard-and-openmv-cam-specifics">Pyboard and OpenMV Cam specifics</a></li>
+<li class="toctree-l4"><a class="reference internal" href="library/select.html#functions">Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="library/select.html#class-poll">class <code class="docutils literal"><span class="pre">Poll</span></code></a><ul>
+<li class="toctree-l5"><a class="reference internal" href="library/select.html#methods">Methods</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="library/sys.html"><code class="docutils literal"><span class="pre">sys</span></code> &#8211; system specific functions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="library/sys.html#functions">Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="library/sys.html#constants">Constants</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="library/ubinascii.html"><code class="docutils literal"><span class="pre">ubinascii</span></code> &#8211; binary/ASCII conversions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="library/ubinascii.html#functions">Functions</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="library/uhashlib.html"><code class="docutils literal"><span class="pre">uhashlib</span></code> &#8211; hashing algorithm</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="library/uhashlib.html#constructors">Constructors</a></li>
+<li class="toctree-l4"><a class="reference internal" href="library/uhashlib.html#methods">Methods</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="library/uio.html"><code class="docutils literal"><span class="pre">uio</span></code> &#8211; input/output streams</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="library/uio.html#functions">Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="library/uio.html#classes">Classes</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="library/ujson.html"><code class="docutils literal"><span class="pre">ujson</span></code> &#8211; JSON encoding and decoding</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="library/ujson.html#functions">Functions</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="library/uos.html"><code class="docutils literal"><span class="pre">uos</span></code> &#8211; basic &#8220;operating system&#8221; services</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="library/uos.html#port-specifics">Port specifics</a></li>
+<li class="toctree-l4"><a class="reference internal" href="library/uos.html#functions">Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="library/uos.html#constants">Constants</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="library/ure.html"><code class="docutils literal"><span class="pre">ure</span></code> &#8211; regular expressions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="library/ure.html#functions">Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="library/ure.html#regex-objects">Regex objects</a></li>
+<li class="toctree-l4"><a class="reference internal" href="library/ure.html#match-objects">Match objects</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="library/usocket.html"><code class="docutils literal"><span class="pre">usocket</span></code> &#8211; socket module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="library/usocket.html#socket-address-format-s">Socket address format(s)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="library/usocket.html#functions">Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="library/usocket.html#constants">Constants</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="library/usocket.html#class-socket">class socket</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="library/usocket.html#methods">Methods</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="library/ustruct.html"><code class="docutils literal"><span class="pre">ustruct</span></code> &#8211; pack and unpack primitive data types</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="library/ustruct.html#functions">Functions</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="library/utime.html"><code class="docutils literal"><span class="pre">utime</span></code> &#8211; time related functions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="library/utime.html#functions">Functions</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="library/uzlib.html"><code class="docutils literal"><span class="pre">uzlib</span></code> &#8211; zlib decompression</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="library/uzlib.html#functions">Functions</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="library/index.html#micropython-specific-libraries">MicroPython-specific libraries</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="library/micropython.html"><code class="docutils literal"><span class="pre">micropython</span></code> &#8211; access and control MicroPython internals</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="library/micropython.html#functions">Functions</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="library/network.html"><code class="docutils literal"><span class="pre">network</span></code> &#8212; network configuration</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="library/network.html#class-winc-wifi-shield-driver">class WINC &#8211; wifi shield driver</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="library/network.html#id11">Constructors</a></li>
+<li class="toctree-l5"><a class="reference internal" href="library/network.html#id12">Methods</a></li>
+<li class="toctree-l5"><a class="reference internal" href="library/network.html#id13">Constants</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="library/index.html#libraries-specific-to-the-openmv-cam">Libraries specific to the OpenMV Cam</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="library/pyb.html"><code class="docutils literal"><span class="pre">pyb</span></code> &#8212; functions related to the board</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="library/pyb.html#time-related-functions">Time related functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="library/pyb.html#reset-related-functions">Reset related functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="library/pyb.html#interrupt-related-functions">Interrupt related functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="library/pyb.html#power-related-functions">Power related functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="library/pyb.html#miscellaneous-functions">Miscellaneous functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="library/pyb.html#classes">Classes</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="library/pyb.ADC.html">class ADC &#8211; analog to digital conversion</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="library/pyb.ADC.html#constructors">Constructors</a></li>
+<li class="toctree-l6"><a class="reference internal" href="library/pyb.ADC.html#methods">Methods</a></li>
+<li class="toctree-l6"><a class="reference internal" href="library/pyb.ADC.html#the-adcall-object">The ADCAll Object</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="library/pyb.CAN.html">class CAN &#8211; controller area network communication bus</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="library/pyb.CAN.html#constructors">Constructors</a></li>
+<li class="toctree-l6"><a class="reference internal" href="library/pyb.CAN.html#class-methods">Class Methods</a></li>
+<li class="toctree-l6"><a class="reference internal" href="library/pyb.CAN.html#methods">Methods</a></li>
+<li class="toctree-l6"><a class="reference internal" href="library/pyb.CAN.html#constants">Constants</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="library/pyb.DAC.html">class DAC &#8211; digital to analog conversion</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="library/pyb.DAC.html#constructors">Constructors</a></li>
+<li class="toctree-l6"><a class="reference internal" href="library/pyb.DAC.html#methods">Methods</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="library/pyb.ExtInt.html">class ExtInt &#8211; configure I/O pins to interrupt on external events</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="library/pyb.ExtInt.html#constructors">Constructors</a></li>
+<li class="toctree-l6"><a class="reference internal" href="library/pyb.ExtInt.html#class-methods">Class methods</a></li>
+<li class="toctree-l6"><a class="reference internal" href="library/pyb.ExtInt.html#methods">Methods</a></li>
+<li class="toctree-l6"><a class="reference internal" href="library/pyb.ExtInt.html#constants">Constants</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="library/pyb.I2C.html">class I2C &#8211; a two-wire serial protocol</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="library/pyb.I2C.html#constructors">Constructors</a></li>
+<li class="toctree-l6"><a class="reference internal" href="library/pyb.I2C.html#methods">Methods</a></li>
+<li class="toctree-l6"><a class="reference internal" href="library/pyb.I2C.html#constants">Constants</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="library/pyb.LED.html">class LED &#8211; LED object</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="library/pyb.LED.html#constructors">Constructors</a></li>
+<li class="toctree-l6"><a class="reference internal" href="library/pyb.LED.html#methods">Methods</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="library/pyb.Pin.html">class Pin &#8211; control I/O pins</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="library/pyb.Pin.html#constructors">Constructors</a></li>
+<li class="toctree-l6"><a class="reference internal" href="library/pyb.Pin.html#class-methods">Class methods</a></li>
+<li class="toctree-l6"><a class="reference internal" href="library/pyb.Pin.html#methods">Methods</a></li>
+<li class="toctree-l6"><a class="reference internal" href="library/pyb.Pin.html#constants">Constants</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="library/pyb.Servo.html">class Servo &#8211; 3-wire hobby servo driver</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="library/pyb.Servo.html#constructors">Constructors</a></li>
+<li class="toctree-l6"><a class="reference internal" href="library/pyb.Servo.html#methods">Methods</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="library/pyb.SPI.html">class SPI &#8211; a master-driven serial protocol</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="library/pyb.SPI.html#constructors">Constructors</a></li>
+<li class="toctree-l6"><a class="reference internal" href="library/pyb.SPI.html#methods">Methods</a></li>
+<li class="toctree-l6"><a class="reference internal" href="library/pyb.SPI.html#constants">Constants</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="library/pyb.Timer.html">class Timer &#8211; control internal timers</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="library/pyb.Timer.html#constructors">Constructors</a></li>
+<li class="toctree-l6"><a class="reference internal" href="library/pyb.Timer.html#methods">Methods</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="library/pyb.Timer.html#class-timerchannel-setup-a-channel-for-a-timer">class TimerChannel &#8212; setup a channel for a timer</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="library/pyb.Timer.html#id1">Methods</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="library/pyb.UART.html">class UART &#8211; duplex serial communication bus</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="library/pyb.UART.html#constructors">Constructors</a></li>
+<li class="toctree-l6"><a class="reference internal" href="library/pyb.UART.html#methods">Methods</a></li>
+<li class="toctree-l6"><a class="reference internal" href="library/pyb.UART.html#constants">Constants</a></li>
+<li class="toctree-l6"><a class="reference internal" href="library/pyb.UART.html#flow-control">Flow Control</a><ul>
+<li class="toctree-l7"><a class="reference internal" href="library/pyb.UART.html#cts-target-controls-openmv-cam-transmitter">CTS: target controls OpenMV Cam transmitter</a></li>
+<li class="toctree-l7"><a class="reference internal" href="library/pyb.UART.html#rts-openmv-cam-controls-target-s-transmitter">RTS: OpenMV Cam controls target&#8217;s transmitter</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="library/pyb.USB_VCP.html">class USB_VCP &#8211; USB virtual comm port</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="library/pyb.USB_VCP.html#constructors">Constructors</a></li>
+<li class="toctree-l6"><a class="reference internal" href="library/pyb.USB_VCP.html#methods">Methods</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="library/pyb.ADC.html">class ADC &#8211; analog to digital conversion</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="library/pyb.ADC.html#constructors">Constructors</a></li>
+<li class="toctree-l4"><a class="reference internal" href="library/pyb.ADC.html#methods">Methods</a></li>
+<li class="toctree-l4"><a class="reference internal" href="library/pyb.ADC.html#the-adcall-object">The ADCAll Object</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="library/pyb.CAN.html">class CAN &#8211; controller area network communication bus</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="library/pyb.CAN.html#constructors">Constructors</a></li>
+<li class="toctree-l4"><a class="reference internal" href="library/pyb.CAN.html#class-methods">Class Methods</a></li>
+<li class="toctree-l4"><a class="reference internal" href="library/pyb.CAN.html#methods">Methods</a></li>
+<li class="toctree-l4"><a class="reference internal" href="library/pyb.CAN.html#constants">Constants</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="library/pyb.DAC.html">class DAC &#8211; digital to analog conversion</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="library/pyb.DAC.html#constructors">Constructors</a></li>
+<li class="toctree-l4"><a class="reference internal" href="library/pyb.DAC.html#methods">Methods</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="library/pyb.ExtInt.html">class ExtInt &#8211; configure I/O pins to interrupt on external events</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="library/pyb.ExtInt.html#constructors">Constructors</a></li>
+<li class="toctree-l4"><a class="reference internal" href="library/pyb.ExtInt.html#class-methods">Class methods</a></li>
+<li class="toctree-l4"><a class="reference internal" href="library/pyb.ExtInt.html#methods">Methods</a></li>
+<li class="toctree-l4"><a class="reference internal" href="library/pyb.ExtInt.html#constants">Constants</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="library/pyb.I2C.html">class I2C &#8211; a two-wire serial protocol</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="library/pyb.I2C.html#constructors">Constructors</a></li>
+<li class="toctree-l4"><a class="reference internal" href="library/pyb.I2C.html#methods">Methods</a></li>
+<li class="toctree-l4"><a class="reference internal" href="library/pyb.I2C.html#constants">Constants</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="library/pyb.LED.html">class LED &#8211; LED object</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="library/pyb.LED.html#constructors">Constructors</a></li>
+<li class="toctree-l4"><a class="reference internal" href="library/pyb.LED.html#methods">Methods</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="library/pyb.Pin.html">class Pin &#8211; control I/O pins</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="library/pyb.Pin.html#constructors">Constructors</a></li>
+<li class="toctree-l4"><a class="reference internal" href="library/pyb.Pin.html#class-methods">Class methods</a></li>
+<li class="toctree-l4"><a class="reference internal" href="library/pyb.Pin.html#methods">Methods</a></li>
+<li class="toctree-l4"><a class="reference internal" href="library/pyb.Pin.html#constants">Constants</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="library/pyb.Servo.html">class Servo &#8211; 3-wire hobby servo driver</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="library/pyb.Servo.html#constructors">Constructors</a></li>
+<li class="toctree-l4"><a class="reference internal" href="library/pyb.Servo.html#methods">Methods</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="library/pyb.SPI.html">class SPI &#8211; a master-driven serial protocol</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="library/pyb.SPI.html#constructors">Constructors</a></li>
+<li class="toctree-l4"><a class="reference internal" href="library/pyb.SPI.html#methods">Methods</a></li>
+<li class="toctree-l4"><a class="reference internal" href="library/pyb.SPI.html#constants">Constants</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="library/pyb.Timer.html">class Timer &#8211; control internal timers</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="library/pyb.Timer.html#constructors">Constructors</a></li>
+<li class="toctree-l4"><a class="reference internal" href="library/pyb.Timer.html#methods">Methods</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="library/pyb.Timer.html#class-timerchannel-setup-a-channel-for-a-timer">class TimerChannel &#8212; setup a channel for a timer</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="library/pyb.Timer.html#id1">Methods</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="library/pyb.UART.html">class UART &#8211; duplex serial communication bus</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="library/pyb.UART.html#constructors">Constructors</a></li>
+<li class="toctree-l4"><a class="reference internal" href="library/pyb.UART.html#methods">Methods</a></li>
+<li class="toctree-l4"><a class="reference internal" href="library/pyb.UART.html#constants">Constants</a></li>
+<li class="toctree-l4"><a class="reference internal" href="library/pyb.UART.html#flow-control">Flow Control</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="library/pyb.UART.html#cts-target-controls-openmv-cam-transmitter">CTS: target controls OpenMV Cam transmitter</a></li>
+<li class="toctree-l5"><a class="reference internal" href="library/pyb.UART.html#rts-openmv-cam-controls-target-s-transmitter">RTS: OpenMV Cam controls target&#8217;s transmitter</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="library/pyb.USB_VCP.html">class USB_VCP &#8211; USB virtual comm port</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="library/pyb.USB_VCP.html#constructors">Constructors</a></li>
+<li class="toctree-l4"><a class="reference internal" href="library/pyb.USB_VCP.html#methods">Methods</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="library/omv.time.html"><code class="docutils literal"><span class="pre">time</span></code> &#8212; tracking elapsed time</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="library/omv.time.html#functions">Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="library/omv.time.html#constructors">Constructors</a></li>
+<li class="toctree-l4"><a class="reference internal" href="library/omv.time.html#methods">Methods</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="library/omv.sensor.html"><code class="docutils literal"><span class="pre">sensor</span></code> &#8212; camera sensor</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="library/omv.sensor.html#functions">Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="library/omv.sensor.html#constants">Constants</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="library/omv.image.html"><code class="docutils literal"><span class="pre">image</span></code> &#8212; machine vision</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="library/omv.image.html#functions">Functions</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="library/omv.image.html#class-haarcascade-feature-descriptor">class HaarCascade &#8211; Feature Descriptor</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="library/omv.image.html#constructors">Constructors</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="library/omv.image.html#class-histogram-histogram-object">class Histogram &#8211; Histogram Object</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="library/omv.image.html#methods">Methods</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="library/omv.image.html#class-percentile-percentile-object">class Percentile &#8211; Percentile Object</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="library/omv.image.html#id1">Methods</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="library/omv.image.html#class-statistics-statistics-object">class Statistics &#8211; Statistics Object</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="library/omv.image.html#id2">Methods</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="library/omv.image.html#class-blob-blob-object">class Blob &#8211; Blob object</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="library/omv.image.html#id3">Methods</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="library/omv.image.html#class-qrcode-qrcode-object">class QRCode &#8211; QRCode object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="library/omv.image.html#class-apriltag-apriltag-object">class AprilTag &#8211; AprilTag object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="library/omv.image.html#class-barcode-barcode-object">class BarCode &#8211; BarCode object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="library/omv.image.html#class-image-image-object">class Image &#8211; Image object</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="library/omv.image.html#id4">Constructors</a></li>
+<li class="toctree-l4"><a class="reference internal" href="library/omv.image.html#id5">Methods</a></li>
+<li class="toctree-l4"><a class="reference internal" href="library/omv.image.html#constants">Constants</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="library/omv.gif.html"><code class="docutils literal"><span class="pre">gif</span></code> &#8212; gif recording</a></li>
+<li class="toctree-l3"><a class="reference internal" href="library/omv.gif.html#class-gif-gif-recorder">class Gif &#8211; Gif recorder</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="library/omv.gif.html#constructors">Constructors</a></li>
+<li class="toctree-l4"><a class="reference internal" href="library/omv.gif.html#methods">Methods</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="library/omv.mjpeg.html"><code class="docutils literal"><span class="pre">mjpeg</span></code> &#8212; mjpeg recording</a></li>
+<li class="toctree-l3"><a class="reference internal" href="library/omv.mjpeg.html#class-mjpeg-mjpeg-recorder">class Mjpeg &#8211; Mjpeg recorder</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="library/omv.mjpeg.html#constructors">Constructors</a></li>
+<li class="toctree-l4"><a class="reference internal" href="library/omv.mjpeg.html#methods">Methods</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="library/omv.lcd.html"><code class="docutils literal"><span class="pre">lcd</span></code> &#8212; lcd shield driver</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="library/omv.lcd.html#functions">Functions</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="library/omv.fir.html"><code class="docutils literal"><span class="pre">fir</span></code> &#8212; thermopile shield driver (fir == far infrared)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="library/omv.fir.html#functions">Functions</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="library/omv.cpufreq.html"><code class="docutils literal"><span class="pre">cpufreq</span></code> &#8212; easy cpu frequency control</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="library/omv.cpufreq.html#functions">Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="library/omv.cpufreq.html#constants">Constants</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="library/machine.html"><code class="docutils literal"><span class="pre">machine</span></code> &#8212; functions related to the board</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="library/machine.html#reset-related-functions">Reset related functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="library/machine.html#interrupt-related-functions">Interrupt related functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="library/machine.html#power-related-functions">Power related functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="library/machine.html#miscellaneous-functions">Miscellaneous functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="library/machine.html#classes">Classes</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="library/machine.I2C.html">class I2C &#8211; a two-wire serial protocol</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="library/machine.I2C.html#constructors">Constructors</a></li>
+<li class="toctree-l6"><a class="reference internal" href="library/machine.I2C.html#general-methods">General Methods</a></li>
+<li class="toctree-l6"><a class="reference internal" href="library/machine.I2C.html#primitive-i2c-operations">Primitive I2C operations</a></li>
+<li class="toctree-l6"><a class="reference internal" href="library/machine.I2C.html#standard-bus-operations">Standard bus operations</a></li>
+<li class="toctree-l6"><a class="reference internal" href="library/machine.I2C.html#memory-operations">Memory operations</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="library/machine.I2C.html">class I2C &#8211; a two-wire serial protocol</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="library/machine.I2C.html#constructors">Constructors</a></li>
+<li class="toctree-l4"><a class="reference internal" href="library/machine.I2C.html#general-methods">General Methods</a></li>
+<li class="toctree-l4"><a class="reference internal" href="library/machine.I2C.html#primitive-i2c-operations">Primitive I2C operations</a></li>
+<li class="toctree-l4"><a class="reference internal" href="library/machine.I2C.html#standard-bus-operations">Standard bus operations</a></li>
+<li class="toctree-l4"><a class="reference internal" href="library/machine.I2C.html#memory-operations">Memory operations</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="reference/index.html">The MicroPython language</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="reference/repl.html">The MicroPython Interactive Interpreter Mode (aka REPL)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="reference/repl.html#auto-indent">Auto-indent</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/repl.html#auto-completion">Auto-completion</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/repl.html#interrupting-a-running-program">Interrupting a running program</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/repl.html#paste-mode">Paste Mode</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/repl.html#soft-reset">Soft Reset</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/repl.html#the-special-variable-underscore">The special variable _ (underscore)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/repl.html#raw-mode">Raw Mode</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="reference/isr_rules.html">Writing interrupt handlers</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="reference/isr_rules.html#tips-and-recommended-practices">Tips and recommended practices</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/isr_rules.html#micropython-issues">MicroPython Issues</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="reference/isr_rules.html#the-emergency-exception-buffer">The emergency exception buffer</a></li>
+<li class="toctree-l4"><a class="reference internal" href="reference/isr_rules.html#simplicity">Simplicity</a></li>
+<li class="toctree-l4"><a class="reference internal" href="reference/isr_rules.html#communication-between-an-isr-and-the-main-program">Communication between an ISR and the main program</a></li>
+<li class="toctree-l4"><a class="reference internal" href="reference/isr_rules.html#the-use-of-object-methods-as-callbacks">The use of object methods as callbacks</a></li>
+<li class="toctree-l4"><a class="reference internal" href="reference/isr_rules.html#creation-of-python-objects">Creation of Python objects</a></li>
+<li class="toctree-l4"><a class="reference internal" href="reference/isr_rules.html#use-of-python-objects">Use of Python objects</a></li>
+<li class="toctree-l4"><a class="reference internal" href="reference/isr_rules.html#overcoming-the-float-limitation">Overcoming the float limitation</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="reference/isr_rules.html#exceptions">Exceptions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/isr_rules.html#general-issues">General Issues</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="reference/isr_rules.html#interrupt-handler-design">Interrupt Handler Design</a></li>
+<li class="toctree-l4"><a class="reference internal" href="reference/isr_rules.html#reentrancy">Reentrancy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="reference/isr_rules.html#critical-sections">Critical Sections</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="reference/speed_python.html">Maximizing Python Speed</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="reference/speed_python.html#designing-for-speed">Designing for speed</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="reference/speed_python.html#algorithms">Algorithms</a></li>
+<li class="toctree-l4"><a class="reference internal" href="reference/speed_python.html#ram-allocation">RAM Allocation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="reference/speed_python.html#buffers">Buffers</a></li>
+<li class="toctree-l4"><a class="reference internal" href="reference/speed_python.html#floating-point">Floating Point</a></li>
+<li class="toctree-l4"><a class="reference internal" href="reference/speed_python.html#arrays">Arrays</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="reference/speed_python.html#identifying-the-slowest-section-of-code">Identifying the slowest section of code</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/speed_python.html#micropython-code-improvements">MicroPython code improvements</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="reference/speed_python.html#the-const-declaration">The const() declaration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="reference/speed_python.html#caching-object-references">Caching object references</a></li>
+<li class="toctree-l4"><a class="reference internal" href="reference/speed_python.html#controlling-garbage-collection">Controlling garbage collection</a></li>
+<li class="toctree-l4"><a class="reference internal" href="reference/speed_python.html#accessing-hardware-directly">Accessing hardware directly</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="reference/speed_python.html#the-native-code-emitter">The Native code emitter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/speed_python.html#the-viper-code-emitter">The Viper code emitter</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="reference/asm_thumb2_index.html">Inline Assembler for Thumb2 architectures</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="reference/asm_thumb2_index.html#document-conventions">Document conventions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/asm_thumb2_index.html#instruction-categories">Instruction Categories</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="reference/asm_thumb2_mov.html">1. Register move instructions</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="reference/asm_thumb2_mov.html#document-conventions">1.1. Document conventions</a></li>
+<li class="toctree-l5"><a class="reference internal" href="reference/asm_thumb2_mov.html#register-moves">1.2. Register moves</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="reference/asm_thumb2_ldr.html">2. Load register from memory</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="reference/asm_thumb2_ldr.html#document-conventions">2.1. Document conventions</a></li>
+<li class="toctree-l5"><a class="reference internal" href="reference/asm_thumb2_ldr.html#register-load">2.2. Register Load</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="reference/asm_thumb2_str.html">3. Store register to memory</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="reference/asm_thumb2_str.html#document-conventions">3.1. Document conventions</a></li>
+<li class="toctree-l5"><a class="reference internal" href="reference/asm_thumb2_str.html#register-store">3.2. Register Store</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="reference/asm_thumb2_logical_bit.html">4. Logical &amp; Bitwise instructions</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="reference/asm_thumb2_logical_bit.html#document-conventions">4.1. Document conventions</a></li>
+<li class="toctree-l5"><a class="reference internal" href="reference/asm_thumb2_logical_bit.html#logical-instructions">4.2. Logical instructions</a></li>
+<li class="toctree-l5"><a class="reference internal" href="reference/asm_thumb2_logical_bit.html#shift-and-rotation-instructions">4.3. Shift and rotation instructions</a></li>
+<li class="toctree-l5"><a class="reference internal" href="reference/asm_thumb2_logical_bit.html#special-instructions">4.4. Special instructions</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="reference/asm_thumb2_arith.html">5. Arithmetic instructions</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="reference/asm_thumb2_arith.html#document-conventions">5.1. Document conventions</a></li>
+<li class="toctree-l5"><a class="reference internal" href="reference/asm_thumb2_arith.html#addition">5.2. Addition</a></li>
+<li class="toctree-l5"><a class="reference internal" href="reference/asm_thumb2_arith.html#subtraction">5.3. Subtraction</a></li>
+<li class="toctree-l5"><a class="reference internal" href="reference/asm_thumb2_arith.html#negation">5.4. Negation</a></li>
+<li class="toctree-l5"><a class="reference internal" href="reference/asm_thumb2_arith.html#multiplication-and-division">5.5. Multiplication and division</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="reference/asm_thumb2_compare.html">6. Comparison instructions</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="reference/asm_thumb2_compare.html#document-conventions">6.1. Document conventions</a></li>
+<li class="toctree-l5"><a class="reference internal" href="reference/asm_thumb2_compare.html#the-application-program-status-register-apsr">6.2. The Application Program Status Register (APSR)</a></li>
+<li class="toctree-l5"><a class="reference internal" href="reference/asm_thumb2_compare.html#apsr-bits">6.3. APSR Bits</a></li>
+<li class="toctree-l5"><a class="reference internal" href="reference/asm_thumb2_compare.html#id1">6.4. Comparison instructions</a></li>
+<li class="toctree-l5"><a class="reference internal" href="reference/asm_thumb2_compare.html#conditional-execution">6.5. Conditional execution</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="reference/asm_thumb2_label_branch.html">7. Branch instructions</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="reference/asm_thumb2_label_branch.html#document-conventions">7.1. Document conventions</a></li>
+<li class="toctree-l5"><a class="reference internal" href="reference/asm_thumb2_label_branch.html#branch-to-label">7.2. Branch to label</a></li>
+<li class="toctree-l5"><a class="reference internal" href="reference/asm_thumb2_label_branch.html#long-branches">7.3. Long branches</a></li>
+<li class="toctree-l5"><a class="reference internal" href="reference/asm_thumb2_label_branch.html#subroutines-functions">7.4. Subroutines (functions)</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="reference/asm_thumb2_stack.html">8. Stack push and pop</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="reference/asm_thumb2_stack.html#document-conventions">8.1. Document conventions</a></li>
+<li class="toctree-l5"><a class="reference internal" href="reference/asm_thumb2_stack.html#stack-operations">8.2. Stack operations</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="reference/asm_thumb2_misc.html">9. Miscellaneous instructions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="reference/asm_thumb2_float.html">10. Floating Point instructions</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="reference/asm_thumb2_float.html#document-conventions">10.1. Document conventions</a></li>
+<li class="toctree-l5"><a class="reference internal" href="reference/asm_thumb2_float.html#arithmetic">10.2. Arithmetic</a></li>
+<li class="toctree-l5"><a class="reference internal" href="reference/asm_thumb2_float.html#move-between-arm-core-and-fpu-registers">10.3. Move between ARM core and FPU registers</a></li>
+<li class="toctree-l5"><a class="reference internal" href="reference/asm_thumb2_float.html#move-between-fpu-register-and-memory">10.4. Move between FPU register and memory</a></li>
+<li class="toctree-l5"><a class="reference internal" href="reference/asm_thumb2_float.html#data-comparison">10.5. Data Comparison</a></li>
+<li class="toctree-l5"><a class="reference internal" href="reference/asm_thumb2_float.html#convert-between-integers-and-floats">10.6. Convert between integers and floats</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="reference/asm_thumb2_directives.html">11. Assembler Directives</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="reference/asm_thumb2_directives.html#labels">11.1. Labels</a></li>
+<li class="toctree-l5"><a class="reference internal" href="reference/asm_thumb2_directives.html#defining-inline-data">11.2. Defining inline data</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="reference/asm_thumb2_index.html#usage-examples">Usage examples</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="reference/asm_thumb2_hints_tips.html">1. Hints and tips</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="reference/asm_thumb2_hints_tips.html#code-branches-and-subroutines">1.1. Code branches and subroutines</a></li>
+<li class="toctree-l5"><a class="reference internal" href="reference/asm_thumb2_hints_tips.html#argument-passing-and-return">1.2. Argument passing and return</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="reference/asm_thumb2_hints_tips.html#multiple-arguments">1.2.1. Multiple arguments</a></li>
+<li class="toctree-l6"><a class="reference internal" href="reference/asm_thumb2_hints_tips.html#non-integer-data-types">1.2.2. Non-integer data types</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="reference/asm_thumb2_hints_tips.html#named-constants">1.3. Named constants</a></li>
+<li class="toctree-l5"><a class="reference internal" href="reference/asm_thumb2_hints_tips.html#assembler-code-as-class-methods">1.4. Assembler code as class methods</a></li>
+<li class="toctree-l5"><a class="reference internal" href="reference/asm_thumb2_hints_tips.html#use-of-unsupported-instructions">1.5. Use of unsupported instructions</a></li>
+<li class="toctree-l5"><a class="reference internal" href="reference/asm_thumb2_hints_tips.html#overcoming-micropython-s-integer-restriction">1.6. Overcoming MicroPython&#8217;s integer restriction</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="reference/asm_thumb2_index.html#references">References</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">MicroPython license information</a></li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2014-2017, Damien P. George, OpenMV LLC, and contributors.
+      Last updated on 27 Mar 2017.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  <!--
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    <span class="fa fa-book"> Ports and Versions</span>
+    openmvcam (latest)
+    <span class="fa fa-caret-down"></span>
+  </span>
+  <div class="rst-other-versions">
+    <dl>
+      <dt>Ports</dt>
+      
+        <dd><a href="//en/latest/unix">unix</a></dd>
+      
+        <dd><a href="//en/latest/pyboard">pyboard</a></dd>
+      
+        <dd><a href="//en/latest/wipy">wipy</a></dd>
+      
+        <dd><a href="//en/latest/esp8266">esp8266</a></dd>
+      
+        <dd><a href="//en/latest/openmvcam">openmvcam</a></dd>
+      
+    </dl>
+    <dl>
+      <dt>Versions</dt>
+      
+        <dd><a href="//en/latest/openmvcam">latest</a></dd>
+      
+    </dl>
+    -->
+    <!--
+    <dl>
+      <dt>Downloads</dt>
+      
+    </dl>
+    -->
+    <!--
+    <hr/>
+    <dl>
+      <dt>External links</dt>
+        <dd>
+          <a href="http://www.micropython.org">micropython.org</a>
+        </dd>
+        <dd>
+          <a href="http://github.com/micropython/micropython">GitHub</a>
+        </dd>
+    </dl>
+  </div>
+</div>
+-->
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'1.8',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

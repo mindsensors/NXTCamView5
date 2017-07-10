@@ -1,0 +1,336 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>ussl – ssl module &mdash; MicroPython 1.8 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../_static/customstyle.css" type="text/css" />
+  
+
+  
+    <link rel="top" title="MicroPython 1.8 documentation" href="../index.html"/>
+        <link rel="up" title="MicroPython libraries" href="index.html"/>
+        <link rel="next" title="utime – time related functions" href="utime.html"/>
+        <link rel="prev" title="usocket – socket module" href="usocket.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> MicroPython
+          
+
+          
+            
+            <img src="../_static/web-logo-sticky.png" class="logo" />
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.8
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul>
+<li class="toctree-l1"><a class="reference internal" href="../openmvcam/quickref.html">Quick reference for the openmvcam</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../openmvcam/tutorial/index.html">OpenMV Cam Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index.html">MicroPython libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/index.html">The MicroPython language</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">MicroPython license information</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">MicroPython</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="index.html">MicroPython libraries</a> &raquo;</li>
+      
+    <li><code class="docutils literal"><span class="pre">ussl</span></code> &#8211; ssl module</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/library/ussl.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-ussl">
+<span id="ussl-ssl-module"></span><h1><a class="reference internal" href="#module-ussl" title="ussl: TLS/SSL wrapper for socket objects"><code class="xref py py-mod docutils literal"><span class="pre">ussl</span></code></a> &#8211; ssl module<a class="headerlink" href="#module-ussl" title="Permalink to this headline">¶</a></h1>
+<p>This module provides access to Transport Layer Security (often known as
+“Secure Sockets Layer”) encryption and peer authentication facilities for
+network sockets, both client-side and server-side.</p>
+<div class="section" id="functions">
+<h2>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="ussl.ssl.wrap_socket">
+<code class="descclassname">ssl.</code><code class="descname">wrap_socket</code><span class="sig-paren">(</span><em>sock</em>, <em>keyfile=None</em>, <em>certfile=None</em>, <em>server_side=False</em>, <em>cert_reqs=CERT_NONE</em>, <em>ca_certs=None</em><span class="sig-paren">)</span><a class="headerlink" href="#ussl.ssl.wrap_socket" title="Permalink to this definition">¶</a></dt>
+<dd><p>Takes an instance sock of socket.socket, and returns an instance of ssl.SSLSocket, a subtype of
+<code class="docutils literal"><span class="pre">socket.socket</span></code>, which wraps the underlying socket in an SSL context. sock must be a <code class="docutils literal"><span class="pre">SOCK_STREAM</span></code>
+socket and protocol number <code class="docutils literal"><span class="pre">socket.IPPROTO_SEC</span></code>; other socket types are unsupported. Example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">socket</span>
+<span class="kn">import</span> <span class="nn">ssl</span>
+<span class="n">s</span> <span class="o">=</span> <span class="n">socket</span><span class="p">(</span><span class="n">socket</span><span class="o">.</span><span class="n">AF_INET</span><span class="p">,</span> <span class="n">socket</span><span class="o">.</span><span class="n">SOCK_STREAM</span><span class="p">,</span> <span class="n">socket</span><span class="o">.</span><span class="n">IPPROTO_SEC</span><span class="p">)</span>
+<span class="n">ss</span> <span class="o">=</span> <span class="n">ssl</span><span class="o">.</span><span class="n">wrap_socket</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+<span class="n">ss</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">socket</span><span class="o">.</span><span class="n">getaddrinfo</span><span class="p">(</span><span class="s">&#39;www.google.com&#39;</span><span class="p">,</span> <span class="mi">443</span><span class="p">)[</span><span class="mi">0</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>Certificates must be used in order to validate the other side of the connection, and also to
+authenticate ourselves with the other end. Such certificates must be stored as files using the
+FTP server, and they must be placed in specific paths with specific names.</p>
+<ul class="simple">
+<li>The certificate to validate the other side goes in: <strong>&#8216;/flash/cert/ca.pem&#8217;</strong></li>
+<li>The certificate to authenticate ourselves goes in: <strong>&#8216;/flash/cert/cert.pem&#8217;</strong></li>
+<li>The key for our own certificate goes in: <strong>&#8216;/flash/cert/private.key&#8217;</strong></li>
+</ul>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">When these files are stored, they are placed inside the internal <strong>hidden</strong> file system
+(just like firmware updates), and therefore they are never visible.</p>
+</div>
+<p>For instance to connect to the Blynk servers using certificates, take the file <code class="docutils literal"><span class="pre">ca.pem</span></code> located
+in the <a class="reference external" href="https://github.com/wipy/wipy/tree/master/examples/blynk">blynk examples folder</a>
+and put it in &#8216;/flash/cert/&#8217;. Then do:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">socket</span>
+<span class="kn">import</span> <span class="nn">ssl</span>
+<span class="n">s</span> <span class="o">=</span> <span class="n">socket</span><span class="o">.</span><span class="n">socket</span><span class="p">(</span><span class="n">socket</span><span class="o">.</span><span class="n">AF_INET</span><span class="p">,</span> <span class="n">socket</span><span class="o">.</span><span class="n">SOCK_STREAM</span><span class="p">,</span> <span class="n">socket</span><span class="o">.</span><span class="n">IPPROTO_SEC</span><span class="p">)</span>
+<span class="n">ss</span> <span class="o">=</span> <span class="n">ssl</span><span class="o">.</span><span class="n">wrap_socket</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">cert_reqs</span><span class="o">=</span><span class="n">ssl</span><span class="o">.</span><span class="n">CERT_REQUIRED</span><span class="p">,</span> <span class="n">ca_certs</span><span class="o">=</span><span class="s">&#39;/flash/cert/ca.pem&#39;</span><span class="p">)</span>
+<span class="n">ss</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">socket</span><span class="o">.</span><span class="n">getaddrinfo</span><span class="p">(</span><span class="s">&#39;cloud.blynk.cc&#39;</span><span class="p">,</span> <span class="mi">8441</span><span class="p">)[</span><span class="mi">0</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>SSL sockets inherit all methods and from the standard sockets, see the <a class="reference internal" href="usocket.html#module-usocket" title="usocket: socket module"><code class="xref py py-mod docutils literal"><span class="pre">usocket</span></code></a> module.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="exceptions">
+<h2>Exceptions<a class="headerlink" href="#exceptions" title="Permalink to this headline">¶</a></h2>
+<dl class="data">
+<dt id="ussl.ssl.SSLError">
+<code class="descclassname">ssl.</code><code class="descname">SSLError</code><a class="headerlink" href="#ussl.ssl.SSLError" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="constants">
+<h2>Constants<a class="headerlink" href="#constants" title="Permalink to this headline">¶</a></h2>
+<dl class="data">
+<dt id="ussl.ssl.CERT_NONE">
+<code class="descclassname">ssl.</code><code class="descname">CERT_NONE</code><a class="headerlink" href="#ussl.ssl.CERT_NONE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="data">
+<dt id="ussl.ssl.CERT_OPTIONAL">
+<code class="descclassname">ssl.</code><code class="descname">CERT_OPTIONAL</code><a class="headerlink" href="#ussl.ssl.CERT_OPTIONAL" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="data">
+<dt id="ussl.ssl.CERT_REQUIRED">
+<code class="descclassname">ssl.</code><code class="descname">CERT_REQUIRED</code><a class="headerlink" href="#ussl.ssl.CERT_REQUIRED" title="Permalink to this definition">¶</a></dt>
+<dd><p>supported values in <code class="docutils literal"><span class="pre">cert_reqs</span></code></p>
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="utime.html" class="btn btn-neutral float-right" title="utime – time related functions" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="usocket.html" class="btn btn-neutral" title="usocket – socket module" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2014-2017, Damien P. George, OpenMV LLC, and contributors.
+      Last updated on 27 Mar 2017.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  <!--
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    <span class="fa fa-book"> Ports and Versions</span>
+    openmvcam (latest)
+    <span class="fa fa-caret-down"></span>
+  </span>
+  <div class="rst-other-versions">
+    <dl>
+      <dt>Ports</dt>
+      
+        <dd><a href="//en/latest/unix">unix</a></dd>
+      
+        <dd><a href="//en/latest/pyboard">pyboard</a></dd>
+      
+        <dd><a href="//en/latest/wipy">wipy</a></dd>
+      
+        <dd><a href="//en/latest/esp8266">esp8266</a></dd>
+      
+        <dd><a href="//en/latest/openmvcam">openmvcam</a></dd>
+      
+    </dl>
+    <dl>
+      <dt>Versions</dt>
+      
+        <dd><a href="//en/latest/openmvcam">latest</a></dd>
+      
+    </dl>
+    -->
+    <!--
+    <dl>
+      <dt>Downloads</dt>
+      
+    </dl>
+    -->
+    <!--
+    <hr/>
+    <dl>
+      <dt>External links</dt>
+        <dd>
+          <a href="http://www.micropython.org">micropython.org</a>
+        </dd>
+        <dd>
+          <a href="http://github.com/micropython/micropython">GitHub</a>
+        </dd>
+    </dl>
+  </div>
+</div>
+-->
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'1.8',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

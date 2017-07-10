@@ -1,0 +1,370 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>class UART – duplex serial communication bus &mdash; MicroPython 1.8 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../_static/customstyle.css" type="text/css" />
+  
+
+  
+    <link rel="top" title="MicroPython 1.8 documentation" href="../index.html"/>
+        <link rel="up" title="machine — functions related to the board" href="machine.html"/>
+        <link rel="next" title="class WDT – watchdog timer" href="machine.WDT.html"/>
+        <link rel="prev" title="class Timer – control internal timers" href="machine.Timer.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> MicroPython
+          
+
+          
+            
+            <img src="../_static/web-logo-sticky.png" class="logo" />
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.8
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul>
+<li class="toctree-l1"><a class="reference internal" href="../openmvcam/quickref.html">Quick reference for the openmvcam</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../openmvcam/tutorial/index.html">OpenMV Cam Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index.html">MicroPython libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/index.html">The MicroPython language</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">MicroPython license information</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">MicroPython</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="index.html">MicroPython libraries</a> &raquo;</li>
+      
+          <li><a href="machine.html"><code class="docutils literal"><span class="pre">machine</span></code> &#8212; functions related to the board</a> &raquo;</li>
+      
+    <li>class UART &#8211; duplex serial communication bus</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/library/machine.UART.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="class-uart-duplex-serial-communication-bus">
+<span id="machine-uart"></span><h1>class UART &#8211; duplex serial communication bus<a class="headerlink" href="#class-uart-duplex-serial-communication-bus" title="Permalink to this headline">¶</a></h1>
+<p>UART implements the standard UART/USART duplex serial communications protocol. At
+the physical level it consists of 2 lines: RX and TX. The unit of communication
+is a character (not to be confused with a string character) which can be 8 or 9
+bits wide.</p>
+<p>UART objects can be created and initialized using:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">machine</span> <span class="kn">import</span> <span class="n">UART</span>
+
+<span class="n">uart</span> <span class="o">=</span> <span class="n">UART</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">9600</span><span class="p">)</span>                         <span class="c"># init with given baudrate</span>
+<span class="n">uart</span><span class="o">.</span><span class="n">init</span><span class="p">(</span><span class="mi">9600</span><span class="p">,</span> <span class="n">bits</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">parity</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">stop</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="c"># init with given parameters</span>
+</pre></div>
+</div>
+<p>A UART object acts like a stream object and reading and writing is done
+using the standard stream methods:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">uart</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>       <span class="c"># read 10 characters, returns a bytes object</span>
+<span class="n">uart</span><span class="o">.</span><span class="n">readall</span><span class="p">()</span>      <span class="c"># read all available characters</span>
+<span class="n">uart</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span>     <span class="c"># read a line</span>
+<span class="n">uart</span><span class="o">.</span><span class="n">readinto</span><span class="p">(</span><span class="n">buf</span><span class="p">)</span>  <span class="c"># read and store into the given buffer</span>
+<span class="n">uart</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">&#39;abc&#39;</span><span class="p">)</span>   <span class="c"># write the 3 characters</span>
+</pre></div>
+</div>
+<div class="section" id="constructors">
+<h2>Constructors<a class="headerlink" href="#constructors" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="methods">
+<h2>Methods<a class="headerlink" href="#methods" title="Permalink to this headline">¶</a></h2>
+<dl class="method">
+<dt id="uart.deinit">
+<code class="descclassname">uart.</code><code class="descname">deinit</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#uart.deinit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Turn off the UART bus.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="uart.any">
+<code class="descclassname">uart.</code><code class="descname">any</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#uart.any" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the number of characters available for reading.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="uart.read">
+<code class="descclassname">uart.</code><code class="descname">read</code><span class="sig-paren">(</span><span class="optional">[</span><em>nbytes</em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#uart.read" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read characters. If <code class="docutils literal"><span class="pre">nbytes</span></code> is specified then read at most that many bytes.</p>
+<p>Return value: a bytes object containing the bytes read in. Returns <code class="docutils literal"><span class="pre">None</span></code>
+on timeout.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="uart.readall">
+<code class="descclassname">uart.</code><code class="descname">readall</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#uart.readall" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read as much data as possible.</p>
+<p>Return value: a bytes object or <code class="docutils literal"><span class="pre">None</span></code> on timeout.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="uart.readinto">
+<code class="descclassname">uart.</code><code class="descname">readinto</code><span class="sig-paren">(</span><em>buf</em><span class="optional">[</span>, <em>nbytes</em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#uart.readinto" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read bytes into the <code class="docutils literal"><span class="pre">buf</span></code>. If <code class="docutils literal"><span class="pre">nbytes</span></code> is specified then read at most
+that many bytes. Otherwise, read at most <code class="docutils literal"><span class="pre">len(buf)</span></code> bytes.</p>
+<p>Return value: number of bytes read and stored into <code class="docutils literal"><span class="pre">buf</span></code> or <code class="docutils literal"><span class="pre">None</span></code> on
+timeout.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="uart.readline">
+<code class="descclassname">uart.</code><code class="descname">readline</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#uart.readline" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read a line, ending in a newline character.</p>
+<p>Return value: the line read or <code class="docutils literal"><span class="pre">None</span></code> on timeout.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="uart.write">
+<code class="descclassname">uart.</code><code class="descname">write</code><span class="sig-paren">(</span><em>buf</em><span class="sig-paren">)</span><a class="headerlink" href="#uart.write" title="Permalink to this definition">¶</a></dt>
+<dd><p>Write the buffer of bytes to the bus.</p>
+<p>Return value: number of bytes written or <code class="docutils literal"><span class="pre">None</span></code> on timeout.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="uart.sendbreak">
+<code class="descclassname">uart.</code><code class="descname">sendbreak</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#uart.sendbreak" title="Permalink to this definition">¶</a></dt>
+<dd><p>Send a break condition on the bus. This drives the bus low for a duration
+of 13 bits.
+Return value: <code class="docutils literal"><span class="pre">None</span></code>.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="constants">
+<h2>Constants<a class="headerlink" href="#constants" title="Permalink to this headline">¶</a></h2>
+<dl class="data">
+<dt id="UART.EVEN">
+<code class="descclassname">UART.</code><code class="descname">EVEN</code><a class="headerlink" href="#UART.EVEN" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="data">
+<dt id="UART.ODD">
+<code class="descclassname">UART.</code><code class="descname">ODD</code><a class="headerlink" href="#UART.ODD" title="Permalink to this definition">¶</a></dt>
+<dd><p>parity types (along with <code class="docutils literal"><span class="pre">None</span></code>)</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="UART.RX_ANY">
+<code class="descclassname">UART.</code><code class="descname">RX_ANY</code><a class="headerlink" href="#UART.RX_ANY" title="Permalink to this definition">¶</a></dt>
+<dd><p>IRQ trigger sources</p>
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="machine.WDT.html" class="btn btn-neutral float-right" title="class WDT – watchdog timer" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="machine.Timer.html" class="btn btn-neutral" title="class Timer – control internal timers" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2014-2017, Damien P. George, OpenMV LLC, and contributors.
+      Last updated on 27 Mar 2017.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  <!--
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    <span class="fa fa-book"> Ports and Versions</span>
+    openmvcam (latest)
+    <span class="fa fa-caret-down"></span>
+  </span>
+  <div class="rst-other-versions">
+    <dl>
+      <dt>Ports</dt>
+      
+        <dd><a href="//en/latest/unix">unix</a></dd>
+      
+        <dd><a href="//en/latest/pyboard">pyboard</a></dd>
+      
+        <dd><a href="//en/latest/wipy">wipy</a></dd>
+      
+        <dd><a href="//en/latest/esp8266">esp8266</a></dd>
+      
+        <dd><a href="//en/latest/openmvcam">openmvcam</a></dd>
+      
+    </dl>
+    <dl>
+      <dt>Versions</dt>
+      
+        <dd><a href="//en/latest/openmvcam">latest</a></dd>
+      
+    </dl>
+    -->
+    <!--
+    <dl>
+      <dt>Downloads</dt>
+      
+    </dl>
+    -->
+    <!--
+    <hr/>
+    <dl>
+      <dt>External links</dt>
+        <dd>
+          <a href="http://www.micropython.org">micropython.org</a>
+        </dd>
+        <dd>
+          <a href="http://github.com/micropython/micropython">GitHub</a>
+        </dd>
+    </dl>
+  </div>
+</div>
+-->
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'1.8',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

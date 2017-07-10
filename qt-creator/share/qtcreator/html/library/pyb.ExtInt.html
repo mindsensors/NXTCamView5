@@ -1,0 +1,438 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>class ExtInt – configure I/O pins to interrupt on external events &mdash; MicroPython 1.8 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../_static/customstyle.css" type="text/css" />
+  
+
+  
+    <link rel="top" title="MicroPython 1.8 documentation" href="../index.html"/>
+        <link rel="up" title="MicroPython libraries" href="index.html"/>
+        <link rel="next" title="class I2C – a two-wire serial protocol" href="pyb.I2C.html"/>
+        <link rel="prev" title="class DAC – digital to analog conversion" href="pyb.DAC.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> MicroPython
+          
+
+          
+            
+            <img src="../_static/web-logo-sticky.png" class="logo" />
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.8
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../openmvcam/quickref.html">Quick reference for the openmvcam</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../openmvcam/tutorial/index.html">OpenMV Cam Tutorial</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">MicroPython libraries</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="index.html#python-standard-libraries-and-micro-libraries">Python standard libraries and micro-libraries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#micropython-specific-libraries">MicroPython-specific libraries</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#libraries-specific-to-the-openmv-cam">Libraries specific to the OpenMV Cam</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="pyb.html"><code class="docutils literal"><span class="pre">pyb</span></code> &#8212; functions related to the board</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="pyb.html#time-related-functions">Time related functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyb.html#reset-related-functions">Reset related functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyb.html#interrupt-related-functions">Interrupt related functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyb.html#power-related-functions">Power related functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyb.html#miscellaneous-functions">Miscellaneous functions</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="pyb.html#classes">Classes</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="pyb.ADC.html">class ADC &#8211; analog to digital conversion</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyb.CAN.html">class CAN &#8211; controller area network communication bus</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyb.DAC.html">class DAC &#8211; digital to analog conversion</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="">class ExtInt &#8211; configure I/O pins to interrupt on external events</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#constructors">Constructors</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#class-methods">Class methods</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#methods">Methods</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#constants">Constants</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="pyb.I2C.html">class I2C &#8211; a two-wire serial protocol</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyb.LED.html">class LED &#8211; LED object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyb.Pin.html">class Pin &#8211; control I/O pins</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyb.Servo.html">class Servo &#8211; 3-wire hobby servo driver</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyb.SPI.html">class SPI &#8211; a master-driven serial protocol</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyb.Timer.html">class Timer &#8211; control internal timers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyb.Timer.html#class-timerchannel-setup-a-channel-for-a-timer">class TimerChannel &#8212; setup a channel for a timer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyb.UART.html">class UART &#8211; duplex serial communication bus</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyb.USB_VCP.html">class USB_VCP &#8211; USB virtual comm port</a></li>
+<li class="toctree-l3"><a class="reference internal" href="omv.time.html"><code class="docutils literal"><span class="pre">time</span></code> &#8212; tracking elapsed time</a></li>
+<li class="toctree-l3"><a class="reference internal" href="omv.sensor.html"><code class="docutils literal"><span class="pre">sensor</span></code> &#8212; camera sensor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="omv.image.html"><code class="docutils literal"><span class="pre">image</span></code> &#8212; machine vision</a></li>
+<li class="toctree-l3"><a class="reference internal" href="omv.image.html#class-haarcascade-feature-descriptor">class HaarCascade &#8211; Feature Descriptor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="omv.image.html#class-histogram-histogram-object">class Histogram &#8211; Histogram Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="omv.image.html#class-percentile-percentile-object">class Percentile &#8211; Percentile Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="omv.image.html#class-statistics-statistics-object">class Statistics &#8211; Statistics Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="omv.image.html#class-blob-blob-object">class Blob &#8211; Blob object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="omv.image.html#class-qrcode-qrcode-object">class QRCode &#8211; QRCode object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="omv.image.html#class-apriltag-apriltag-object">class AprilTag &#8211; AprilTag object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="omv.image.html#class-barcode-barcode-object">class BarCode &#8211; BarCode object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="omv.image.html#class-image-image-object">class Image &#8211; Image object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="omv.gif.html"><code class="docutils literal"><span class="pre">gif</span></code> &#8212; gif recording</a></li>
+<li class="toctree-l3"><a class="reference internal" href="omv.gif.html#class-gif-gif-recorder">class Gif &#8211; Gif recorder</a></li>
+<li class="toctree-l3"><a class="reference internal" href="omv.mjpeg.html"><code class="docutils literal"><span class="pre">mjpeg</span></code> &#8212; mjpeg recording</a></li>
+<li class="toctree-l3"><a class="reference internal" href="omv.mjpeg.html#class-mjpeg-mjpeg-recorder">class Mjpeg &#8211; Mjpeg recorder</a></li>
+<li class="toctree-l3"><a class="reference internal" href="omv.lcd.html"><code class="docutils literal"><span class="pre">lcd</span></code> &#8212; lcd shield driver</a></li>
+<li class="toctree-l3"><a class="reference internal" href="omv.fir.html"><code class="docutils literal"><span class="pre">fir</span></code> &#8212; thermopile shield driver (fir == far infrared)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="omv.cpufreq.html"><code class="docutils literal"><span class="pre">cpufreq</span></code> &#8212; easy cpu frequency control</a></li>
+<li class="toctree-l3"><a class="reference internal" href="machine.html"><code class="docutils literal"><span class="pre">machine</span></code> &#8212; functions related to the board</a></li>
+<li class="toctree-l3"><a class="reference internal" href="machine.I2C.html">class I2C &#8211; a two-wire serial protocol</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/index.html">The MicroPython language</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">MicroPython license information</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">MicroPython</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="index.html">MicroPython libraries</a> &raquo;</li>
+      
+    <li>class ExtInt &#8211; configure I/O pins to interrupt on external events</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/library/pyb.ExtInt.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="class-extint-configure-i-o-pins-to-interrupt-on-external-events">
+<span id="pyb-extint"></span><h1>class ExtInt &#8211; configure I/O pins to interrupt on external events<a class="headerlink" href="#class-extint-configure-i-o-pins-to-interrupt-on-external-events" title="Permalink to this headline">¶</a></h1>
+<p>There are a total of 22 interrupt lines. 16 of these can come from GPIO pins
+and the remaining 6 are from internal sources.</p>
+<p>For lines 0 thru 15, a given line can map to the corresponding line from an
+arbitrary port. So line 0 can map to Px0 where x is A, B, C, ... and
+line 1 can map to Px1 where x is A, B, C, ...</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">callback</span><span class="p">(</span><span class="n">line</span><span class="p">):</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">&quot;line =&quot;</span><span class="p">,</span> <span class="n">line</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Note: ExtInt will automatically configure the gpio line as an input.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">extint</span> <span class="o">=</span> <span class="n">pyb</span><span class="o">.</span><span class="n">ExtInt</span><span class="p">(</span><span class="n">pin</span><span class="p">,</span> <span class="n">pyb</span><span class="o">.</span><span class="n">ExtInt</span><span class="o">.</span><span class="n">IRQ_FALLING</span><span class="p">,</span> <span class="n">pyb</span><span class="o">.</span><span class="n">Pin</span><span class="o">.</span><span class="n">PULL_UP</span><span class="p">,</span> <span class="n">callback</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Now every time a falling edge is seen on the pin, the callback will be
+called. Caution: mechanical pushbuttons have &#8220;bounce&#8221; and pushing or
+releasing a switch will often generate multiple edges.
+See: <a class="reference external" href="http://www.eng.utah.edu/~cs5780/debouncing.pdf">http://www.eng.utah.edu/~cs5780/debouncing.pdf</a> for a detailed
+explanation, along with various techniques for debouncing.</p>
+<p>Trying to register 2 callbacks onto the same pin will throw an exception.</p>
+<p>If pin is passed as an integer, then it is assumed to map to one of the
+internal interrupt sources, and must be in the range 16 thru 22.</p>
+<p>All other pin objects go through the pin mapper to come up with one of the
+gpio pins.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">extint</span> <span class="o">=</span> <span class="n">pyb</span><span class="o">.</span><span class="n">ExtInt</span><span class="p">(</span><span class="n">pin</span><span class="p">,</span> <span class="n">mode</span><span class="p">,</span> <span class="n">pull</span><span class="p">,</span> <span class="n">callback</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Valid modes are pyb.ExtInt.IRQ_RISING, pyb.ExtInt.IRQ_FALLING,
+pyb.ExtInt.IRQ_RISING_FALLING, pyb.ExtInt.EVT_RISING,
+pyb.ExtInt.EVT_FALLING, and pyb.ExtInt.EVT_RISING_FALLING.</p>
+<p>Only the IRQ_xxx modes have been tested. The EVT_xxx modes have
+something to do with sleep mode and the WFE instruction.</p>
+<p>Valid pull values are pyb.Pin.PULL_UP, pyb.Pin.PULL_DOWN, pyb.Pin.PULL_NONE.</p>
+<p>There is also a C API, so that drivers which require EXTI interrupt lines
+can also use this code. See extint.h for the available functions and
+usrsw.h for an example of using this.</p>
+<div class="section" id="constructors">
+<h2>Constructors<a class="headerlink" href="#constructors" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="pyb.ExtInt">
+<em class="property">class </em><code class="descclassname">pyb.</code><code class="descname">ExtInt</code><span class="sig-paren">(</span><em>pin</em>, <em>mode</em>, <em>pull</em>, <em>callback</em><span class="sig-paren">)</span><a class="headerlink" href="#pyb.ExtInt" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create an ExtInt object:</p>
+<blockquote>
+<div><ul class="simple">
+<li><code class="docutils literal"><span class="pre">pin</span></code> is the pin on which to enable the interrupt (can be a pin object or any valid pin name).</li>
+<li><code class="docutils literal"><span class="pre">mode</span></code> can be one of:
+- <code class="docutils literal"><span class="pre">ExtInt.IRQ_RISING</span></code> - trigger on a rising edge;
+- <code class="docutils literal"><span class="pre">ExtInt.IRQ_FALLING</span></code> - trigger on a falling edge;
+- <code class="docutils literal"><span class="pre">ExtInt.IRQ_RISING_FALLING</span></code> - trigger on a rising or falling edge.</li>
+<li><code class="docutils literal"><span class="pre">pull</span></code> can be one of:
+- <code class="docutils literal"><span class="pre">pyb.Pin.PULL_NONE</span></code> - no pull up or down resistors;
+- <code class="docutils literal"><span class="pre">pyb.Pin.PULL_UP</span></code> - enable the pull-up resistor;
+- <code class="docutils literal"><span class="pre">pyb.Pin.PULL_DOWN</span></code> - enable the pull-down resistor.</li>
+<li><code class="docutils literal"><span class="pre">callback</span></code> is the function to call when the interrupt triggers. The
+callback function must accept exactly 1 argument, which is the line that
+triggered the interrupt.</li>
+</ul>
+</div></blockquote>
+</dd></dl>
+
+</div>
+<div class="section" id="class-methods">
+<h2>Class methods<a class="headerlink" href="#class-methods" title="Permalink to this headline">¶</a></h2>
+<dl class="method">
+<dt id="ExtInt.regs">
+<code class="descclassname">ExtInt.</code><code class="descname">regs</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ExtInt.regs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Dump the values of the EXTI registers.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="methods">
+<h2>Methods<a class="headerlink" href="#methods" title="Permalink to this headline">¶</a></h2>
+<dl class="method">
+<dt id="extint.disable">
+<code class="descclassname">extint.</code><code class="descname">disable</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#extint.disable" title="Permalink to this definition">¶</a></dt>
+<dd><p>Disable the interrupt associated with the ExtInt object.
+This could be useful for debouncing.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="extint.enable">
+<code class="descclassname">extint.</code><code class="descname">enable</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#extint.enable" title="Permalink to this definition">¶</a></dt>
+<dd><p>Enable a disabled interrupt.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="extint.line">
+<code class="descclassname">extint.</code><code class="descname">line</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#extint.line" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the line number that the pin is mapped to.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="extint.swint">
+<code class="descclassname">extint.</code><code class="descname">swint</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#extint.swint" title="Permalink to this definition">¶</a></dt>
+<dd><p>Trigger the callback from software.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="constants">
+<h2>Constants<a class="headerlink" href="#constants" title="Permalink to this headline">¶</a></h2>
+<dl class="data">
+<dt id="ExtInt.IRQ_FALLING">
+<code class="descclassname">ExtInt.</code><code class="descname">IRQ_FALLING</code><a class="headerlink" href="#ExtInt.IRQ_FALLING" title="Permalink to this definition">¶</a></dt>
+<dd><p>interrupt on a falling edge</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="ExtInt.IRQ_RISING">
+<code class="descclassname">ExtInt.</code><code class="descname">IRQ_RISING</code><a class="headerlink" href="#ExtInt.IRQ_RISING" title="Permalink to this definition">¶</a></dt>
+<dd><p>interrupt on a rising edge</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="ExtInt.IRQ_RISING_FALLING">
+<code class="descclassname">ExtInt.</code><code class="descname">IRQ_RISING_FALLING</code><a class="headerlink" href="#ExtInt.IRQ_RISING_FALLING" title="Permalink to this definition">¶</a></dt>
+<dd><p>interrupt on a rising or falling edge</p>
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="pyb.I2C.html" class="btn btn-neutral float-right" title="class I2C – a two-wire serial protocol" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="pyb.DAC.html" class="btn btn-neutral" title="class DAC – digital to analog conversion" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2014-2017, Damien P. George, OpenMV LLC, and contributors.
+      Last updated on 27 Mar 2017.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  <!--
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    <span class="fa fa-book"> Ports and Versions</span>
+    openmvcam (latest)
+    <span class="fa fa-caret-down"></span>
+  </span>
+  <div class="rst-other-versions">
+    <dl>
+      <dt>Ports</dt>
+      
+        <dd><a href="//en/latest/unix">unix</a></dd>
+      
+        <dd><a href="//en/latest/pyboard">pyboard</a></dd>
+      
+        <dd><a href="//en/latest/wipy">wipy</a></dd>
+      
+        <dd><a href="//en/latest/esp8266">esp8266</a></dd>
+      
+        <dd><a href="//en/latest/openmvcam">openmvcam</a></dd>
+      
+    </dl>
+    <dl>
+      <dt>Versions</dt>
+      
+        <dd><a href="//en/latest/openmvcam">latest</a></dd>
+      
+    </dl>
+    -->
+    <!--
+    <dl>
+      <dt>Downloads</dt>
+      
+    </dl>
+    -->
+    <!--
+    <hr/>
+    <dl>
+      <dt>External links</dt>
+        <dd>
+          <a href="http://www.micropython.org">micropython.org</a>
+        </dd>
+        <dd>
+          <a href="http://github.com/micropython/micropython">GitHub</a>
+        </dd>
+    </dl>
+  </div>
+</div>
+-->
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'1.8',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

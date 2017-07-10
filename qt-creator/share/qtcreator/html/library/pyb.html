@@ -1,0 +1,602 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>pyb — functions related to the board &mdash; MicroPython 1.8 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../_static/customstyle.css" type="text/css" />
+  
+
+  
+    <link rel="top" title="MicroPython 1.8 documentation" href="../index.html"/>
+        <link rel="up" title="MicroPython libraries" href="index.html"/>
+        <link rel="next" title="class Accel – accelerometer control" href="pyb.Accel.html"/>
+        <link rel="prev" title="esp — functions related to the ESP8266" href="esp.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> MicroPython
+          
+
+          
+            
+            <img src="../_static/web-logo-sticky.png" class="logo" />
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.8
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../openmvcam/quickref.html">Quick reference for the openmvcam</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../openmvcam/tutorial/index.html">OpenMV Cam Tutorial</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">MicroPython libraries</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="index.html#python-standard-libraries-and-micro-libraries">Python standard libraries and micro-libraries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#micropython-specific-libraries">MicroPython-specific libraries</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#libraries-specific-to-the-openmv-cam">Libraries specific to the OpenMV Cam</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href=""><code class="docutils literal"><span class="pre">pyb</span></code> &#8212; functions related to the board</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#time-related-functions">Time related functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#reset-related-functions">Reset related functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#interrupt-related-functions">Interrupt related functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#power-related-functions">Power related functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#miscellaneous-functions">Miscellaneous functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#classes">Classes</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="pyb.ADC.html">class ADC &#8211; analog to digital conversion</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyb.CAN.html">class CAN &#8211; controller area network communication bus</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyb.DAC.html">class DAC &#8211; digital to analog conversion</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyb.ExtInt.html">class ExtInt &#8211; configure I/O pins to interrupt on external events</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyb.I2C.html">class I2C &#8211; a two-wire serial protocol</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyb.LED.html">class LED &#8211; LED object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyb.Pin.html">class Pin &#8211; control I/O pins</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyb.Servo.html">class Servo &#8211; 3-wire hobby servo driver</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyb.SPI.html">class SPI &#8211; a master-driven serial protocol</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyb.Timer.html">class Timer &#8211; control internal timers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyb.Timer.html#class-timerchannel-setup-a-channel-for-a-timer">class TimerChannel &#8212; setup a channel for a timer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyb.UART.html">class UART &#8211; duplex serial communication bus</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyb.USB_VCP.html">class USB_VCP &#8211; USB virtual comm port</a></li>
+<li class="toctree-l3"><a class="reference internal" href="omv.time.html"><code class="docutils literal"><span class="pre">time</span></code> &#8212; tracking elapsed time</a></li>
+<li class="toctree-l3"><a class="reference internal" href="omv.sensor.html"><code class="docutils literal"><span class="pre">sensor</span></code> &#8212; camera sensor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="omv.image.html"><code class="docutils literal"><span class="pre">image</span></code> &#8212; machine vision</a></li>
+<li class="toctree-l3"><a class="reference internal" href="omv.image.html#class-haarcascade-feature-descriptor">class HaarCascade &#8211; Feature Descriptor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="omv.image.html#class-histogram-histogram-object">class Histogram &#8211; Histogram Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="omv.image.html#class-percentile-percentile-object">class Percentile &#8211; Percentile Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="omv.image.html#class-statistics-statistics-object">class Statistics &#8211; Statistics Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="omv.image.html#class-blob-blob-object">class Blob &#8211; Blob object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="omv.image.html#class-qrcode-qrcode-object">class QRCode &#8211; QRCode object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="omv.image.html#class-apriltag-apriltag-object">class AprilTag &#8211; AprilTag object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="omv.image.html#class-barcode-barcode-object">class BarCode &#8211; BarCode object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="omv.image.html#class-image-image-object">class Image &#8211; Image object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="omv.gif.html"><code class="docutils literal"><span class="pre">gif</span></code> &#8212; gif recording</a></li>
+<li class="toctree-l3"><a class="reference internal" href="omv.gif.html#class-gif-gif-recorder">class Gif &#8211; Gif recorder</a></li>
+<li class="toctree-l3"><a class="reference internal" href="omv.mjpeg.html"><code class="docutils literal"><span class="pre">mjpeg</span></code> &#8212; mjpeg recording</a></li>
+<li class="toctree-l3"><a class="reference internal" href="omv.mjpeg.html#class-mjpeg-mjpeg-recorder">class Mjpeg &#8211; Mjpeg recorder</a></li>
+<li class="toctree-l3"><a class="reference internal" href="omv.lcd.html"><code class="docutils literal"><span class="pre">lcd</span></code> &#8212; lcd shield driver</a></li>
+<li class="toctree-l3"><a class="reference internal" href="omv.fir.html"><code class="docutils literal"><span class="pre">fir</span></code> &#8212; thermopile shield driver (fir == far infrared)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="omv.cpufreq.html"><code class="docutils literal"><span class="pre">cpufreq</span></code> &#8212; easy cpu frequency control</a></li>
+<li class="toctree-l3"><a class="reference internal" href="machine.html"><code class="docutils literal"><span class="pre">machine</span></code> &#8212; functions related to the board</a></li>
+<li class="toctree-l3"><a class="reference internal" href="machine.I2C.html">class I2C &#8211; a two-wire serial protocol</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/index.html">The MicroPython language</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">MicroPython license information</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">MicroPython</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="index.html">MicroPython libraries</a> &raquo;</li>
+      
+    <li><code class="docutils literal"><span class="pre">pyb</span></code> &#8212; functions related to the board</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/library/pyb.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-pyb">
+<span id="pyb-functions-related-to-the-board"></span><h1><a class="reference internal" href="#module-pyb" title="pyb: functions related to the board"><code class="xref py py-mod docutils literal"><span class="pre">pyb</span></code></a> &#8212; functions related to the board<a class="headerlink" href="#module-pyb" title="Permalink to this headline">¶</a></h1>
+<p>The <code class="docutils literal"><span class="pre">pyb</span></code> module contains specific functions related to the board.</p>
+<div class="section" id="time-related-functions">
+<h2>Time related functions<a class="headerlink" href="#time-related-functions" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="pyb.delay">
+<code class="descclassname">pyb.</code><code class="descname">delay</code><span class="sig-paren">(</span><em>ms</em><span class="sig-paren">)</span><a class="headerlink" href="#pyb.delay" title="Permalink to this definition">¶</a></dt>
+<dd><p>Delay for the given number of milliseconds.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="pyb.udelay">
+<code class="descclassname">pyb.</code><code class="descname">udelay</code><span class="sig-paren">(</span><em>us</em><span class="sig-paren">)</span><a class="headerlink" href="#pyb.udelay" title="Permalink to this definition">¶</a></dt>
+<dd><p>Delay for the given number of microseconds.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="pyb.millis">
+<code class="descclassname">pyb.</code><code class="descname">millis</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyb.millis" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the number of milliseconds since the board was last reset.</p>
+<p>The result is always a micropython smallint (31-bit signed number), so
+after 2^30 milliseconds (about 12.4 days) this will start to return
+negative numbers.</p>
+<p>Note that if <a class="reference internal" href="#pyb.stop" title="pyb.stop"><code class="xref py py-meth docutils literal"><span class="pre">pyb.stop()</span></code></a> is issued the hardware counter supporting this
+function will pause for the duration of the &#8220;sleeping&#8221; state. This
+will affect the outcome of <a class="reference internal" href="#pyb.elapsed_millis" title="pyb.elapsed_millis"><code class="xref py py-meth docutils literal"><span class="pre">pyb.elapsed_millis()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="pyb.micros">
+<code class="descclassname">pyb.</code><code class="descname">micros</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyb.micros" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the number of microseconds since the board was last reset.</p>
+<p>The result is always a micropython smallint (31-bit signed number), so
+after 2^30 microseconds (about 17.8 minutes) this will start to return
+negative numbers.</p>
+<p>Note that if <a class="reference internal" href="#pyb.stop" title="pyb.stop"><code class="xref py py-meth docutils literal"><span class="pre">pyb.stop()</span></code></a> is issued the hardware counter supporting this
+function will pause for the duration of the &#8220;sleeping&#8221; state. This
+will affect the outcome of <a class="reference internal" href="#pyb.elapsed_micros" title="pyb.elapsed_micros"><code class="xref py py-meth docutils literal"><span class="pre">pyb.elapsed_micros()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="pyb.elapsed_millis">
+<code class="descclassname">pyb.</code><code class="descname">elapsed_millis</code><span class="sig-paren">(</span><em>start</em><span class="sig-paren">)</span><a class="headerlink" href="#pyb.elapsed_millis" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the number of milliseconds which have elapsed since <code class="docutils literal"><span class="pre">start</span></code>.</p>
+<p>This function takes care of counter wrap, and always returns a positive
+number. This means it can be used to measure periods upto about 12.4 days.</p>
+<p>Example:</p>
+<div class="highlight-python"><div class="highlight"><pre>start = pyb.millis()
+while pyb.elapsed_millis(start) &lt; 1000:
+    # Perform some operation
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="pyb.elapsed_micros">
+<code class="descclassname">pyb.</code><code class="descname">elapsed_micros</code><span class="sig-paren">(</span><em>start</em><span class="sig-paren">)</span><a class="headerlink" href="#pyb.elapsed_micros" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the number of microseconds which have elapsed since <code class="docutils literal"><span class="pre">start</span></code>.</p>
+<p>This function takes care of counter wrap, and always returns a positive
+number. This means it can be used to measure periods upto about 17.8 minutes.</p>
+<p>Example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">start</span> <span class="o">=</span> <span class="n">pyb</span><span class="o">.</span><span class="n">micros</span><span class="p">()</span>
+<span class="k">while</span> <span class="n">pyb</span><span class="o">.</span><span class="n">elapsed_micros</span><span class="p">(</span><span class="n">start</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">1000</span><span class="p">:</span>
+    <span class="c"># Perform some operation</span>
+    <span class="k">pass</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</div>
+<div class="section" id="reset-related-functions">
+<h2>Reset related functions<a class="headerlink" href="#reset-related-functions" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="pyb.hard_reset">
+<code class="descclassname">pyb.</code><code class="descname">hard_reset</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyb.hard_reset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Resets the pyboard or the OpenMV Cam in a manner similar to pushing the external RESET
+button.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="pyb.bootloader">
+<code class="descclassname">pyb.</code><code class="descname">bootloader</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyb.bootloader" title="Permalink to this definition">¶</a></dt>
+<dd><p>Activate the bootloader without BOOT* pins.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="interrupt-related-functions">
+<h2>Interrupt related functions<a class="headerlink" href="#interrupt-related-functions" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="pyb.disable_irq">
+<code class="descclassname">pyb.</code><code class="descname">disable_irq</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyb.disable_irq" title="Permalink to this definition">¶</a></dt>
+<dd><p>Disable interrupt requests.
+Returns the previous IRQ state: <code class="docutils literal"><span class="pre">False</span></code>/<code class="docutils literal"><span class="pre">True</span></code> for disabled/enabled IRQs
+respectively. This return value can be passed to enable_irq to restore
+the IRQ to its original state.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="pyb.enable_irq">
+<code class="descclassname">pyb.</code><code class="descname">enable_irq</code><span class="sig-paren">(</span><em>state=True</em><span class="sig-paren">)</span><a class="headerlink" href="#pyb.enable_irq" title="Permalink to this definition">¶</a></dt>
+<dd><p>Enable interrupt requests.
+If <code class="docutils literal"><span class="pre">state</span></code> is <code class="docutils literal"><span class="pre">True</span></code> (the default value) then IRQs are enabled.
+If <code class="docutils literal"><span class="pre">state</span></code> is <code class="docutils literal"><span class="pre">False</span></code> then IRQs are disabled. The most common use of
+this function is to pass it the value returned by <code class="docutils literal"><span class="pre">disable_irq</span></code> to
+exit a critical section.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="power-related-functions">
+<h2>Power related functions<a class="headerlink" href="#power-related-functions" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="pyb.freq">
+<code class="descclassname">pyb.</code><code class="descname">freq</code><span class="sig-paren">(</span><span class="optional">[</span><em>sysclk</em><span class="optional">[</span>, <em>hclk</em><span class="optional">[</span>, <em>pclk1</em><span class="optional">[</span>, <em>pclk2</em><span class="optional">]</span><span class="optional">]</span><span class="optional">]</span><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#pyb.freq" title="Permalink to this definition">¶</a></dt>
+<dd><p>If given no arguments, returns a tuple of clock frequencies:
+(sysclk, hclk, pclk1, pclk2).
+These correspond to:</p>
+<blockquote>
+<div><ul class="simple">
+<li>sysclk: frequency of the CPU</li>
+<li>hclk: frequency of the AHB bus, core memory and DMA</li>
+<li>pclk1: frequency of the APB1 bus</li>
+<li>pclk2: frequency of the APB2 bus</li>
+</ul>
+</div></blockquote>
+<p>If given any arguments then the function sets the frequency of the CPU,
+and the buses if additional arguments are given. Frequencies are given in
+Hz. Eg freq(120000000) sets sysclk (the CPU frequency) to 120MHz. Note that
+not all values are supported and the largest supported frequency not greater
+than the given value will be selected.</p>
+<p>Supported sysclk frequencies are (in MHz): 8, 16, 24, 30, 32, 36, 40, 42, 48,
+54, 56, 60, 64, 72, 84, 96, 108, 120, 144, 168.</p>
+<p>The maximum frequency of hclk is 168MHz, of pclk1 is 42MHz, and of pclk2 is
+84MHz. Be sure not to set frequencies above these values.</p>
+<p>The hclk, pclk1 and pclk2 frequencies are derived from the sysclk frequency
+using a prescaler (divider). Supported prescalers for hclk are: 1, 2, 4, 8,
+16, 64, 128, 256, 512. Supported prescalers for pclk1 and pclk2 are: 1, 2,
+4, 8. A prescaler will be chosen to best match the requested frequency.</p>
+<p>A sysclk frequency of 8MHz uses the HSE (external crystal) directly and 16MHz uses the HSI
+(internal oscillator) directly. The higher frequencies use the HSE to
+drive the PLL (phase locked loop), and then use the output of the PLL.</p>
+<p>Note that if you change the frequency while the USB is enabled then
+the USB may become unreliable. It is best to change the frequency
+in boot.py, before the USB peripheral is started. Also note that sysclk
+frequencies below 36MHz do not allow the USB to function correctly.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="pyb.wfi">
+<code class="descclassname">pyb.</code><code class="descname">wfi</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyb.wfi" title="Permalink to this definition">¶</a></dt>
+<dd><p>Wait for an internal or external interrupt.</p>
+<p>This executes a <code class="docutils literal"><span class="pre">wfi</span></code> instruction which reduces power consumption
+of the MCU until any interrupt occurs (be it internal or external),
+at which point execution continues. Note that the system-tick interrupt
+occurs once every millisecond (1000Hz) so this function will block for
+at most 1ms.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="pyb.stop">
+<code class="descclassname">pyb.</code><code class="descname">stop</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyb.stop" title="Permalink to this definition">¶</a></dt>
+<dd><p>Put the pyboard or OpenMV Cam in a &#8220;sleeping&#8221; state.</p>
+<p>This reduces power consumption to less than 500 uA. To wake from this
+sleep state requires an external interrupt or a real-time-clock event.
+Upon waking execution continues where it left off.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="pyb.standby">
+<code class="descclassname">pyb.</code><code class="descname">standby</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyb.standby" title="Permalink to this definition">¶</a></dt>
+<dd><p>Put the pyboard or OpenMV Cam into a &#8220;deep sleep&#8221; state.</p>
+<p>This reduces power consumption to less than 50 uA. To wake from this
+sleep state requires a real-time-clock event, or an external interrupt
+on X1 (PA0=WKUP) or X18 (PC13=TAMP1).
+Upon waking the system undergoes a hard reset.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="miscellaneous-functions">
+<h2>Miscellaneous functions<a class="headerlink" href="#miscellaneous-functions" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="pyb.have_cdc">
+<code class="descclassname">pyb.</code><code class="descname">have_cdc</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyb.have_cdc" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return True if USB is connected as a serial device, False otherwise.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">This function is deprecated. Use pyb.USB_VCP().isconnected() instead.</p>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="pyb.hid">
+<code class="descclassname">pyb.</code><code class="descname">hid</code><span class="sig-paren">(</span><em>(buttons</em>, <em>x</em>, <em>y</em>, <em>z)</em><span class="sig-paren">)</span><a class="headerlink" href="#pyb.hid" title="Permalink to this definition">¶</a></dt>
+<dd><p>Takes a 4-tuple (or list) and sends it to the USB host (the PC) to
+signal a HID mouse-motion event.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">This function is deprecated. Use pyb.USB_HID().send(...) instead.</p>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="pyb.info">
+<code class="descclassname">pyb.</code><code class="descname">info</code><span class="sig-paren">(</span><span class="optional">[</span><em>dump_alloc_table</em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#pyb.info" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print out lots of information about the board.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="pyb.main">
+<code class="descclassname">pyb.</code><code class="descname">main</code><span class="sig-paren">(</span><em>filename</em><span class="sig-paren">)</span><a class="headerlink" href="#pyb.main" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the filename of the main script to run after boot.py is finished. If
+this function is not called then the default file main.py will be executed.</p>
+<p>It only makes sense to call this function from within boot.py.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="pyb.mount">
+<code class="descclassname">pyb.</code><code class="descname">mount</code><span class="sig-paren">(</span><em>device</em>, <em>mountpoint</em>, <em>*</em>, <em>readonly=False</em>, <em>mkfs=False</em><span class="sig-paren">)</span><a class="headerlink" href="#pyb.mount" title="Permalink to this definition">¶</a></dt>
+<dd><p>Mount a block device and make it available as part of the filesystem.
+<code class="docutils literal"><span class="pre">device</span></code> must be an object that provides the block protocol:</p>
+<blockquote>
+<div><ul class="simple">
+<li><code class="docutils literal"><span class="pre">readblocks(self,</span> <span class="pre">blocknum,</span> <span class="pre">buf)</span></code></li>
+<li><code class="docutils literal"><span class="pre">writeblocks(self,</span> <span class="pre">blocknum,</span> <span class="pre">buf)</span></code> (optional)</li>
+<li><code class="docutils literal"><span class="pre">count(self)</span></code></li>
+<li><code class="docutils literal"><span class="pre">sync(self)</span></code> (optional)</li>
+</ul>
+</div></blockquote>
+<p><code class="docutils literal"><span class="pre">readblocks</span></code> and <code class="docutils literal"><span class="pre">writeblocks</span></code> should copy data between <code class="docutils literal"><span class="pre">buf</span></code> and
+the block device, starting from block number <code class="docutils literal"><span class="pre">blocknum</span></code> on the device.
+<code class="docutils literal"><span class="pre">buf</span></code> will be a bytearray with length a multiple of 512. If
+<code class="docutils literal"><span class="pre">writeblocks</span></code> is not defined then the device is mounted read-only.
+The return value of these two functions is ignored.</p>
+<p><code class="docutils literal"><span class="pre">count</span></code> should return the number of blocks available on the device.
+<code class="docutils literal"><span class="pre">sync</span></code>, if implemented, should sync the data on the device.</p>
+<p>The parameter <code class="docutils literal"><span class="pre">mountpoint</span></code> is the location in the root of the filesystem
+to mount the device. It must begin with a forward-slash.</p>
+<p>If <code class="docutils literal"><span class="pre">readonly</span></code> is <code class="docutils literal"><span class="pre">True</span></code>, then the device is mounted read-only,
+otherwise it is mounted read-write.</p>
+<p>If <code class="docutils literal"><span class="pre">mkfs</span></code> is <code class="docutils literal"><span class="pre">True</span></code>, then a new filesystem is created if one does not
+already exist.</p>
+<p>To unmount a device, pass <code class="docutils literal"><span class="pre">None</span></code> as the device and the mount location
+as <code class="docutils literal"><span class="pre">mountpoint</span></code>.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="pyb.repl_uart">
+<code class="descclassname">pyb.</code><code class="descname">repl_uart</code><span class="sig-paren">(</span><em>uart</em><span class="sig-paren">)</span><a class="headerlink" href="#pyb.repl_uart" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get or set the UART object where the REPL is repeated on.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="pyb.rng">
+<code class="descclassname">pyb.</code><code class="descname">rng</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyb.rng" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a 30-bit hardware generated random number.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="pyb.sync">
+<code class="descclassname">pyb.</code><code class="descname">sync</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyb.sync" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sync all file systems.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="pyb.unique_id">
+<code class="descclassname">pyb.</code><code class="descname">unique_id</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyb.unique_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a string of 12 bytes (96 bits), which is the unique ID of the MCU.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="classes">
+<h2>Classes<a class="headerlink" href="#classes" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="pyb.ADC.html">class ADC &#8211; analog to digital conversion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pyb.CAN.html">class CAN &#8211; controller area network communication bus</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pyb.DAC.html">class DAC &#8211; digital to analog conversion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pyb.ExtInt.html">class ExtInt &#8211; configure I/O pins to interrupt on external events</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pyb.I2C.html">class I2C &#8211; a two-wire serial protocol</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pyb.LED.html">class LED &#8211; LED object</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pyb.Pin.html">class Pin &#8211; control I/O pins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pyb.Servo.html">class Servo &#8211; 3-wire hobby servo driver</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pyb.SPI.html">class SPI &#8211; a master-driven serial protocol</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pyb.Timer.html">class Timer &#8211; control internal timers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pyb.Timer.html#class-timerchannel-setup-a-channel-for-a-timer">class TimerChannel &#8212; setup a channel for a timer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pyb.UART.html">class UART &#8211; duplex serial communication bus</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pyb.USB_VCP.html">class USB_VCP &#8211; USB virtual comm port</a></li>
+</ul>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="pyb.Accel.html" class="btn btn-neutral float-right" title="class Accel – accelerometer control" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="esp.html" class="btn btn-neutral" title="esp — functions related to the ESP8266" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2014-2017, Damien P. George, OpenMV LLC, and contributors.
+      Last updated on 27 Mar 2017.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  <!--
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    <span class="fa fa-book"> Ports and Versions</span>
+    openmvcam (latest)
+    <span class="fa fa-caret-down"></span>
+  </span>
+  <div class="rst-other-versions">
+    <dl>
+      <dt>Ports</dt>
+      
+        <dd><a href="//en/latest/unix">unix</a></dd>
+      
+        <dd><a href="//en/latest/pyboard">pyboard</a></dd>
+      
+        <dd><a href="//en/latest/wipy">wipy</a></dd>
+      
+        <dd><a href="//en/latest/esp8266">esp8266</a></dd>
+      
+        <dd><a href="//en/latest/openmvcam">openmvcam</a></dd>
+      
+    </dl>
+    <dl>
+      <dt>Versions</dt>
+      
+        <dd><a href="//en/latest/openmvcam">latest</a></dd>
+      
+    </dl>
+    -->
+    <!--
+    <dl>
+      <dt>Downloads</dt>
+      
+    </dl>
+    -->
+    <!--
+    <hr/>
+    <dl>
+      <dt>External links</dt>
+        <dd>
+          <a href="http://www.micropython.org">micropython.org</a>
+        </dd>
+        <dd>
+          <a href="http://github.com/micropython/micropython">GitHub</a>
+        </dd>
+    </dl>
+  </div>
+</div>
+-->
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'1.8',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

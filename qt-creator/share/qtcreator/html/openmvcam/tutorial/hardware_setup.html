@@ -1,0 +1,458 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>2. Hardware Setup &mdash; MicroPython 1.8 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../../_static/customstyle.css" type="text/css" />
+  
+
+  
+    <link rel="top" title="MicroPython 1.8 documentation" href="../../index.html"/>
+        <link rel="up" title="OpenMV Cam Tutorial" href="index.html"/>
+        <link rel="next" title="3. OpenMV IDE Overview" href="openmvide_overview.html"/>
+        <link rel="prev" title="1. Software Setup" href="software_setup.html"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> MicroPython
+          
+
+          
+            
+            <img src="../../_static/web-logo-sticky.png" class="logo" />
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.8
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../quickref.html">Quick reference for the openmvcam</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">OpenMV Cam Tutorial</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="software_setup.html">1. Software Setup</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">2. Hardware Setup</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#usb-flash-drive-notes">2.1. USB Flash Drive Notes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="openmvide_overview.html">3. OpenMV IDE Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="io_tutorial.html">4. I/O Tutorial</a></li>
+<li class="toctree-l2"><a class="reference internal" href="led_control.html">4.1.1. LED Control</a></li>
+<li class="toctree-l2"><a class="reference internal" href="more_information.html">5. More Information</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../library/index.html">MicroPython libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../reference/index.html">The MicroPython language</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">MicroPython license information</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../index.html">MicroPython</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="index.html">OpenMV Cam Tutorial</a> &raquo;</li>
+      
+    <li>2. Hardware Setup</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../../_sources/openmvcam/tutorial/hardware_setup.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="hardware-setup">
+<h1>2. Hardware Setup<a class="headerlink" href="#hardware-setup" title="Permalink to this headline">¶</a></h1>
+<p>Before connecting your OpenMV Cam to your computer you&#8217;ll want to clean the
+camera IC first. You&#8217;ll need some type of cloth that doesn&#8217;t leave behind
+strands (like a microfiber cloth used to clean eye-glasses) and some isopropyl
+alcohol.</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li>Use a screw driver to remove the two lens mount screw from the lens
+mount on your OpenMV Cam.</li>
+<li>Apply some isopropyl alcohol to a small part of the cloth.</li>
+<li>Rub the wet part of the cloth on the camera IC gently. Any dirt spots on
+the camera IC will be microscopic to the human eye so just try to
+generally rub down the top of the camera IC. Note that the top of the
+camera IC is glass.</li>
+<li>After cleaning the camera IC make sure the alcohol has evaporated
+completely and that no cloth strands were left behind. Note that we&#8217;re
+using isopropyl alcohol versus water since isopropyl alcohol evaporates
+quickly and doesn&#8217;t leave anything behind.</li>
+<li>Use the screw driver to re-attach the lens mount. Make sure that the set
+screw on the lens mount points off the top/back of the OpenMV Cam.</li>
+</ol>
+</div></blockquote>
+<p>Next, find a micro-usb cable and connect your OpenMV Cam to your computer and
+then launch OpenMV IDE.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Please be gentle with the micro-usb cable. When connecting or disconnecting
+the micro-usb cable to your OpenMV Cam please move the cable side-to-side
+and not up-and-down. You can easily rip off the micro-usb connector on our
+first generation of OpenMV Cams (OpenMV Cam M4) with up-and-down movement.
+Our second generating OpenMV Cam (OpenMV Cam M7) uses a micro-usb connector
+with through-hole strain relief pins to be more robust.</p>
+</div>
+<p>On windows you should see some notifications about windows installing drivers
+and such. Wait until windows finishes installing drivers, your OpenMV Cam&#8217;s
+USB flash drive appears, and the blue led on your OpenMV Cam is blinking before
+trying to connect with OpenMV IDE.</p>
+<p>On mac or linux please wait until your OpenMV Cam&#8217;s USB flash drive file
+browser window appears (you may have to click on it for the operating system to
+mount it) and the blue led on your OpenMV Cam is blinking before trying to
+connect with OpenMV IDE.</p>
+<p>If your OpenMV Cam appears unresponsive after connecting to the computer that
+is okay too. If you didn&#8217;t see a green light flashing right after it was
+connected then we can use DFU to re-program your OpenMV Cam. If you saw a green
+light but no USB flash drive appeared then we can still use DFU to re-program.</p>
+<p>Next, launch OpenMV IDE and click on the connect button (lower left-hand corner
+in OpenMV IDE). OpenMV IDE should then automatically connect to your OpenMV
+Cam. However, you may get a few different errors your first time:</p>
+<blockquote>
+<div><ul class="simple">
+<li>If OpenMV IDE gives you an error about not being able to find a
+corresponding drive to mount then you need to make sure that the USB
+flash drive the OpenMV Cam appears as is mounted. In particular, linux
+does not always amount mount USB flash drives like Windows and Mac do.
+You can force a mount in Ubuntu for example by clicking on the flash
+drive icon that will appear in the launcher menu. Anyway, after getting
+this error and mounting the drive just click on the <code class="docutils literal"><span class="pre">Drive:</span></code> label
+on the bottom right-hand side of OpenMV IDE to connect to the OpenMV
+Cam&#8217;s flash drive after the OpenMV IDE has connected to your OpenMV
+Cam&#8217;s serial port.</li>
+<li>If OpenMV IDE can&#8217;t connect to your OpenMV Cam at all it will ask you if
+you have an OpenMV Cam connected to the PC. There are two possible
+reasons for this. First, your micro-usb cable may be a power only
+cable. A large number of micro-usb cables are so make sure that it&#8217;s
+a power and data micro-usb cable and that it&#8217;s not broken. I.e. test
+the cable with a known working micro-usb device. Otherwise, your OpenMV
+Cam&#8217;s firmware might not be working. To fix this just follow the
+prompts OpenMV IDE displays after clicking connect.<ul>
+<li>If your OpenMV Cam&#8217;s boot-loader is working (green light flashes on
+power-on) and your computer can connect to our boot-loader then
+OpenMV IDE should be able to automatically update your OpenMV Cam&#8217;s
+firmware for you.</li>
+<li>If your OpenMV Cam&#8217;s boot-loader isn&#8217;t working (green light doesn&#8217;t
+flash on power-on) or your computer can&#8217;t connect to our
+boot-loader OpenMV IDE will display a &#8220;connecting&#8221; box. You can try
+unplugging your OpenMV Cam and plugging it back in, this may fix
+the issue, otherwise click cancel and then OpenMV IDE will ask if
+you want to use DFU to recover your OpenMV Cam&#8217;s firmware. Say yes
+and follow the prompts to recover your OpenMV Cam&#8217;s firmware via
+DFU. DFU should 100% work to recover your OpenMV Cam on Windows and
+should work on Mac and Linux if you installed DFU support. However,
+on Mac and Linux the first connection since the OpenMV Cam was
+plugged into your computer may fail. Just try again and it should
+work the second time.</li>
+</ul>
+</li>
+</ul>
+</div></blockquote>
+<p>Anyway, once you&#8217;ve connected to your OpenMV Cam the firmware may be
+out-of-date. To update your firmware please click on the <code class="docutils literal"><span class="pre">Firmware</span> <span class="pre">Version:</span></code>
+label on the bottom right-hand side of OpenMV IDE if it says your firmware is
+out-of-date. OpenMV IDE will then automatically update your OpenMV Cam&#8217;s
+firmware. If there&#8217;s a problem connecting to your OpenMV Cam&#8217;s boot-loader on
+your computer OpenMV IDE will try to update your firmware using DFU. Please
+follow the prompts to update your firmware via DFU. As mentioned above with DFU
+on Mac and Linux please try updating via DFU twice if the first time fails.</p>
+<p>Moving on, once your OpenMV Cam&#8217;s firmware is up-to-date please run the
+<code class="docutils literal"><span class="pre">hello_world.py</span></code> script you see in front of you in OpenMV IDE. To do this
+simply click on the green run button (bottom left-hand corner) in OpenMV IDE.</p>
+<p>The <code class="docutils literal"><span class="pre">hello_world.py</span></code> script turns your OpenMV Cam into a webcam showing you
+what it sees. If this is the first time you&#8217;ve run your OpenMV Cam the lens
+will be out of focus. To focus the lens do the following:</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li>Make sure the set screw is not fully screwed in and that you can screw
+the lens in easily.</li>
+<li>Screw the lens in until the image comes into focus in OpenMV IDE&#8217;s
+frame buffer.</li>
+<li>Tighten the set screw on your OpenMV Cam&#8217;s lens mount to prevent the
+lens from moving anymore. Note that the set screw doesn&#8217;t dig into the
+lens threads but instead just creates a bump in the plastic preventing
+the lens from unscrewing anymore.</li>
+</ol>
+</div></blockquote>
+<p>Your OpenMV Cam is ready to use now!</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">We require you to manually clean your OpenMV Cam camera IC and then focus
+the lens because it&#8217;s very expensive for us to do this currently. As we
+increase our production volume we&#8217;ll be able to do this eventually for you.
+Note that all OpenMV Cam camera ICs are cleaned before being packaged, but,
+since focusing is not done our manufacturer can&#8217;t tell if the camera IC is
+clean. The quality control test we use for each OpenMV Cam only verifies
+that the camera IC is connected properly and operating normally.</p>
+</div>
+<div class="section" id="usb-flash-drive-notes">
+<h2>2.1. USB Flash Drive Notes<a class="headerlink" href="#usb-flash-drive-notes" title="Permalink to this headline">¶</a></h2>
+<p>Your OpenMV Cam has a USB flash drive built-into it. This flash drive appears
+when your OpenMV Cam is plugged into your computer. There are a few things you
+should know about this flash drive:</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li>Windows/Mac/Linux assume USB flash drives can&#8217;t create files by
+themselves. So, if you create a file on our OpenMV Cam in a script
+Window/Mac/Linux won&#8217;t detect that the new file exists until you either
+reset your OpenMV Cam using OpenMV IDE (see Tools-&gt;Reset) or disconnect
+and then reconnect your OpenMV Cam to your computer.</li>
+<li>If you see a red light blinking on your OpenMV Cam while it&#8217;s connected
+to your computer that&#8217;s just a notification that your computer is
+accessing your OpenMV Cam&#8217;s USB drive.</li>
+<li>If you corrupt the state of the internal USB flash drive of your OpenMV
+Cam you can reformat the flash drive either through your operating
+systems reformatting tool or by re-installing your OpenMV Cam&#8217;s
+firmware and selecting the &#8220;erase internal flash drive&#8221; option.</li>
+<li>You can accidentally corrupt your OpenMV Cam&#8217;s internal flash drive
+state by trying to save images to the internal flash drive (i.e. using
+up all the space of the small flash drive because most images are
+larger than the internal flash drive which is only a few KB), or if
+power is removed from your OpenMV Cam while it&#8217;s saving something.
+The internal flash drive uses the FAT filesystem which has no ability
+to recover from partial writes due to power failure like modern file
+systems such as NTFS (Windows) on your PC. NTFS does something called
+journaling which involves writing what it&#8217;s about to do in a sratch
+buffer, doing what it wrote in the scratch buffer, and then clearing
+the scratch buffer. This allows NTFS to recover if power is lost by
+looking at the scratch buffer. FAT, the file system used by DOS,
+Windows 95/98, etc. doesn&#8217;t have this feature so if power is lost while
+it&#8217;s writing to a file the whole drive could be corrupted. Why use FAT
+then? Because it&#8217;s the de-facto standard for USB Flash Drives, but,
+more importantly there are open-source drivers for it and it&#8217;s not
+under patent protection.</li>
+<li>In general, avoid writing to your OpenMV Cam&#8217;s internal flash drive in
+a python script. Instead, just use the internal flash drive to store
+assets manually copied onto your OpenMV Cam while it is connected to
+your computer by you.</li>
+<li>After manually copying assets to your OpenMV Cam&#8217;s internal flash drive
+please use the safety remove hardware feature before unplugging your
+OpenMV Cam (or not, the system won&#8217;t break if you ignore doing this).</li>
+<li>Windows may ask to scan and fix the USB Flash Drive before mounting it.
+You can either say yes or no to this. Windows will generally only ask
+if the power was turned off on the the internal flash drive during a
+write. So, if Windows asks to scan and fix the drive then let it.</li>
+<li>Finally, if you insert a micro-sd card into the micro-sd card slot on
+your OpenMV Cam the micro-sd card will replace the internal flash drive
+for all of the above. The OpenMV Cam supports micro-sd cards up to
+32 GB in size. In particular, we support SD and SDHC micro-sd cards,
+but, not SDXC cards which are the ones larger than 32 GB. However, this
+is only because SDXC cards aren&#8217;t formatted using the FAT file system.
+If you format an SDXC card with FAT then it may work with the OpenMV
+Cam. Last, feel free to save pictures/video on a micro-sd card. Just
+don&#8217;t do this on your OpenMV Cam&#8217;s internal flash drive.</li>
+</ol>
+</div></blockquote>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="openmvide_overview.html" class="btn btn-neutral float-right" title="3. OpenMV IDE Overview" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="software_setup.html" class="btn btn-neutral" title="1. Software Setup" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2014-2017, Damien P. George, OpenMV LLC, and contributors.
+      Last updated on 27 Mar 2017.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  <!--
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    <span class="fa fa-book"> Ports and Versions</span>
+    openmvcam (latest)
+    <span class="fa fa-caret-down"></span>
+  </span>
+  <div class="rst-other-versions">
+    <dl>
+      <dt>Ports</dt>
+      
+        <dd><a href="//en/latest/unix">unix</a></dd>
+      
+        <dd><a href="//en/latest/pyboard">pyboard</a></dd>
+      
+        <dd><a href="//en/latest/wipy">wipy</a></dd>
+      
+        <dd><a href="//en/latest/esp8266">esp8266</a></dd>
+      
+        <dd><a href="//en/latest/openmvcam">openmvcam</a></dd>
+      
+    </dl>
+    <dl>
+      <dt>Versions</dt>
+      
+        <dd><a href="//en/latest/openmvcam">latest</a></dd>
+      
+    </dl>
+    -->
+    <!--
+    <dl>
+      <dt>Downloads</dt>
+      
+    </dl>
+    -->
+    <!--
+    <hr/>
+    <dl>
+      <dt>External links</dt>
+        <dd>
+          <a href="http://www.micropython.org">micropython.org</a>
+        </dd>
+        <dd>
+          <a href="http://github.com/micropython/micropython">GitHub</a>
+        </dd>
+    </dl>
+  </div>
+</div>
+-->
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'1.8',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

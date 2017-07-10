@@ -1,0 +1,438 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>uctypes – access C structures &mdash; MicroPython 1.8 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../_static/customstyle.css" type="text/css" />
+  
+
+  
+    <link rel="top" title="MicroPython 1.8 documentation" href="../index.html"/>
+        <link rel="up" title="MicroPython libraries" href="index.html"/>
+        <link rel="next" title="esp — functions related to the ESP8266" href="esp.html"/>
+        <link rel="prev" title="class I2C – a two-wire serial protocol" href="machine.I2C.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> MicroPython
+          
+
+          
+            
+            <img src="../_static/web-logo-sticky.png" class="logo" />
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.8
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul>
+<li class="toctree-l1"><a class="reference internal" href="../openmvcam/quickref.html">Quick reference for the openmvcam</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../openmvcam/tutorial/index.html">OpenMV Cam Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index.html">MicroPython libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/index.html">The MicroPython language</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">MicroPython license information</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">MicroPython</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="index.html">MicroPython libraries</a> &raquo;</li>
+      
+    <li><code class="docutils literal"><span class="pre">uctypes</span></code> &#8211; access C structures</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/library/uctypes.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-uctypes">
+<span id="uctypes-access-c-structures"></span><h1><a class="reference internal" href="#module-uctypes" title="uctypes: access C structures"><code class="xref py py-mod docutils literal"><span class="pre">uctypes</span></code></a> &#8211; access C structures<a class="headerlink" href="#module-uctypes" title="Permalink to this headline">¶</a></h1>
+<p>This module implements &#8220;foreign data interface&#8221; for MicroPython. The idea
+behind it is similar to CPython&#8217;s <code class="docutils literal"><span class="pre">ctypes</span></code> modules, but actual API is
+different, streamlined and optimized for small size.</p>
+<div class="section" id="defining-structure-layout">
+<h2>Defining structure layout<a class="headerlink" href="#defining-structure-layout" title="Permalink to this headline">¶</a></h2>
+<p>Structure layout is defined by a &#8220;descriptor&#8221; - a Python dictionary which
+encodes field names as keys and other properties required to access them as
+an associated values. Currently, uctypes requires explicit specification of
+offsets for each field. Offset are given in bytes from structure start.</p>
+<p>Following are encoding examples for various field types:</p>
+<blockquote>
+<div><p>Scalar types:</p>
+<div class="highlight-python"><div class="highlight"><pre>&quot;field_name&quot;: uctypes.UINT32 | 0
+</pre></div>
+</div>
+<p>in other words, value is scalar type identifier ORed with field offset
+(in bytes) from the start of the structure.</p>
+<p>Recursive structures:</p>
+<div class="highlight-python"><div class="highlight"><pre>&quot;sub&quot;: (2, {
+    &quot;b0&quot;: uctypes.UINT8 | 0,
+    &quot;b1&quot;: uctypes.UINT8 | 1,
+})
+</pre></div>
+</div>
+<p>i.e. value is a 2-tuple, first element of which is offset, and second is
+a structure descriptor dictionary (note: offsets in recursive descriptors
+are relative to a structure it defines).</p>
+<p>Arrays of primitive types:</p>
+<div class="highlight-python"><div class="highlight"><pre>&quot;arr&quot;: (uctypes.ARRAY | 0, uctypes.UINT8 | 2),
+</pre></div>
+</div>
+<p>i.e. value is a 2-tuple, first element of which is ARRAY flag ORed
+with offset, and second is scalar element type ORed number of elements
+in array.</p>
+<p>Arrays of aggregate types:</p>
+<div class="highlight-python"><div class="highlight"><pre>&quot;arr2&quot;: (uctypes.ARRAY | 0, 2, {&quot;b&quot;: uctypes.UINT8 | 0}),
+</pre></div>
+</div>
+<p>i.e. value is a 3-tuple, first element of which is ARRAY flag ORed
+with offset, second is a number of elements in array, and third is
+descriptor of element type.</p>
+<p>Pointer to a primitive type:</p>
+<div class="highlight-python"><div class="highlight"><pre>&quot;ptr&quot;: (uctypes.PTR | 0, uctypes.UINT8),
+</pre></div>
+</div>
+<p>i.e. value is a 2-tuple, first element of which is PTR flag ORed
+with offset, and second is scalar element type.</p>
+<p>Pointer to aggregate type:</p>
+<div class="highlight-python"><div class="highlight"><pre>&quot;ptr2&quot;: (uctypes.PTR | 0, {&quot;b&quot;: uctypes.UINT8 | 0}),
+</pre></div>
+</div>
+<p>i.e. value is a 2-tuple, first element of which is PTR flag ORed
+with offset, second is descriptor of type pointed to.</p>
+<p>Bitfields:</p>
+<div class="highlight-python"><div class="highlight"><pre>&quot;bitf0&quot;: uctypes.BFUINT16 | 0 | 0 &lt;&lt; uctypes.BF_POS | 8 &lt;&lt; uctypes.BF_LEN,
+</pre></div>
+</div>
+<p>i.e. value is type of scalar value containing given bitfield (typenames are
+similar to scalar types, but prefixes with &#8220;BF&#8221;), ORed with offset for
+scalar value containing the bitfield, and further ORed with values for
+bit offset and bit length of the bitfield within scalar value, shifted by
+BF_POS and BF_LEN positions, respectively. Bitfield position is counted
+from the least significant bit, and is the number of right-most bit of a
+field (in other words, it&#8217;s a number of bits a scalar needs to be shifted
+right to extra the bitfield).</p>
+<p>In the example above, first UINT16 value will be extracted at offset 0
+(this detail may be important when accessing hardware registers, where
+particular access size and alignment are required), and then bitfield
+whose rightmost bit is least-significant bit of this UINT16, and length
+is 8 bits, will be extracted - effectively, this will access
+least-significant byte of UINT16.</p>
+<p>Note that bitfield operations are independent of target byte endianness,
+in particular, example above will access least-significant byte of UINT16
+in both little- and big-endian structures. But it depends on the least
+significant bit being numbered 0. Some targets may use different
+numbering in their native ABI, but <code class="docutils literal"><span class="pre">uctypes</span></code> always uses normalized
+numbering described above.</p>
+</div></blockquote>
+</div>
+<div class="section" id="module-contents">
+<h2>Module contents<a class="headerlink" href="#module-contents" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="uctypes.struct">
+<em class="property">class </em><code class="descclassname">uctypes.</code><code class="descname">struct</code><span class="sig-paren">(</span><em>addr</em>, <em>descriptor</em>, <em>layout_type=NATIVE</em><span class="sig-paren">)</span><a class="headerlink" href="#uctypes.struct" title="Permalink to this definition">¶</a></dt>
+<dd><p>Instantiate a &#8220;foreign data structure&#8221; object based on structure address in
+memory, descriptor (encoded as a dictionary), and layout type (see below).</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="uctypes.LITTLE_ENDIAN">
+<code class="descclassname">uctypes.</code><code class="descname">LITTLE_ENDIAN</code><a class="headerlink" href="#uctypes.LITTLE_ENDIAN" title="Permalink to this definition">¶</a></dt>
+<dd><p>Little-endian packed structure. (Packed means that every field occupies
+exactly as many bytes as defined in the descriptor, i.e. alignment is 1).</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="uctypes.BIG_ENDIAN">
+<code class="descclassname">uctypes.</code><code class="descname">BIG_ENDIAN</code><a class="headerlink" href="#uctypes.BIG_ENDIAN" title="Permalink to this definition">¶</a></dt>
+<dd><p>Big-endian packed structure.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="uctypes.NATIVE">
+<code class="descclassname">uctypes.</code><code class="descname">NATIVE</code><a class="headerlink" href="#uctypes.NATIVE" title="Permalink to this definition">¶</a></dt>
+<dd><p>Native structure - with data endianness and alignment conforming to
+the ABI of the system on which MicroPython runs.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="uctypes.sizeof">
+<code class="descclassname">uctypes.</code><code class="descname">sizeof</code><span class="sig-paren">(</span><em>struct</em><span class="sig-paren">)</span><a class="headerlink" href="#uctypes.sizeof" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return size of data structure in bytes. Argument can be either structure
+class or specific instantiated structure object (or its aggregate field).</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="uctypes.addressof">
+<code class="descclassname">uctypes.</code><code class="descname">addressof</code><span class="sig-paren">(</span><em>obj</em><span class="sig-paren">)</span><a class="headerlink" href="#uctypes.addressof" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return address of an object. Argument should be bytes, bytearray or
+other object supporting buffer protocol (and address of this buffer
+is what actually returned).</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="uctypes.bytes_at">
+<code class="descclassname">uctypes.</code><code class="descname">bytes_at</code><span class="sig-paren">(</span><em>addr</em>, <em>size</em><span class="sig-paren">)</span><a class="headerlink" href="#uctypes.bytes_at" title="Permalink to this definition">¶</a></dt>
+<dd><p>Capture memory at the given address and size as bytes object. As bytes
+object is immutable, memory is actually duplicated and copied into
+bytes object, so if memory contents change later, created object
+retains original value.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="uctypes.bytearray_at">
+<code class="descclassname">uctypes.</code><code class="descname">bytearray_at</code><span class="sig-paren">(</span><em>addr</em>, <em>size</em><span class="sig-paren">)</span><a class="headerlink" href="#uctypes.bytearray_at" title="Permalink to this definition">¶</a></dt>
+<dd><p>Capture memory at the given address and size as bytearray object.
+Unlike bytes_at() function above, memory is captured by reference,
+so it can be both written too, and you will access current value
+at the given memory address.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="structure-descriptors-and-instantiating-structure-objects">
+<h2>Structure descriptors and instantiating structure objects<a class="headerlink" href="#structure-descriptors-and-instantiating-structure-objects" title="Permalink to this headline">¶</a></h2>
+<p>Given a structure descriptor dictionary and its layout type, you can
+instantiate a specific structure instance at a given memory address
+using uctypes.struct() constructor. Memory address usually comes from
+following sources:</p>
+<ul class="simple">
+<li>Predefined address, when accessing hardware registers on a baremetal
+system. Lookup these addresses in datasheet for a particular MCU/SoC.</li>
+<li>As return value from a call to some FFI (Foreign Function Interface)
+function.</li>
+<li>From uctypes.addressof(), when you want to pass arguments to FFI
+function, or alternatively, to access some data for I/O (for example,
+data read from file or network socket).</li>
+</ul>
+</div>
+<div class="section" id="structure-objects">
+<h2>Structure objects<a class="headerlink" href="#structure-objects" title="Permalink to this headline">¶</a></h2>
+<p>Structure objects allow accessing individual fields using standard dot
+notation: <code class="docutils literal"><span class="pre">my_struct.field1</span></code>. If a field is of scalar type, getting
+it will produce primitive value (Python integer or float) corresponding
+to value contained in a field. Scalar field can also be assigned to.</p>
+<p>If a field is an array, its individual elements can be accessed with
+standard subscript operator - both read and assigned to.</p>
+<p>If a field is a pointer, it can be dereferenced using <code class="docutils literal"><span class="pre">[0]</span></code> syntax
+(corresponding to C <code class="docutils literal"><span class="pre">*</span></code> operator, though <code class="docutils literal"><span class="pre">[0]</span></code> works in C too).
+Subscripting pointer with other integer values but 0 are supported too,
+with the same semantics as in C.</p>
+<p>Summing up, accessing structure fields generally follows C syntax,
+except for pointer dereference, you need to use <code class="docutils literal"><span class="pre">[0]</span></code> operator instead
+of <code class="docutils literal"><span class="pre">*</span></code>.</p>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="esp.html" class="btn btn-neutral float-right" title="esp — functions related to the ESP8266" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="machine.I2C.html" class="btn btn-neutral" title="class I2C – a two-wire serial protocol" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2014-2017, Damien P. George, OpenMV LLC, and contributors.
+      Last updated on 27 Mar 2017.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  <!--
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    <span class="fa fa-book"> Ports and Versions</span>
+    openmvcam (latest)
+    <span class="fa fa-caret-down"></span>
+  </span>
+  <div class="rst-other-versions">
+    <dl>
+      <dt>Ports</dt>
+      
+        <dd><a href="//en/latest/unix">unix</a></dd>
+      
+        <dd><a href="//en/latest/pyboard">pyboard</a></dd>
+      
+        <dd><a href="//en/latest/wipy">wipy</a></dd>
+      
+        <dd><a href="//en/latest/esp8266">esp8266</a></dd>
+      
+        <dd><a href="//en/latest/openmvcam">openmvcam</a></dd>
+      
+    </dl>
+    <dl>
+      <dt>Versions</dt>
+      
+        <dd><a href="//en/latest/openmvcam">latest</a></dd>
+      
+    </dl>
+    -->
+    <!--
+    <dl>
+      <dt>Downloads</dt>
+      
+    </dl>
+    -->
+    <!--
+    <hr/>
+    <dl>
+      <dt>External links</dt>
+        <dd>
+          <a href="http://www.micropython.org">micropython.org</a>
+        </dd>
+        <dd>
+          <a href="http://github.com/micropython/micropython">GitHub</a>
+        </dd>
+    </dl>
+  </div>
+</div>
+-->
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'1.8',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

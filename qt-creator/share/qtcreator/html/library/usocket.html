@@ -1,0 +1,521 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>usocket – socket module &mdash; MicroPython 1.8 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../_static/customstyle.css" type="text/css" />
+  
+
+  
+    <link rel="top" title="MicroPython 1.8 documentation" href="../index.html"/>
+        <link rel="up" title="MicroPython libraries" href="index.html"/>
+        <link rel="next" title="ustruct – pack and unpack primitive data types" href="ustruct.html"/>
+        <link rel="prev" title="ure – regular expressions" href="ure.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> MicroPython
+          
+
+          
+            
+            <img src="../_static/web-logo-sticky.png" class="logo" />
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.8
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../openmvcam/quickref.html">Quick reference for the openmvcam</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../openmvcam/tutorial/index.html">OpenMV Cam Tutorial</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">MicroPython libraries</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#python-standard-libraries-and-micro-libraries">Python standard libraries and micro-libraries</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="gc.html"><code class="docutils literal"><span class="pre">gc</span></code> &#8211; control the garbage collector</a></li>
+<li class="toctree-l3"><a class="reference internal" href="math.html"><code class="docutils literal"><span class="pre">math</span></code> &#8211; mathematical functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="select.html"><code class="docutils literal"><span class="pre">select</span></code> &#8211; wait for events on a set of streams</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sys.html"><code class="docutils literal"><span class="pre">sys</span></code> &#8211; system specific functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ubinascii.html"><code class="docutils literal"><span class="pre">ubinascii</span></code> &#8211; binary/ASCII conversions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="uhashlib.html"><code class="docutils literal"><span class="pre">uhashlib</span></code> &#8211; hashing algorithm</a></li>
+<li class="toctree-l3"><a class="reference internal" href="uio.html"><code class="docutils literal"><span class="pre">uio</span></code> &#8211; input/output streams</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ujson.html"><code class="docutils literal"><span class="pre">ujson</span></code> &#8211; JSON encoding and decoding</a></li>
+<li class="toctree-l3"><a class="reference internal" href="uos.html"><code class="docutils literal"><span class="pre">uos</span></code> &#8211; basic &#8220;operating system&#8221; services</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ure.html"><code class="docutils literal"><span class="pre">ure</span></code> &#8211; regular expressions</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href=""><code class="docutils literal"><span class="pre">usocket</span></code> &#8211; socket module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#socket-address-format-s">Socket address format(s)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#functions">Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#constants">Constants</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#methods">Methods</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="ustruct.html"><code class="docutils literal"><span class="pre">ustruct</span></code> &#8211; pack and unpack primitive data types</a></li>
+<li class="toctree-l3"><a class="reference internal" href="utime.html"><code class="docutils literal"><span class="pre">utime</span></code> &#8211; time related functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="uzlib.html"><code class="docutils literal"><span class="pre">uzlib</span></code> &#8211; zlib decompression</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#micropython-specific-libraries">MicroPython-specific libraries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#libraries-specific-to-the-openmv-cam">Libraries specific to the OpenMV Cam</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/index.html">The MicroPython language</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">MicroPython license information</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">MicroPython</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="index.html">MicroPython libraries</a> &raquo;</li>
+      
+    <li><code class="docutils literal"><span class="pre">usocket</span></code> &#8211; socket module</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/library/usocket.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-usocket">
+<span id="usocket-socket-module"></span><h1><a class="reference internal" href="#module-usocket" title="usocket: socket module"><code class="xref py py-mod docutils literal"><span class="pre">usocket</span></code></a> &#8211; socket module<a class="headerlink" href="#module-usocket" title="Permalink to this headline">¶</a></h1>
+<p>This module provides access to the BSD socket interface.</p>
+<p>See corresponding <a class="reference external" href="https://docs.python.org/3/library/socket.html">CPython module</a> for
+comparison.</p>
+<div class="section" id="socket-address-format-s">
+<h2>Socket address format(s)<a class="headerlink" href="#socket-address-format-s" title="Permalink to this headline">¶</a></h2>
+<p>Functions below which expect a network address, accept it in the format of
+<cite>(ipv4_address, port)</cite>, where <cite>ipv4_address</cite> is a string with dot-notation numeric
+IPv4 address, e.g. <code class="docutils literal"><span class="pre">&quot;8.8.8.8&quot;</span></code>, and port is integer port number in the range
+1-65535. Note the domain names are not accepted as <cite>ipv4_address</cite>, they should be
+resolved first using <code class="docutils literal"><span class="pre">socket.getaddrinfo()</span></code>.</p>
+</div>
+<div class="section" id="functions">
+<h2>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="usocket.socket.socket">
+<code class="descclassname">socket.</code><code class="descname">socket</code><span class="sig-paren">(</span><em>socket.AF_INET</em>, <em>socket.SOCK_STREAM</em>, <em>socket.IPPROTO_TCP</em><span class="sig-paren">)</span><a class="headerlink" href="#usocket.socket.socket" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a new socket using the given address family, socket type and protocol number.</p>
+<blockquote>
+<div></div></blockquote>
+</dd></dl>
+
+<dl class="function">
+<dt id="usocket.socket.getaddrinfo">
+<code class="descclassname">socket.</code><code class="descname">getaddrinfo</code><span class="sig-paren">(</span><em>host</em>, <em>port</em><span class="sig-paren">)</span><a class="headerlink" href="#usocket.socket.getaddrinfo" title="Permalink to this definition">¶</a></dt>
+<dd><p>Translate the host/port argument into a sequence of 5-tuples that contain all the
+necessary arguments for creating a socket connected to that service. The list of
+5-tuples has following structure:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="p">(</span><span class="n">family</span><span class="p">,</span> <span class="nb">type</span><span class="p">,</span> <span class="n">proto</span><span class="p">,</span> <span class="n">canonname</span><span class="p">,</span> <span class="n">sockaddr</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The following example shows how to connect to a given url:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">s</span> <span class="o">=</span> <span class="n">socket</span><span class="o">.</span><span class="n">socket</span><span class="p">()</span>
+<span class="n">s</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">socket</span><span class="o">.</span><span class="n">getaddrinfo</span><span class="p">(</span><span class="s">&#39;www.micropython.org&#39;</span><span class="p">,</span> <span class="mi">80</span><span class="p">)[</span><span class="mi">0</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</div>
+<div class="section" id="constants">
+<h2>Constants<a class="headerlink" href="#constants" title="Permalink to this headline">¶</a></h2>
+<dl class="data">
+<dt id="usocket.socket.AF_INET">
+<code class="descclassname">socket.</code><code class="descname">AF_INET</code><a class="headerlink" href="#usocket.socket.AF_INET" title="Permalink to this definition">¶</a></dt>
+<dd><p>family types</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="usocket.socket.SOCK_STREAM">
+<code class="descclassname">socket.</code><code class="descname">SOCK_STREAM</code><a class="headerlink" href="#usocket.socket.SOCK_STREAM" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="data">
+<dt id="usocket.socket.SOCK_DGRAM">
+<code class="descclassname">socket.</code><code class="descname">SOCK_DGRAM</code><a class="headerlink" href="#usocket.socket.SOCK_DGRAM" title="Permalink to this definition">¶</a></dt>
+<dd><p>socket types</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="usocket.socket.IPPROTO_UDP">
+<code class="descclassname">socket.</code><code class="descname">IPPROTO_UDP</code><a class="headerlink" href="#usocket.socket.IPPROTO_UDP" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="data">
+<dt id="usocket.socket.IPPROTO_TCP">
+<code class="descclassname">socket.</code><code class="descname">IPPROTO_TCP</code><a class="headerlink" href="#usocket.socket.IPPROTO_TCP" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<div class="section" id="class-socket">
+<h3>class socket<a class="headerlink" href="#class-socket" title="Permalink to this headline">¶</a></h3>
+</div>
+</div>
+<div class="section" id="methods">
+<h2>Methods<a class="headerlink" href="#methods" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><dl class="method">
+<dt id="usocket.socket.close">
+<code class="descclassname">socket.</code><code class="descname">close</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#usocket.socket.close" title="Permalink to this definition">¶</a></dt>
+<dd><p>Mark the socket closed. Once that happens, all future operations on the socket
+object will fail. The remote end will receive no more data (after queued data is flushed).</p>
+<p>Sockets are automatically closed when they are garbage-collected, but it is recommended
+to close() them explicitly, or to use a with statement around them.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="usocket.socket.bind">
+<code class="descclassname">socket.</code><code class="descname">bind</code><span class="sig-paren">(</span><em>address</em><span class="sig-paren">)</span><a class="headerlink" href="#usocket.socket.bind" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bind the socket to address. The socket must not already be bound.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="usocket.socket.listen">
+<code class="descclassname">socket.</code><code class="descname">listen</code><span class="sig-paren">(</span><span class="optional">[</span><em>backlog</em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#usocket.socket.listen" title="Permalink to this definition">¶</a></dt>
+<dd><p>Enable a server to accept connections. If backlog is specified, it must be at least 0
+(if it&#8217;s lower, it will be set to 0); and specifies the number of unaccepted connections
+that the system will allow before refusing new connections. If not specified, a default
+reasonable value is chosen.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="usocket.socket.accept">
+<code class="descclassname">socket.</code><code class="descname">accept</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#usocket.socket.accept" title="Permalink to this definition">¶</a></dt>
+<dd><p>Accept a connection. The socket must be bound to an address and listening for connections.
+The return value is a pair (conn, address) where conn is a new socket object usable to send
+and receive data on the connection, and address is the address bound to the socket on the
+other end of the connection.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="usocket.socket.connect">
+<code class="descclassname">socket.</code><code class="descname">connect</code><span class="sig-paren">(</span><em>address</em><span class="sig-paren">)</span><a class="headerlink" href="#usocket.socket.connect" title="Permalink to this definition">¶</a></dt>
+<dd><p>Connect to a remote socket at address.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="usocket.socket.send">
+<code class="descclassname">socket.</code><code class="descname">send</code><span class="sig-paren">(</span><em>bytes</em><span class="sig-paren">)</span><a class="headerlink" href="#usocket.socket.send" title="Permalink to this definition">¶</a></dt>
+<dd><p>Send data to the socket. The socket must be connected to a remote socket.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="usocket.socket.sendall">
+<code class="descclassname">socket.</code><code class="descname">sendall</code><span class="sig-paren">(</span><em>bytes</em><span class="sig-paren">)</span><a class="headerlink" href="#usocket.socket.sendall" title="Permalink to this definition">¶</a></dt>
+<dd><p>Send data to the socket. The socket must be connected to a remote socket.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="usocket.socket.recv">
+<code class="descclassname">socket.</code><code class="descname">recv</code><span class="sig-paren">(</span><em>bufsize</em><span class="sig-paren">)</span><a class="headerlink" href="#usocket.socket.recv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Receive data from the socket. The return value is a bytes object representing the data
+received. The maximum amount of data to be received at once is specified by bufsize.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="usocket.socket.sendto">
+<code class="descclassname">socket.</code><code class="descname">sendto</code><span class="sig-paren">(</span><em>bytes</em>, <em>address</em><span class="sig-paren">)</span><a class="headerlink" href="#usocket.socket.sendto" title="Permalink to this definition">¶</a></dt>
+<dd><p>Send data to the socket. The socket should not be connected to a remote socket, since the
+destination socket is specified by <cite>address</cite>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="usocket.socket.recvfrom">
+<code class="descclassname">socket.</code><code class="descname">recvfrom</code><span class="sig-paren">(</span><em>bufsize</em><span class="sig-paren">)</span><a class="headerlink" href="#usocket.socket.recvfrom" title="Permalink to this definition">¶</a></dt>
+<dd><p>Receive data from the socket. The return value is a pair (bytes, address) where bytes is a
+bytes object representing the data received and address is the address of the socket sending
+the data.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="usocket.socket.setsockopt">
+<code class="descclassname">socket.</code><code class="descname">setsockopt</code><span class="sig-paren">(</span><em>level</em>, <em>optname</em>, <em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#usocket.socket.setsockopt" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the value of the given socket option. The needed symbolic constants are defined in the
+socket module (SO_* etc.). The value can be an integer or a bytes-like object representing
+a buffer.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="usocket.socket.settimeout">
+<code class="descclassname">socket.</code><code class="descname">settimeout</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#usocket.socket.settimeout" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set a timeout on blocking socket operations. The value argument can be a nonnegative floating
+point number expressing seconds, or None. If a non-zero value is given, subsequent socket operations
+will raise a timeout exception if the timeout period value has elapsed before the operation has
+completed. If zero is given, the socket is put in non-blocking mode. If None is given, the socket
+is put in blocking mode.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="usocket.socket.setblocking">
+<code class="descclassname">socket.</code><code class="descname">setblocking</code><span class="sig-paren">(</span><em>flag</em><span class="sig-paren">)</span><a class="headerlink" href="#usocket.socket.setblocking" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set blocking or non-blocking mode of the socket: if flag is false, the socket is set to non-blocking,
+else to blocking mode.</p>
+<p>This method is a shorthand for certain <code class="docutils literal"><span class="pre">settimeout()</span></code> calls:</p>
+<div class="highlight-python"><div class="highlight"><pre>sock.setblocking(True) is equivalent to sock.settimeout(None)
+sock.setblocking(False) is equivalent to sock.settimeout(0.0)
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="usocket.socket.makefile">
+<code class="descclassname">socket.</code><code class="descname">makefile</code><span class="sig-paren">(</span><em>mode='rb'</em><span class="sig-paren">)</span><a class="headerlink" href="#usocket.socket.makefile" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a file object associated with the socket. The exact returned type depends on the arguments
+given to makefile(). The support is limited to binary modes only (&#8216;rb&#8217; and &#8216;wb&#8217;).
+CPython&#8217;s arguments: <code class="docutils literal"><span class="pre">encoding</span></code>, <code class="docutils literal"><span class="pre">errors</span></code> and <code class="docutils literal"><span class="pre">newline</span></code> are not supported.</p>
+<p>The socket must be in blocking mode; it can have a timeout, but the file object’s internal buffer
+may end up in a inconsistent state if a timeout occurs.</p>
+<div class="attention admonition">
+<p class="first admonition-title">Difference to CPython</p>
+<p class="last">Closing the file object returned by makefile() WILL close the
+original socket as well.</p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="usocket.socket.read">
+<code class="descclassname">socket.</code><code class="descname">read</code><span class="sig-paren">(</span><em>size</em><span class="sig-paren">)</span><a class="headerlink" href="#usocket.socket.read" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read up to size bytes from the socket. Return a bytes object. If <code class="docutils literal"><span class="pre">size</span></code> is not given, it
+behaves just like <code class="docutils literal"><span class="pre">socket.readall()</span></code>, see below.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="usocket.socket.readall">
+<code class="descclassname">socket.</code><code class="descname">readall</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#usocket.socket.readall" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read all data available from the socket until <code class="docutils literal"><span class="pre">EOF</span></code>. This function will not return until
+the socket is closed.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="usocket.socket.readinto">
+<code class="descclassname">socket.</code><code class="descname">readinto</code><span class="sig-paren">(</span><em>buf</em><span class="optional">[</span>, <em>nbytes</em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#usocket.socket.readinto" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read bytes into the <code class="docutils literal"><span class="pre">buf</span></code>. If <code class="docutils literal"><span class="pre">nbytes</span></code> is specified then read at most
+that many bytes. Otherwise, read at most <code class="docutils literal"><span class="pre">len(buf)</span></code> bytes.</p>
+<p>Return value: number of bytes read and stored into <code class="docutils literal"><span class="pre">buf</span></code>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="usocket.socket.readline">
+<code class="descclassname">socket.</code><code class="descname">readline</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#usocket.socket.readline" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read a line, ending in a newline character.</p>
+<p>Return value: the line read.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="usocket.socket.write">
+<code class="descclassname">socket.</code><code class="descname">write</code><span class="sig-paren">(</span><em>buf</em><span class="sig-paren">)</span><a class="headerlink" href="#usocket.socket.write" title="Permalink to this definition">¶</a></dt>
+<dd><p>Write the buffer of bytes to the socket.</p>
+<p>Return value: number of bytes written.</p>
+</dd></dl>
+
+</div></blockquote>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="ustruct.html" class="btn btn-neutral float-right" title="ustruct – pack and unpack primitive data types" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="ure.html" class="btn btn-neutral" title="ure – regular expressions" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2014-2017, Damien P. George, OpenMV LLC, and contributors.
+      Last updated on 27 Mar 2017.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  <!--
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    <span class="fa fa-book"> Ports and Versions</span>
+    openmvcam (latest)
+    <span class="fa fa-caret-down"></span>
+  </span>
+  <div class="rst-other-versions">
+    <dl>
+      <dt>Ports</dt>
+      
+        <dd><a href="//en/latest/unix">unix</a></dd>
+      
+        <dd><a href="//en/latest/pyboard">pyboard</a></dd>
+      
+        <dd><a href="//en/latest/wipy">wipy</a></dd>
+      
+        <dd><a href="//en/latest/esp8266">esp8266</a></dd>
+      
+        <dd><a href="//en/latest/openmvcam">openmvcam</a></dd>
+      
+    </dl>
+    <dl>
+      <dt>Versions</dt>
+      
+        <dd><a href="//en/latest/openmvcam">latest</a></dd>
+      
+    </dl>
+    -->
+    <!--
+    <dl>
+      <dt>Downloads</dt>
+      
+    </dl>
+    -->
+    <!--
+    <hr/>
+    <dl>
+      <dt>External links</dt>
+        <dd>
+          <a href="http://www.micropython.org">micropython.org</a>
+        </dd>
+        <dd>
+          <a href="http://github.com/micropython/micropython">GitHub</a>
+        </dd>
+    </dl>
+  </div>
+</div>
+-->
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'1.8',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

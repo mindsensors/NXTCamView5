@@ -1,0 +1,317 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>ucollections – collection and container types &mdash; MicroPython 1.8 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../_static/customstyle.css" type="text/css" />
+  
+
+  
+    <link rel="top" title="MicroPython 1.8 documentation" href="../index.html"/>
+        <link rel="up" title="MicroPython libraries" href="index.html"/>
+        <link rel="next" title="uhashlib – hashing algorithm" href="uhashlib.html"/>
+        <link rel="prev" title="ubinascii – binary/ASCII conversions" href="ubinascii.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> MicroPython
+          
+
+          
+            
+            <img src="../_static/web-logo-sticky.png" class="logo" />
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.8
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul>
+<li class="toctree-l1"><a class="reference internal" href="../openmvcam/quickref.html">Quick reference for the openmvcam</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../openmvcam/tutorial/index.html">OpenMV Cam Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index.html">MicroPython libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/index.html">The MicroPython language</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">MicroPython license information</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">MicroPython</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="index.html">MicroPython libraries</a> &raquo;</li>
+      
+    <li><code class="docutils literal"><span class="pre">ucollections</span></code> &#8211; collection and container types</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/library/ucollections.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-ucollections">
+<span id="ucollections-collection-and-container-types"></span><h1><a class="reference internal" href="#module-ucollections" title="ucollections: collection and container types"><code class="xref py py-mod docutils literal"><span class="pre">ucollections</span></code></a> &#8211; collection and container types<a class="headerlink" href="#module-ucollections" title="Permalink to this headline">¶</a></h1>
+<p>This module implements advanced collection and container types to
+hold/accumulate various objects.</p>
+<div class="section" id="classes">
+<h2>Classes<a class="headerlink" href="#classes" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="ucollections.namedtuple">
+<code class="descclassname">ucollections.</code><code class="descname">namedtuple</code><span class="sig-paren">(</span><em>name</em>, <em>fields</em><span class="sig-paren">)</span><a class="headerlink" href="#ucollections.namedtuple" title="Permalink to this definition">¶</a></dt>
+<dd><p>This is factory function to create a new namedtuple type with a specific
+name and set of fields. A namedtyple is a subclass of tuple which allows
+to access its fields not just by numeric index, but also with an attribute
+access syntax using symbolic field names. Fields is a sequence of strings
+specifying field names. For compatibly with CPython it can also be a
+a string with space-separated field named (but this is less efficient).
+Example of use:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">ucollections</span> <span class="kn">import</span> <span class="n">namedtuple</span>
+
+<span class="n">MyTuple</span> <span class="o">=</span> <span class="n">namedtuple</span><span class="p">(</span><span class="s">&quot;MyTuple&quot;</span><span class="p">,</span> <span class="p">(</span><span class="s">&quot;id&quot;</span><span class="p">,</span> <span class="s">&quot;name&quot;</span><span class="p">))</span>
+<span class="n">t1</span> <span class="o">=</span> <span class="n">MyTuple</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s">&quot;foo&quot;</span><span class="p">)</span>
+<span class="n">t2</span> <span class="o">=</span> <span class="n">MyTuple</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="s">&quot;bar&quot;</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">t1</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+<span class="k">assert</span> <span class="n">t2</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="n">t2</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="ucollections.OrderedDict">
+<code class="descclassname">ucollections.</code><code class="descname">OrderedDict</code><span class="sig-paren">(</span><em>...</em><span class="sig-paren">)</span><a class="headerlink" href="#ucollections.OrderedDict" title="Permalink to this definition">¶</a></dt>
+<dd><p><code class="docutils literal"><span class="pre">dict</span></code> type subclass which remembers and preserves the order of keys
+added. When ordered dict is iterated over, keys/items are returned in
+the order they were added:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">ucollections</span> <span class="kn">import</span> <span class="n">OrderedDict</span>
+
+<span class="c"># To make benefit of ordered keys, OrderedDict should be initialized</span>
+<span class="c"># from sequence of (key, value) pairs.</span>
+<span class="n">d</span> <span class="o">=</span> <span class="n">OrderedDict</span><span class="p">([(</span><span class="s">&quot;z&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="s">&quot;a&quot;</span><span class="p">,</span> <span class="mi">2</span><span class="p">)])</span>
+<span class="c"># More items can be added as usual</span>
+<span class="n">d</span><span class="p">[</span><span class="s">&quot;w&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">d</span><span class="p">[</span><span class="s">&quot;b&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">d</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Output:</p>
+<div class="highlight-python"><div class="highlight"><pre>z 1
+a 2
+w 5
+b 3
+</pre></div>
+</div>
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="uhashlib.html" class="btn btn-neutral float-right" title="uhashlib – hashing algorithm" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="ubinascii.html" class="btn btn-neutral" title="ubinascii – binary/ASCII conversions" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2014-2017, Damien P. George, OpenMV LLC, and contributors.
+      Last updated on 27 Mar 2017.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  <!--
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    <span class="fa fa-book"> Ports and Versions</span>
+    openmvcam (latest)
+    <span class="fa fa-caret-down"></span>
+  </span>
+  <div class="rst-other-versions">
+    <dl>
+      <dt>Ports</dt>
+      
+        <dd><a href="//en/latest/unix">unix</a></dd>
+      
+        <dd><a href="//en/latest/pyboard">pyboard</a></dd>
+      
+        <dd><a href="//en/latest/wipy">wipy</a></dd>
+      
+        <dd><a href="//en/latest/esp8266">esp8266</a></dd>
+      
+        <dd><a href="//en/latest/openmvcam">openmvcam</a></dd>
+      
+    </dl>
+    <dl>
+      <dt>Versions</dt>
+      
+        <dd><a href="//en/latest/openmvcam">latest</a></dd>
+      
+    </dl>
+    -->
+    <!--
+    <dl>
+      <dt>Downloads</dt>
+      
+    </dl>
+    -->
+    <!--
+    <hr/>
+    <dl>
+      <dt>External links</dt>
+        <dd>
+          <a href="http://www.micropython.org">micropython.org</a>
+        </dd>
+        <dd>
+          <a href="http://github.com/micropython/micropython">GitHub</a>
+        </dd>
+    </dl>
+  </div>
+</div>
+-->
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'1.8',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

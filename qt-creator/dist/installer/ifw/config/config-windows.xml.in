@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<!--OPENMV-DIFF-->
+<!--<Installer>-->
+<!--    <Name>Qt Creator</Name>-->
+<!--    <Version>{version}</Version>-->
+<!--    <Title>Qt Creator {display_version}</Title>-->
+<!--    <Publisher>Qt Project</Publisher>-->
+<!--    <ProductUrl>http://www.qt.io</ProductUrl>-->
+
+<!--    <InstallerWindowIcon>logo.png</InstallerWindowIcon>-->
+<!--    <Watermark>watermark.png</Watermark>-->
+<!--    <WizardDefaultHeight>560</WizardDefaultHeight>-->
+<!--    <MaintenanceToolName>QtCreatorUninst</MaintenanceToolName>-->
+        <!-- @homeDir@ and @rootDir@ are some of the supported vars -->
+<!--    <TargetDir>@rootDir@/Qt/qtcreator-{display_version}</TargetDir>-->
+<!--    <StartMenuDir>Qt Creator</StartMenuDir>-->
+<!--</Installer>-->
+<!--OPENMV-DIFF-->
+<Installer>
+    <Name>NXTCamView5</Name>
+    <Version>{version}</Version>
+    <Title>NXTCamView5 {display_version}</Title>
+    <Publisher>mindsensors.com</Publisher>
+    <ProductUrl>http://mindsensors.com/pages/78</ProductUrl>
+
+    <MaintenanceToolName>NXTCamView5Uninst</MaintenanceToolName>
+    <TargetDir>@ApplicationsDir@/NXTCamView5</TargetDir>
+    <StartMenuDir>NXTCamView5</StartMenuDir>
+    <ControlScript>controlscript.qs</ControlScript>
+</Installer>
+<!--OPENMV-DIFF-->

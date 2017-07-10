@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!--OPENMV-DIFF-->
+<!--<Package>-->
+<!--  <DisplayName>Qt Creator</DisplayName>-->
+<!--  <Description>Installs the Qt Creator IDE.</Description>-->
+<!--  <Version>{version}</Version>-->
+<!--  <ReleaseDate>{date}</ReleaseDate>-->
+<!--  <Name>org.qtproject.qtcreator</Name>-->
+      <!--  <Script>installscript.js</Script> -->
+<!--</Package>-->
+<!--OPENMV-DIFF-->
+<Package>
+  <DisplayName>NXTCamView5</DisplayName>
+  <Description>Installs the NXTCamView5.</Description>
+  <Version>{version}</Version>
+  <ReleaseDate>{date}</ReleaseDate>
+  <Name>org.qtproject.qtcreator</Name>
+  <!--  <Script>installscript.js</Script> -->
+</Package>
+<!--OPENMV-DIFF-->

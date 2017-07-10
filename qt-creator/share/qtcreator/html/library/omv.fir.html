@@ -1,0 +1,479 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>fir — thermopile shield driver (fir == far infrared) &mdash; MicroPython 1.8 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../_static/customstyle.css" type="text/css" />
+  
+
+  
+    <link rel="top" title="MicroPython 1.8 documentation" href="../index.html"/>
+        <link rel="up" title="MicroPython libraries" href="index.html"/>
+        <link rel="next" title="cpufreq — easy cpu frequency control" href="omv.cpufreq.html"/>
+        <link rel="prev" title="lcd — lcd shield driver" href="omv.lcd.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> MicroPython
+          
+
+          
+            
+            <img src="../_static/web-logo-sticky.png" class="logo" />
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.8
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../openmvcam/quickref.html">Quick reference for the openmvcam</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../openmvcam/tutorial/index.html">OpenMV Cam Tutorial</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">MicroPython libraries</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="index.html#python-standard-libraries-and-micro-libraries">Python standard libraries and micro-libraries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#micropython-specific-libraries">MicroPython-specific libraries</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#libraries-specific-to-the-openmv-cam">Libraries specific to the OpenMV Cam</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="pyb.html"><code class="docutils literal"><span class="pre">pyb</span></code> &#8212; functions related to the board</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyb.ADC.html">class ADC &#8211; analog to digital conversion</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyb.CAN.html">class CAN &#8211; controller area network communication bus</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyb.DAC.html">class DAC &#8211; digital to analog conversion</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyb.ExtInt.html">class ExtInt &#8211; configure I/O pins to interrupt on external events</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyb.I2C.html">class I2C &#8211; a two-wire serial protocol</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyb.LED.html">class LED &#8211; LED object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyb.Pin.html">class Pin &#8211; control I/O pins</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyb.Servo.html">class Servo &#8211; 3-wire hobby servo driver</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyb.SPI.html">class SPI &#8211; a master-driven serial protocol</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyb.Timer.html">class Timer &#8211; control internal timers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyb.Timer.html#class-timerchannel-setup-a-channel-for-a-timer">class TimerChannel &#8212; setup a channel for a timer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyb.UART.html">class UART &#8211; duplex serial communication bus</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyb.USB_VCP.html">class USB_VCP &#8211; USB virtual comm port</a></li>
+<li class="toctree-l3"><a class="reference internal" href="omv.time.html"><code class="docutils literal"><span class="pre">time</span></code> &#8212; tracking elapsed time</a></li>
+<li class="toctree-l3"><a class="reference internal" href="omv.sensor.html"><code class="docutils literal"><span class="pre">sensor</span></code> &#8212; camera sensor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="omv.image.html"><code class="docutils literal"><span class="pre">image</span></code> &#8212; machine vision</a></li>
+<li class="toctree-l3"><a class="reference internal" href="omv.image.html#class-haarcascade-feature-descriptor">class HaarCascade &#8211; Feature Descriptor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="omv.image.html#class-histogram-histogram-object">class Histogram &#8211; Histogram Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="omv.image.html#class-percentile-percentile-object">class Percentile &#8211; Percentile Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="omv.image.html#class-statistics-statistics-object">class Statistics &#8211; Statistics Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="omv.image.html#class-blob-blob-object">class Blob &#8211; Blob object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="omv.image.html#class-qrcode-qrcode-object">class QRCode &#8211; QRCode object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="omv.image.html#class-apriltag-apriltag-object">class AprilTag &#8211; AprilTag object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="omv.image.html#class-barcode-barcode-object">class BarCode &#8211; BarCode object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="omv.image.html#class-image-image-object">class Image &#8211; Image object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="omv.gif.html"><code class="docutils literal"><span class="pre">gif</span></code> &#8212; gif recording</a></li>
+<li class="toctree-l3"><a class="reference internal" href="omv.gif.html#class-gif-gif-recorder">class Gif &#8211; Gif recorder</a></li>
+<li class="toctree-l3"><a class="reference internal" href="omv.mjpeg.html"><code class="docutils literal"><span class="pre">mjpeg</span></code> &#8212; mjpeg recording</a></li>
+<li class="toctree-l3"><a class="reference internal" href="omv.mjpeg.html#class-mjpeg-mjpeg-recorder">class Mjpeg &#8211; Mjpeg recorder</a></li>
+<li class="toctree-l3"><a class="reference internal" href="omv.lcd.html"><code class="docutils literal"><span class="pre">lcd</span></code> &#8212; lcd shield driver</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href=""><code class="docutils literal"><span class="pre">fir</span></code> &#8212; thermopile shield driver (fir == far infrared)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#functions">Functions</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="omv.cpufreq.html"><code class="docutils literal"><span class="pre">cpufreq</span></code> &#8212; easy cpu frequency control</a></li>
+<li class="toctree-l3"><a class="reference internal" href="machine.html"><code class="docutils literal"><span class="pre">machine</span></code> &#8212; functions related to the board</a></li>
+<li class="toctree-l3"><a class="reference internal" href="machine.I2C.html">class I2C &#8211; a two-wire serial protocol</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/index.html">The MicroPython language</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">MicroPython license information</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">MicroPython</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="index.html">MicroPython libraries</a> &raquo;</li>
+      
+    <li><code class="docutils literal"><span class="pre">fir</span></code> &#8212; thermopile shield driver (fir == far infrared)</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/library/omv.fir.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-fir">
+<span id="fir-thermopile-shield-driver-fir-far-infrared"></span><h1><a class="reference internal" href="#module-fir" title="fir: thermopile shield driver (fir == far infrared)"><code class="xref py py-mod docutils literal"><span class="pre">fir</span></code></a> &#8212; thermopile shield driver (fir == far infrared)<a class="headerlink" href="#module-fir" title="Permalink to this headline">¶</a></h1>
+<p>The <code class="docutils literal"><span class="pre">fir</span></code> module is used for controlling the thermopile shield.</p>
+<p>Example usage:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">sensor</span><span class="o">,</span> <span class="nn">fir</span>
+
+<span class="c"># Setup camera.</span>
+<span class="n">sensor</span><span class="o">.</span><span class="n">reset</span><span class="p">()</span>
+<span class="n">sensor</span><span class="o">.</span><span class="n">set_pixformat</span><span class="p">(</span><span class="n">sensor</span><span class="o">.</span><span class="n">RGB565</span><span class="p">)</span>
+<span class="n">sensor</span><span class="o">.</span><span class="n">set_framesize</span><span class="p">(</span><span class="n">sensor</span><span class="o">.</span><span class="n">QVGA</span><span class="p">)</span>
+<span class="n">sensor</span><span class="o">.</span><span class="n">skip_frames</span><span class="p">()</span>
+<span class="n">fir</span><span class="o">.</span><span class="n">init</span><span class="p">()</span>
+
+<span class="c"># Show image.</span>
+<span class="k">while</span><span class="p">(</span><span class="bp">True</span><span class="p">):</span>
+    <span class="n">img</span> <span class="o">=</span> <span class="n">sensor</span><span class="o">.</span><span class="n">snapshot</span><span class="p">()</span>
+    <span class="n">ta</span><span class="p">,</span> <span class="n">ir</span><span class="p">,</span> <span class="n">to_min</span><span class="p">,</span> <span class="n">to_max</span> <span class="o">=</span> <span class="n">fir</span><span class="o">.</span><span class="n">read_ir</span><span class="p">()</span>
+    <span class="n">fir</span><span class="o">.</span><span class="n">draw_ir</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">ir</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">&quot;ambient temperature: </span><span class="si">%0.2f</span><span class="s">&quot;</span> <span class="o">%</span> <span class="n">ta</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">&quot;min temperature seen: </span><span class="si">%0.2f</span><span class="s">&quot;</span> <span class="o">%</span> <span class="n">to_min</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">&quot;max temperature seen: </span><span class="si">%0.2f</span><span class="s">&quot;</span> <span class="o">%</span> <span class="n">to_max</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="section" id="functions">
+<h2>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="fir.fir.init">
+<code class="descclassname">fir.</code><code class="descname">init</code><span class="sig-paren">(</span><em>type=1</em>, <em>refresh=64</em>, <em>resolution=18</em><span class="sig-paren">)</span><a class="headerlink" href="#fir.fir.init" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initializes an attached thermopile shield using I/O pins P4 and P5.</p>
+<p><code class="docutils literal"><span class="pre">type</span></code> indicates the type of thermopile shield (for future use possibly):</p>
+<blockquote>
+<div><ul class="simple">
+<li>0: None</li>
+<li>1: thermopile shield</li>
+</ul>
+</div></blockquote>
+<p><code class="docutils literal"><span class="pre">refresh</span></code> is the thermopile sensor power-of-2 refresh rate in Hz. Defaults
+to 64 Hz. Can be 1 Hz, 2 Hz, 4 Hz, 8 Hz, 16 Hz, 32 Hz, 64 Hz, 128 Hz, 256 Hz,
+or 512 Hz. Note that a higher refresh rate lowers the accuracy and vice-versa.</p>
+<p><code class="docutils literal"><span class="pre">resolution</span></code> is the thermopile sensor measurement resolution. Defaults to
+18-bits. Can be 15-bits, 16-bits, 17-bits, or 18-bits. Note that a higher
+resolution lowers the maximum temperature range and vice-versa.</p>
+<blockquote>
+<div><ul class="simple">
+<li>15-bits -&gt; Max of ~950C.</li>
+<li>16-bits -&gt; Max of ~750C.</li>
+<li>17-bits -&gt; Max of ~600C.</li>
+<li>18-bits -&gt; Max of ~450C.</li>
+</ul>
+</div></blockquote>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last"><code class="docutils literal"><span class="pre">type</span></code>, <code class="docutils literal"><span class="pre">refresh</span></code>, and <code class="docutils literal"><span class="pre">resolution</span></code> are keyword arguments which must
+be explicitly invoked in the function call by writing <code class="docutils literal"><span class="pre">type=</span></code>,
+<code class="docutils literal"><span class="pre">refresh=</span></code>, and <code class="docutils literal"><span class="pre">resolution=</span></code>.</p>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="fir.fir.deinit">
+<code class="descclassname">fir.</code><code class="descname">deinit</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#fir.fir.deinit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Deinitializes the thermopile shield freeing up I/O pins.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="fir.fir.width">
+<code class="descclassname">fir.</code><code class="descname">width</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#fir.fir.width" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the width (horizontal resolution) of the thermopile shield.</p>
+<blockquote>
+<div><ul class="simple">
+<li>None: 0 pixels.</li>
+<li>thermopile shield: 16 pixels.</li>
+</ul>
+</div></blockquote>
+</dd></dl>
+
+<dl class="function">
+<dt id="fir.fir.height">
+<code class="descclassname">fir.</code><code class="descname">height</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#fir.fir.height" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the height (vertical resolution) of the thermopile shield.</p>
+<blockquote>
+<div><ul class="simple">
+<li>None: 0 pixels.</li>
+<li>thermopile shield: 4 pixels.</li>
+</ul>
+</div></blockquote>
+</dd></dl>
+
+<dl class="function">
+<dt id="fir.fir.type">
+<code class="descclassname">fir.</code><code class="descname">type</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#fir.fir.type" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the type of the thermopile shield (for future use possibly):</p>
+<blockquote>
+<div><ul class="simple">
+<li>0: None</li>
+<li>1: thermopile shield</li>
+</ul>
+</div></blockquote>
+</dd></dl>
+
+<dl class="function">
+<dt id="fir.fir.read_ta">
+<code class="descclassname">fir.</code><code class="descname">read_ta</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#fir.fir.read_ta" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the ambient temperature (i.e. sensor temperature).</p>
+<p>Example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">ta</span> <span class="o">=</span> <span class="n">fir</span><span class="o">.</span><span class="n">read_ta</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>The value returned is a float that represents the temperature in Celsius.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="fir.fir.read_ir">
+<code class="descclassname">fir.</code><code class="descname">read_ir</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#fir.fir.read_ir" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a tuple containing the ambient temperature (i.e. sensor temperature),
+the temperature list (width * height), the minimum temperature seen, and
+the maximum temperature seen.</p>
+<p>Example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">ta</span><span class="p">,</span> <span class="n">ir</span><span class="p">,</span> <span class="n">to_min</span><span class="p">,</span> <span class="n">to_max</span> <span class="o">=</span> <span class="n">fir</span><span class="o">.</span><span class="n">read_ir</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>The values returned are floats that represent the temperature in Celsius.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last"><code class="docutils literal"><span class="pre">ir</span></code> is a (width * height) list of floats.</p>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="fir.fir.draw_ta">
+<code class="descclassname">fir.</code><code class="descname">draw_ta</code><span class="sig-paren">(</span><em>image, ta, alpha=128, scale=[-17.7778, 37.7778]</em><span class="sig-paren">)</span><a class="headerlink" href="#fir.fir.draw_ta" title="Permalink to this definition">¶</a></dt>
+<dd><p>Draws the ambient temperature (<code class="docutils literal"><span class="pre">ta</span></code>) on the <code class="docutils literal"><span class="pre">image</span></code> using a rainbow
+table color conversion.</p>
+<p><code class="docutils literal"><span class="pre">alpha</span></code> controls the transparency. 256 for an opaque overlay. 0 for none.</p>
+<p><code class="docutils literal"><span class="pre">scale</span></code> controls the rainbow table color conversion. The first number is
+the minimum temperature cutoff and the second number is the max. Values
+closer to the min are blue and values closer to the max are red.</p>
+<p>The default <code class="docutils literal"><span class="pre">scale</span></code> of [-17.7778C, 37.7778C] corresponds to [0F, 100F].</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">For best results look at really cold or hot objects.</p>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last"><code class="docutils literal"><span class="pre">alpha</span></code> and <code class="docutils literal"><span class="pre">scale</span></code> are keyword arguments which must be explicitly
+invoked in the function call by writing <code class="docutils literal"><span class="pre">alpha=</span></code> and <code class="docutils literal"><span class="pre">scale=</span></code>.</p>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<code class="descclassname">fir.</code><code class="descname">draw_ta</code><span class="sig-paren">(</span><em>image, ir, alpha=128, scale=[auto, auto]</em><span class="sig-paren">)</span></dt>
+<dd><p>Draws the temperature list (<code class="docutils literal"><span class="pre">ir</span></code>) on the <code class="docutils literal"><span class="pre">image</span></code> using a rainbow
+table color conversion.</p>
+<p><code class="docutils literal"><span class="pre">alpha</span></code> controls the transparency. 256 for an opaque overlay. 0 for none.</p>
+<p><code class="docutils literal"><span class="pre">scale</span></code> controls the rainbow table color conversion. The first number is
+the minimum temperature cutoff and the second number is the max. Values
+closer to the min are blue and values closer to the max are red.</p>
+<p>The minimum and maximum values in the temperature list are used to scale
+the output <code class="docutils literal"><span class="pre">image</span></code> automatically unless explicitly overridden.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">For best results look at really cold or hot objects.</p>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last"><code class="docutils literal"><span class="pre">alpha</span></code> and <code class="docutils literal"><span class="pre">scale</span></code> are keyword arguments which must be explicitly
+invoked in the function call by writing <code class="docutils literal"><span class="pre">alpha=</span></code> and <code class="docutils literal"><span class="pre">scale=</span></code>.</p>
+</div>
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="omv.cpufreq.html" class="btn btn-neutral float-right" title="cpufreq — easy cpu frequency control" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="omv.lcd.html" class="btn btn-neutral" title="lcd — lcd shield driver" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2014-2017, Damien P. George, OpenMV LLC, and contributors.
+      Last updated on 27 Mar 2017.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  <!--
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    <span class="fa fa-book"> Ports and Versions</span>
+    openmvcam (latest)
+    <span class="fa fa-caret-down"></span>
+  </span>
+  <div class="rst-other-versions">
+    <dl>
+      <dt>Ports</dt>
+      
+        <dd><a href="//en/latest/unix">unix</a></dd>
+      
+        <dd><a href="//en/latest/pyboard">pyboard</a></dd>
+      
+        <dd><a href="//en/latest/wipy">wipy</a></dd>
+      
+        <dd><a href="//en/latest/esp8266">esp8266</a></dd>
+      
+        <dd><a href="//en/latest/openmvcam">openmvcam</a></dd>
+      
+    </dl>
+    <dl>
+      <dt>Versions</dt>
+      
+        <dd><a href="//en/latest/openmvcam">latest</a></dd>
+      
+    </dl>
+    -->
+    <!--
+    <dl>
+      <dt>Downloads</dt>
+      
+    </dl>
+    -->
+    <!--
+    <hr/>
+    <dl>
+      <dt>External links</dt>
+        <dd>
+          <a href="http://www.micropython.org">micropython.org</a>
+        </dd>
+        <dd>
+          <a href="http://github.com/micropython/micropython">GitHub</a>
+        </dd>
+    </dl>
+  </div>
+</div>
+-->
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'1.8',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

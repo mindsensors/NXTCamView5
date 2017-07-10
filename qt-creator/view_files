@@ -1,0 +1,17 @@
+./src/plugins/openmv/openmvplugin.cpp
+./src/plugins/openmv/openmvplugin.h
+./src/plugins/openmv/openmvpluginfb.cpp
+./src/plugins/openmv/openmvpluginfb.h
+./src/plugins/openmv/histogram/openmvpluginhistogram.cpp
+./src/plugins/openmv/histogram/openmvpluginhistogram.h
+./src/plugins/coreplugin/mainwindow.cpp
+./src/plugins/coreplugin/find/searchresultwindow.h
+./src/plugins/coreplugin/find/findplugin.cpp
+./src/plugins/coreplugin/editormanager/editormanager.cpp
+./src/app/app_version.h.in
+./src/plugins/openmv/openmvterminal.cpp
+./src/plugins/openmv/openmvterminal.h
+./src/plugins/openmv/openmvpluginio.cpp
+./src/plugins/openmv/openmvpluginio.h
+./src/plugins/openmv/openmvpluginserialport.cpp
+./src/plugins/openmv/openmvpluginserialport.h

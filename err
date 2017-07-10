@@ -1,0 +1,8 @@
+misc_files\libeay32.dll
+        1 file(s) copied.
+^CTraceback (most recent call last):
+  File "make.py", line 184, in <module>
+    make()
+  File "make.py", line 145, in make
+    " && jom installer INSTALL_ROOT="+installdir + " IFW_PATH="+ifdir):
+KeyboardInterrupt
