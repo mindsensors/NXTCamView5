@@ -99,7 +99,7 @@ void OpenMVPlugin::loadFeatureFile()
     char msg[200];
     if ( em != NULL) {
         QString fileName =
-            QDir::cleanPath(QDir::fromNativeSeparators(m_portPath)) + QStringLiteral("main.py");
+            QDir::cleanPath(QDir::fromNativeSeparators(m_portPath)) + QStringLiteral("/main.py");
         QFileInfo fi(fileName);
         if (!fi.exists()) {
             sprintf (msg, "file %s is missing?\n", fileName.toLatin1().data());
@@ -2949,7 +2949,8 @@ void OpenMVPlugin::errorFilter(const QByteArray &data)
         }
         else if(!m_portPath.isEmpty())
         {
-            editor = qobject_cast<TextEditor::BaseTextEditor *>(Core::EditorManager::openEditor(QDir::cleanPath(QDir::fromNativeSeparators(QString(fileName).prepend(m_portPath)))));
+            editor = qobject_cast<TextEditor::BaseTextEditor *>(Core::EditorManager::openEditor(
+                QDir::cleanPath(QDir::fromNativeSeparators(QString(fileName).prepend(QStringLiteral("/")).prepend(m_portPath)))));
         }
 
         if(editor)
@@ -2988,7 +2989,7 @@ void OpenMVPlugin::saveScript()
 
         if((answer == QMessageBox::Yes) || (answer == QMessageBox::No))
         {
-            QFile file(QDir::cleanPath(QDir::fromNativeSeparators(m_portPath)) + QStringLiteral("main.py"));
+            QFile file(QDir::cleanPath(QDir::fromNativeSeparators(m_portPath) + QStringLiteral("/main.py")));
 
             if(file.open(QIODevice::WriteOnly))
             {
@@ -3329,7 +3330,7 @@ void OpenMVPlugin::setPortPath(bool silent)
                 z = drives.size();
                 for ( int k = 0; k < z; k++) {
                     QString fileName =
-                        QDir::cleanPath(QDir::fromNativeSeparators(drives.at(k))) + QStringLiteral("main.py");
+                        QDir::cleanPath(QDir::fromNativeSeparators(drives.at(k))) + QStringLiteral("/main.py");
                     QFileInfo fi(fileName);
                     if (fi.exists()) {
                         temp = drives.at(k);
