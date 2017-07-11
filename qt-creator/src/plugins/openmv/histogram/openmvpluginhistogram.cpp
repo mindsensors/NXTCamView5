@@ -1161,7 +1161,7 @@ void OpenMVPluginHistogram::writeColorMap()
         tempFile.remove();
         b = tempFile.open(QIODevice::Truncate | QIODevice::WriteOnly | QIODevice::Text);
         if ( b == false ) {
-            emit statusUpdate("Failed to open colormap file.\n");
+            emit statusUpdate(tr("Failed to open colormap file."));
             m_working = false;
             return;
         }
@@ -1225,7 +1225,7 @@ void OpenMVPluginHistogram::writeColorMap()
 #endif
 
         m_working = false;
-        emit statusUpdate("Colormap re-written.\n");
+        emit statusUpdate(tr("Colormap re-written."));
         if ( isRunning ) {
             emit startClicked();
         }

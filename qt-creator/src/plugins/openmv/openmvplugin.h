@@ -187,7 +187,7 @@ public slots: // private
     void openKeypointsEditor();
     void openAprilTagGenerator(apriltag_family_t *family);
     void openQRCodeGenerator();
-    void statusUpdate(char *status);
+    void statusUpdate(QString msg);
     void chooseFeature(char *featureName);
     void showFeatureStatus();
 

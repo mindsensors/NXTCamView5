@@ -2483,7 +2483,7 @@ void OpenMVPlugin::connectClicked(bool forceBootloader, QString forceFirmwarePat
         m_stopCommand->action()->setVisible(false);
 
         m_statusLabel->setEnabled(true);
-        statusUpdate("NXTCam5 Connected.");
+        statusUpdate(tr("NXTCam5 Connected."));
 
         m_versionButton->setEnabled(true);
         m_versionButton->setText(tr("Firmware Version: %L1.%L2.%L3").arg(major2).arg(minor2).arg(patch2));
@@ -2583,7 +2583,7 @@ void OpenMVPlugin::restoreDefaults()
     // Check if folder exists, if not, it's a installation error.
     // If the folder exists, copy all files from this folder to NXTCam.
     if ( dir.exists() == false) {
-        statusUpdate("NXTCam5-defaults folder not found.");
+        statusUpdate(tr("NXTCam5-defaults folder not found."));
         QMessageBox::critical(Core::ICore::dialogParent(),
                 tr("Restore"), tr("NXTCam5-defaults folder not found."));
         return;
@@ -2610,7 +2610,7 @@ void OpenMVPlugin::restoreDefaults()
         }
 
         //statusUpdate(defaultsPath.toLatin1().data());
-        statusUpdate("NXTCam5 defaults restored.");
+        statusUpdate(tr("NXTCam5 defaults restored."));
         QMessageBox::information(Core::ICore::dialogParent(),
                 tr("Restore"), tr("NXTCam5 defaults restored.\nDisconnect and re-connect your NXTCam5."));
 
@@ -2684,7 +2684,7 @@ void OpenMVPlugin::disconnectClicked(bool reset)
             m_stopCommand->action()->setVisible(false);
 
             m_statusLabel->setDisabled(true);
-            statusUpdate("NXTCam5 disconnected.");
+            statusUpdate(tr("NXTCam5 disconnected."));
 
             m_versionButton->setDisabled(true);
             m_versionButton->setText(tr("Firmware Version:"));
@@ -3337,7 +3337,7 @@ void OpenMVPlugin::setPortPath(bool silent)
                     }
                 }
                 if (temp.isEmpty()) {
-                    statusUpdate("main.py not found.");
+                    statusUpdate(tr("main.py not found."));
                 }
             } else {
                 temp = QInputDialog::getItem(Core::ICore::dialogParent(),
@@ -4337,9 +4337,9 @@ void OpenMVPlugin::openQRCodeGenerator()
     }
 }
 
-void OpenMVPlugin::statusUpdate(char *msg)
+void OpenMVPlugin::statusUpdate(QString msg)
 {
-    m_statusLabel->setText(tr(msg));
+    m_statusLabel->setText(msg);
     showFeatureStatus();
 }
 
