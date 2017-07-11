@@ -3,6 +3,10 @@
 #include "openmv/openmvpluginfb.h"
 #include "ui_openmvpluginhistogram.h"
 
+#ifdef __gnu_linux__
+#include <unistd.h>
+#endif
+
 #define RGB_COLOR_SPACE_R 0
 #define RGB_COLOR_SPACE_G 1
 #define RGB_COLOR_SPACE_B 2
@@ -1213,6 +1217,12 @@ void OpenMVPluginHistogram::writeColorMap()
         QFile::remove(destFileName);
         QFile::copy(tempFileName, destFileName);
         //delay(1);
+
+#ifdef __gnu_linux__
+        // Need to make sure data is actually writen to file system before re-starting
+        // See https://bugreports.qt.io/browse/QTBUG-13297
+        sync();
+#endif
 
         m_working = false;
         emit statusUpdate("Colormap re-written.\n");
