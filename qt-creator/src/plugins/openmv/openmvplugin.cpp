@@ -756,12 +756,12 @@ void OpenMVPlugin::extensionsInitialized()
 
     settings->beginGroup(QStringLiteral(SETTINGS_GROUP));
 
+    /* DGP */
+    /*
     int major = settings->value(QStringLiteral(RESOURCES_MAJOR), 0).toInt();
     int minor = settings->value(QStringLiteral(RESOURCES_MINOR), 0).toInt();
     int patch = settings->value(QStringLiteral(RESOURCES_PATCH), 0).toInt();
 
-    /* DGP */
-    /*
     if((major < OMV_IDE_VERSION_MAJOR)
     || ((major == OMV_IDE_VERSION_MAJOR) && (minor < OMV_IDE_VERSION_MINOR))
     || ((major == OMV_IDE_VERSION_MAJOR) && (minor ==
@@ -1235,13 +1235,13 @@ void OpenMVPlugin::extensionsInitialized()
 
             if((reply->error() == QNetworkReply::NoError) && (!data.isEmpty()))
             {
+                /*
                 QRegularExpressionMatch match = QRegularExpression(QStringLiteral("(\\d+)\\.(\\d+)\\.(\\d+)")).match(QString::fromUtf8(data));
 
                 int major = match.captured(1).toInt();
                 int minor = match.captured(2).toInt();
                 int patch = match.captured(3).toInt();
 
-                /*
                 if((NXTCAMVIEW_VERSION_MAJOR < major)
                 || ((NXTCAMVIEW_VERSION_MAJOR == major) && (NXTCAMVIEW_VERSION_MINOR < minor))
                 || ((NXTCAMVIEW_VERSION_MAJOR == major) &&
@@ -1399,8 +1399,9 @@ void OpenMVPlugin::packageUpdate()
             || ((old_major == new_major) && (old_minor < new_minor))
             || ((old_major == new_major) && (old_minor == new_minor) && (old_patch < new_patch)))
             {
-                QMessageBox box(QMessageBox::Information, tr("Update
-                Available"), tr("New NXTCamView5 reources are available (e.g. examples, firmware, documentation, etc.)."), QMessageBox::Cancel, Core::ICore::dialogParent(),
+                QMessageBox box(QMessageBox::Information, tr("Update Available"),
+                    tr("New NXTCamView5 resources are available (e.g. examples, firmware, documentation, etc.)."),
+                    QMessageBox::Cancel, Core::ICore::dialogParent(),
                     Qt::MSWindowsFixedSizeDialogHint | Qt::WindowTitleHint | Qt::WindowSystemMenuHint |
                     (Utils::HostOsInfo::isMacHost() ? Qt::WindowType(0) : Qt::WindowCloseButtonHint));
                 QPushButton *button = box.addButton(tr("Install"), QMessageBox::AcceptRole);
@@ -3265,7 +3266,7 @@ void OpenMVPlugin::updateCam()
 void OpenMVPlugin::setPortPath(bool silent)
 {
     int z = 0;
-    char str[200];
+    //char str[200];
     if(!m_working)
     {
         QStringList drives;
