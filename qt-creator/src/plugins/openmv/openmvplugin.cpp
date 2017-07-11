@@ -102,7 +102,7 @@ void OpenMVPlugin::loadFeatureFile()
             QDir::cleanPath(QDir::fromNativeSeparators(m_portPath)) + QStringLiteral("main.py");
         QFileInfo fi(fileName);
         if (!fi.exists()) {
-            sprintf (msg, "file %s is missing?", fileName.toLatin1().data());
+            sprintf (msg, "file %s is missing?\n", fileName.toLatin1().data());
             logLine(msg);
         } else {
             logLine("openmvplugin.cpp: loading initial file: main.py\n");
@@ -1196,7 +1196,7 @@ void OpenMVPlugin::extensionsInitialized()
     Core::IEditor *editor = Core::EditorManager::currentEditor();
     if(editor ? (editor->document() ? editor->document()->contents().isEmpty() : true) : true)
     {
-        QString filePath = Core::ICore::userResourcePath() + QStringLiteral("/examples/01-Basics/helloworld.py");
+        QString filePath = Core::ICore::userResourcePath() + QStringLiteral("/examples/01-Basics/NXTCam5_default.py");
 
         QFile file(filePath);
 
@@ -3261,6 +3261,8 @@ void OpenMVPlugin::updateCam()
 
 void OpenMVPlugin::setPortPath(bool silent)
 {
+    int z = 0;
+    char str[200];
     if(!m_working)
     {
         QStringList drives;
@@ -3278,6 +3280,15 @@ void OpenMVPlugin::setPortPath(bool silent)
                 drives.append(info.rootPath());
             }
         }
+
+        z = drives.size();
+        /*sprintf(str, ">>00 drives count: z: %d\n", z);
+        logLine(str);
+        for ( int k = 0; k < z; k++) {
+            sprintf (str, ">>00 drive: %s\n", drives.at(k).toLocal8Bit().constData());
+            logLine(str);
+        }
+        */
 
         QSettings *settings = ExtensionSystem::PluginManager::settings();
         settings->beginGroup(QStringLiteral(SERIAL_PORT_SETTINGS_GROUP));
@@ -3312,12 +3323,28 @@ void OpenMVPlugin::setPortPath(bool silent)
             int index = drives.indexOf(settings->value(m_portName).toString());
 
             bool ok = silent;
-            QString temp = silent ? drives.first() : QInputDialog::getItem(Core::ICore::dialogParent(),
+            QString temp;
+
+            if ( silent == true ){
+                z = drives.size();
+                for ( int k = 0; k < z; k++) {
+                    QString fileName =
+                        QDir::cleanPath(QDir::fromNativeSeparators(drives.at(k))) + QStringLiteral("main.py");
+                    QFileInfo fi(fileName);
+                    if (fi.exists()) {
+                        temp = drives.at(k);
+                    }
+                }
+                if (temp.isEmpty()) {
+                    statusUpdate("main.py not found.");
+                }
+            } else {
+                temp = QInputDialog::getItem(Core::ICore::dialogParent(),
                 tr("Select Drive"), tr("Please associate a drive with your NXTCam5"),
                 drives, (index != -1) ? index : 0, false, &ok,
                 Qt::MSWindowsFixedSizeDialogHint | Qt::WindowTitleHint | Qt::WindowSystemMenuHint |
                 (Utils::HostOsInfo::isMacHost() ? Qt::WindowType() : Qt::WindowCloseButtonHint));
-
+            }
             if(ok)
             {
                 m_portPath = temp;
@@ -3329,7 +3356,6 @@ void OpenMVPlugin::setPortPath(bool silent)
 
         settings->beginGroup(QLatin1String("NXTCamView5"));
         settings->setValue(QStringLiteral("CamDrive"), m_portPath);
-        logLine("m_portPath written\n");
         settings->endGroup();
 
         m_pathButton->setText((!m_portPath.isEmpty()) ? tr("Drive: %L1").arg(m_portPath) : tr("Drive:"));

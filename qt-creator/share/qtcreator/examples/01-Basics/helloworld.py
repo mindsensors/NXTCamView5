@@ -15,3 +15,4 @@ while(True):
     img = sensor.snapshot()         # Take a picture and return the image.
     print(clock.fps())              # Note: OpenMV Cam runs about half as fast when connected
                                     # to the IDE. The FPS should increase once disconnected.
+    img.draw_string(10, 10, "missing main.py", 0)
