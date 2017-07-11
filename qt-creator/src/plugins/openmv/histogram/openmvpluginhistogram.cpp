@@ -1204,7 +1204,7 @@ void OpenMVPluginHistogram::writeColorMap()
         /*
          * copy the file to destination
          */
-        bool isRunning = emit script_checkIfRunning();
+        bool isRunning = script_checkIfRunning();
         if ( isRunning ) {
             emit stopClicked();
         }
