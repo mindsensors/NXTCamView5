@@ -1334,6 +1334,7 @@ ExtensionSystem::IPlugin::ShutdownFlag OpenMVPlugin::aboutToShutdown()
     }
 }
 
+#if 0
 static bool removeRecursively(const Utils::FileName &path, QString *error)
 {
     return Utils::FileUtils::removeRecursively(path, error);
@@ -1365,6 +1366,7 @@ static bool extractAllWrapper(QByteArray *data, const QString &path)
     loop.exec();
     return watcher.result();
 }
+#endif
 
 void OpenMVPlugin::packageUpdate()
 {
