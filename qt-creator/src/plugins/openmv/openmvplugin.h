@@ -188,7 +188,7 @@ public slots: // private
     void openAprilTagGenerator(apriltag_family_t *family);
     void openQRCodeGenerator();
     void statusUpdate(QString msg);
-    void chooseFeature(char *featureName);
+    void chooseFeature(QString featureName);
     void showFeatureStatus();
 
 signals:
@@ -268,7 +268,7 @@ private:
     int m_patch;
     QString m_portName;
     QString m_portPath;
-    char m_feature[30];
+    QString m_feature;
 
     QRegularExpression m_errorFilterRegex;
     QString m_errorFilterString;

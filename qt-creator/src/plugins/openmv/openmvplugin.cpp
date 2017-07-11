@@ -78,7 +78,7 @@ bool OpenMVPlugin::initialize(const QStringList &arguments, QString *errorMessag
     splashScreen->show();
     DGP */
 
-    strcpy(m_feature, "Object");
+    m_feature = QStringLiteral("Object");
 
     return true;
 }
@@ -203,42 +203,42 @@ void OpenMVPlugin::extensionsInitialized()
     Core::ActionManager::registerAction(featureObjectCommand,
     Core::Id("NXTCamView.ObjectTracking"));
     m_featureMenu->addAction(m_featureObjectCommand);
-    connect(featureObjectCommand, &QAction::triggered, this, [this] {chooseFeature("Object");});
+    connect(featureObjectCommand, &QAction::triggered, this, [this] {chooseFeature(QStringLiteral("Object"));});
 
     QAction *featureLineCommand = new QAction(tr("Line Tracking"), this);
     m_featureLineCommand =
     Core::ActionManager::registerAction(featureLineCommand,
     Core::Id("NXTCamView.LineTracking"));
     m_featureMenu->addAction(m_featureLineCommand);
-    connect(featureLineCommand, &QAction::triggered, this, [this] {chooseFeature("Line");});
+    connect(featureLineCommand, &QAction::triggered, this, [this] {chooseFeature(QStringLiteral("Line"));});
 
     QAction *featureFaceCommand = new QAction(tr("Face Tracking"), this);
     m_featureFaceCommand =
     Core::ActionManager::registerAction(featureFaceCommand,
     Core::Id("NXTCamView.FaceTracking"));
     m_featureMenu->addAction(m_featureFaceCommand);
-    connect(featureFaceCommand, &QAction::triggered, this, [this] {chooseFeature("Face");});
+    connect(featureFaceCommand, &QAction::triggered, this, [this] {chooseFeature(QStringLiteral("Face"));});
 
     QAction *featureEyeCommand = new QAction(tr("Eye Tracking"), this);
     m_featureEyeCommand =
     Core::ActionManager::registerAction(featureEyeCommand,
     Core::Id("NXTCamView.EyeTracking"));
     m_featureMenu->addAction(m_featureEyeCommand);
-    connect(featureEyeCommand, &QAction::triggered, this, [this] {chooseFeature("Eye");});
+    connect(featureEyeCommand, &QAction::triggered, this, [this] {chooseFeature(QStringLiteral("Eye"));});
 
     QAction *featureQRCodeCommand = new QAction(tr("QRCode Tracking"), this);
     m_featureQRCodeCommand =
     Core::ActionManager::registerAction(featureQRCodeCommand,
     Core::Id("NXTCamView.QRCodeTracking"));
     //m_featureMenu->addAction(m_featureQRCodeCommand);
-    //connect(featureQRCodeCommand, &QAction::triggered, this, [this] {chooseFeature("QRCode");});
+    //connect(featureQRCodeCommand, &QAction::triggered, this, [this] {chooseFeature(QStringLiteral("QRCode"));});
 
     QAction *featureMotionCommand = new QAction(tr("Motion Detection"), this);
     m_featureMotionCommand =
     Core::ActionManager::registerAction(featureMotionCommand,
     Core::Id("NXTCamView.MotionTracking"));
     //m_featureMenu->addAction(m_featureMotionCommand);
-    //connect(featureMotionCommand, &QAction::triggered, this, [this] {chooseFeature("Motion");});
+    //connect(featureMotionCommand, &QAction::triggered, this, [this] {chooseFeature(QStringLiteral("Motion"));});
 
     m_machineVisionToolsMenu = Core::ActionManager::createMenu(Core::Id("NXTCam5.MachineVision"));
     m_machineVisionToolsMenu->menu()->setTitle(tr("Machine Vision"));
@@ -2746,23 +2746,30 @@ void OpenMVPlugin::startClicked()
 
         ///////////////////////////////////////////////////////////////////////
 
-        QByteArray data;
-        char args[250];
-        char val[5];
-        if ( strcmp(m_feature, "Object") == 0 ) { strcpy(val, "4"); }
-        if ( strcmp(m_feature, "Line") == 0 ) { strcpy(val, "5"); }
-        if ( strcmp(m_feature, "Face") == 0 ) { strcpy(val, "9"); }
-        if ( strcmp(m_feature, "Eye") == 0 ) { strcpy(val, "10"); }
-        if ( strcmp(m_feature, "QRCode") == 0 ) { strcpy(val, "11"); }
-        if ( strcmp(m_feature, "Motion") == 0 ) { strcpy(val, "12"); }
-        strcpy(args, "#\n");
-        //strcat(args, "begin_tracking = 1\n");
-        strcat(args, "nxtcf = ");
-        strcat(args, val);
-        strcat(args, "\n");
-        QByteArray argString;
-        argString = QByteArray((char*)args, strlen(args));
-        data = argString + Core::EditorManager::currentEditor()->document()->contents();
+        QString val;
+        if (m_feature == QStringLiteral("Object")) {
+            val = QStringLiteral("4");
+        }
+        if (m_feature == QStringLiteral("Line")) {
+            val = QStringLiteral("5");
+        }
+        if (m_feature == QStringLiteral("Face")) {
+            val = QStringLiteral("9");
+        }
+        if (m_feature == QStringLiteral("Eye")) {
+            val = QStringLiteral("10");
+        }
+        if (m_feature == QStringLiteral("QRCode")) {
+            val = QStringLiteral("11");
+        }
+        if (m_feature == QStringLiteral("Motion")) {
+            val = QStringLiteral("12");
+        }
+
+        QByteArray argString("#\n");
+        //argString += "begin_tracking = 1\n";
+        argString += "nxtcf = " + val.toLatin1() + "\n";
+        QByteArray data = argString + Core::EditorManager::currentEditor()->document()->contents();
         //m_iodevice->scriptExec(Core::EditorManager::currentEditor()->document()->contents());
 
         m_iodevice->scriptExec(data);
@@ -4150,10 +4157,10 @@ void OpenMVPlugin::openKeypointsEditor()
     settings->endGroup();
 }
 
-void OpenMVPlugin::chooseFeature(char *feature)
+void OpenMVPlugin::chooseFeature(QString feature)
 {
     logLine(QStringLiteral("into choose Feature.."));
-    strcpy(m_feature, feature);
+    m_feature = feature;
     showFeatureStatus();
     restartIfNeeded();
 }
@@ -4343,10 +4350,7 @@ void OpenMVPlugin::statusUpdate(QString msg)
 
 void OpenMVPlugin::showFeatureStatus()
 {
-    char buff[50];
-    strcpy(buff, "Tracking: ");
-    strcat(buff, m_feature);
-    m_featureLabel->setText(tr(buff));
+    m_featureLabel->setText(QStringLiteral("Tracking: ") + m_feature);
 }
 
 } // namespace Internal
