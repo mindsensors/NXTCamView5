@@ -7,23 +7,21 @@
 // for development, set VIEW_DEV to 1
 #define VIEW_DEV 0
 
-static void logLine(char *msg)
+static void logLine(QString msg)
 {
-    FILE *fp;
-    char *fileName="nxtcamview_log.txt";
-    struct tm *tm;
-    time_t t;
-    char str_time[150];
+    QString logDir = QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation);
+    QDir::root().mkpath(logDir);
+    QDir::setCurrent(logDir);
 
-    t = time(NULL);
-    tm = localtime(&t);
+    QFile logFile;
+    logFile.setFileName(QStringLiteral("nxtcamview_log.txt"));
+    if (!logFile.open(QIODevice::Append)) {
+        return;
+    }
 
-    strftime(str_time, sizeof(str_time), "%H-%M-%S-%d-%m-%Y", tm);
-
-    fp = fopen(fileName, "a+");
-    fprintf(fp, "%s:%s", str_time, msg);
-    fclose(fp);
-    return;
+    QTextStream logStream(&logFile);
+    logStream << QDateTime::currentDateTime().toString(QStringLiteral("yyyy-MM-dd HH:mm:ss.zzz: "));
+    logStream << msg << QChar(QChar::SpecialCharacter::LineFeed);
 }
 
 namespace OpenMV {
@@ -96,21 +94,18 @@ void OpenMVPlugin::loadFeatureFile()
     /* DGP: always the main.py from the camera SD card is opened.
      */
     Core::EditorManager *em = Core::EditorManager::instance();
-    char msg[200];
     if ( em != NULL) {
         QString fileName =
             QDir::cleanPath(QDir::fromNativeSeparators(m_portPath)) + QStringLiteral("/main.py");
         QFileInfo fi(fileName);
         if (!fi.exists()) {
-            sprintf (msg, "file %s is missing?\n", fileName.toLatin1().data());
-            logLine(msg);
+            logLine(QStringLiteral("file %1 is missing?").arg(fileName));
         } else {
-            logLine("openmvplugin.cpp: loading initial file: main.py\n");
+            logLine(QStringLiteral("openmvplugin.cpp: loading initial file: main.py"));
             em->openEditor(fileName);
         }
-
     } else {
-        logLine("em is null\n");
+        logLine(QStringLiteral("em is null"));
     }
     showFeatureStatus();
 }
@@ -820,7 +815,7 @@ void OpenMVPlugin::extensionsInitialized()
 
     settings->endGroup();
 
-    logLine("before connect bindings\n");
+    logLine(QStringLiteral("before connect bindings"));
     connect(m_histogram, &OpenMVPluginHistogram::updateColorsOnMenu,
                             m_frameBuffer, &OpenMVPluginFB::updateColorsOnMenu);
     connect(m_histogram, &OpenMVPluginHistogram::statusUpdate,
@@ -833,7 +828,7 @@ void OpenMVPlugin::extensionsInitialized()
                             this, &OpenMVPlugin::stopClicked);
     connect(m_histogram, &OpenMVPluginHistogram::startClicked,
                             this, &OpenMVPlugin::startClicked);
-    logLine("after  connect bindings\n");
+    logLine(QStringLiteral("after  connect bindings"));
 
     ///////////////////////////////////////////////////////////////////////////
 
@@ -2559,13 +2554,13 @@ void OpenMVPlugin::restoreDefaults()
     QString defaultsPath = QDir::cleanPath(QCoreApplication::applicationDirPath() 
         + QLatin1String( "/../share/qtcreator/examples/NXTCamv5-defaults/"));
 
-    logLine("Restore Defaults clicked...\n");
+    logLine(QStringLiteral("Restore Defaults clicked...\n"));
 
     QSettings *settings = ExtensionSystem::PluginManager::settings();
     settings->beginGroup(QLatin1String("NXTCamView5"));
     drive = settings->value(QStringLiteral("CamDrive")).toString();
     settings->endGroup();
-    logLine(drive.toLatin1().data());
+    logLine(drive);
     QStorageInfo sd_card(drive);
     if (sd_card.isValid() && sd_card.isReady()) {
         freeSize = sd_card.bytesFree();
@@ -2794,7 +2789,7 @@ bool OpenMVPlugin::isScriptRunning()
     bool running2 = bool();
     bool *running2Ptr = &running2;
 
-    logLine("checking for script's run status...\n");
+    logLine(QStringLiteral("checking for script's run status..."));
     QMetaObject::Connection conn = connect(m_iodevice, &OpenMVPluginIO::scriptRunning,
         this, [this, running2Ptr] (bool running) {
         *running2Ptr = running;
@@ -2827,12 +2822,12 @@ void OpenMVPlugin::restartIfNeeded()
 
     if ( isScriptRunning() ) {
         // stop and restart
-        logLine("script is running, stopping ...\n");
+        logLine(QStringLiteral("script is running, stopping ..."));
         stopClicked();
-        //logLine("starting ...\n");
+        //logLine(QStringLiteral("starting ..."));
         startClicked();
     } else {
-        logLine("script is not running.\n");
+        logLine(QStringLiteral("script is not running."));
     }
 }
 
@@ -4157,7 +4152,7 @@ void OpenMVPlugin::openKeypointsEditor()
 
 void OpenMVPlugin::chooseFeature(char *feature)
 {
-    logLine("into choose Feature..\n");
+    logLine(QStringLiteral("into choose Feature.."));
     strcpy(m_feature, feature);
     showFeatureStatus();
     restartIfNeeded();
