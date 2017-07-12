@@ -1,25 +1,6 @@
 #include "openmvpluginfb.h"
 #include <time.h>
 
-static void logLine(char *msg)
-{
-    FILE *fp;
-    char *fileName="nxtcamview_log.txt";
-    struct tm *tm;
-    time_t t;
-    char str_time[150];
-
-    t = time(NULL);
-    tm = localtime(&t);
-
-    strftime(str_time, sizeof(str_time), "%H-%M-%S-%d-%m-%Y", tm);
-
-    fp = fopen(fileName, "a+");
-    fprintf(fp, "%s:%s", str_time, msg);
-    fclose(fp);
-    return;
-}
-
 OpenMVPluginFB::OpenMVPluginFB(QWidget *parent) : QGraphicsView(parent)
 {
     setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);

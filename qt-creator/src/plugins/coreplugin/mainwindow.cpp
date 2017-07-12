@@ -99,25 +99,6 @@
 using namespace ExtensionSystem;
 using namespace Utils;
 
-static void logLine(char *msg)
-{
-    FILE *fp;
-    char *fileName="nxtcamview_log.txt";
-    struct tm *tm;
-    time_t t;
-    char str_time[150];
-
-    t = time(NULL);
-    tm = localtime(&t);
-
-    strftime(str_time, sizeof(str_time), "%H-%M-%S-%d-%m-%Y", tm);
-
-    fp = fopen(fileName, "a+");
-    fprintf(fp, "%s:%s", str_time, msg);
-    fclose(fp);
-    return;
-}
-
 namespace Core {
 namespace Internal {
 
@@ -1175,8 +1156,6 @@ void MainWindow::restoreWindowState()
     // DGP
     if (!restoreGeometry(settings->value(QLatin1String(windowGeometryKey)).toByteArray()))
         resize(1008, 700); // size without window decoration
-    //resize(900,600);
-    //logLine((char *)"restoreWindowState()\n");
 
     restoreState(settings->value(QLatin1String(windowStateKey)).toByteArray());
     settings->endGroup();

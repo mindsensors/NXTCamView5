@@ -25,25 +25,6 @@ extern const uint8_t g826_table[256];
 extern const int8_t lab_table[196608];
 extern const int8_t yuv_table[196608];
 
-static void logLine(char *msg)
-{
-    FILE *fp;
-    char *fileName="nxtcamview_log.txt";
-    struct tm *tm;
-    time_t t;
-    char str_time[150];
-
-    t = time(NULL);
-    tm = localtime(&t);
-
-    strftime(str_time, sizeof(str_time), "%H-%M-%S-%d-%m-%Y", tm);
-
-    fp = fopen(fileName, "a+");
-    fprintf(fp, "%s:%s", str_time, msg);
-    fclose(fp);
-    return;
-}
-
 static inline int toR5(QRgb value)
 {
     return rb825_table[qRed(value)]; // 0:255 -> 0:31
@@ -944,7 +925,6 @@ void OpenMVPluginHistogram::pixmapUpdate(const QPixmap &data)
             break;
         }
     }
-    //logLine("emitting updateColorsOnMenu   ....\n");
     emit updateColorsOnMenu(m_colormap);
 }
 
@@ -968,8 +948,6 @@ void OpenMVPluginHistogram::loadColorMap()
     drive = settings->value(QStringLiteral("CamDrive")).toString();
     settings->endGroup();
 
-    //sprintf (msg, "into loadColorMap: s = %s\n", drive.toLocal8Bit().constData());
-    //logLine(msg);
 
     /*
      * prepare our config file name+path
@@ -983,19 +961,15 @@ void OpenMVPluginHistogram::loadColorMap()
      */
     fp = fopen(fileName, "r");
     if ( fp != NULL) {
-        //logLine("loading from colour.py\n");
         // skip the top lines, which are copyright and comment beginning.
         for ( i=0; i < 1; i++) {
             fgets(skip, 50, fp);
-            //logLine(skip);
         }
         for (colorNumber=0; colorNumber < 8; colorNumber++) {
             l_min = l_max = a_min = a_max = b_min = b_max = s = 0;
             matches = fscanf(fp, "%d:%d:%d:%d:%d:%d:%d\n", &s, 
                     &l_min, &l_max, &a_min, &a_max, &b_min, &b_max);
             if ( matches > 6 ){
-                //sprintf (msg, "line loaded: %d, matches: %d\n", colorNumber, matches);
-                //logLine(msg);
                 m_colormap[colorNumber][0] = l_min;
                 m_colormap[colorNumber][1] = l_max;
                 m_colormap[colorNumber][2] = a_min;
@@ -1003,8 +977,6 @@ void OpenMVPluginHistogram::loadColorMap()
                 m_colormap[colorNumber][4] = b_min;
                 m_colormap[colorNumber][5] = b_max;
             } else {
-                //sprintf (msg, "line not loaded: %d, matches: %d\n", colorNumber, matches);
-                //logLine(msg);
                 m_colormap[colorNumber][0] = 0;
                 m_colormap[colorNumber][1] = 0;
                 m_colormap[colorNumber][2] = 0;
@@ -1015,7 +987,6 @@ void OpenMVPluginHistogram::loadColorMap()
         }
         fclose(fp);
     } else {
-        //logLine("colour.py not found\n");
         for (colorNumber=0; colorNumber < 8; colorNumber++) {
             m_colormap[colorNumber][0] = 0;
             m_colormap[colorNumber][1] = 0;
@@ -1041,9 +1012,6 @@ void OpenMVPluginHistogram::clearColorMap(const QPixmap &data, int loc)
         {0,0,0,0,0,0},
         {0,0,0,0,0,0},
         {0,0,0,0,0,0}};
-
-    //sprintf (msg, "into clearColorMap: loc = %d\n", loc);
-    //logLine(msg);
 
     if ( loc == -1 ) {
         // clear all colors in the map
@@ -1086,9 +1054,6 @@ void OpenMVPluginHistogram::captureColorMap(const QPixmap &data, int colorNumber
     char msg[200];
     int l_min, l_max, a_min, a_max, b_min, b_max;
 
-    //sprintf (msg, "into captureColorMap: colorNumber = %d\n", colorNumber);
-    //logLine(msg);
-
     /*
      * find the RGB values of the user's choice
      */
@@ -1111,10 +1076,6 @@ void OpenMVPluginHistogram::captureColorMap(const QPixmap &data, int colorNumber
     m_colormap[colorNumber][3] = a_max;
     m_colormap[colorNumber][4] = b_min;
     m_colormap[colorNumber][5] = b_max;
-
-    //sprintf (msg, "l: (%d, %d), a: (%d, %d), b: (%d, %d), colorNumber: %d\n",
-    //     l_min, l_max, a_min, a_max, b_min, b_max,colorNumber);
-    //logLine(msg);
 
     writeColorMap();
 
@@ -1230,6 +1191,6 @@ void OpenMVPluginHistogram::writeColorMap()
             emit startClicked();
         }
     } else {
-        logLine("write ColorMap: already in middle of writing\n");
+        emit statusUpdate(tr("Write Colormap: please wait."));
     }
 }

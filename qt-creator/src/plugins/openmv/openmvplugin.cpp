@@ -815,7 +815,7 @@ void OpenMVPlugin::extensionsInitialized()
 
     settings->endGroup();
 
-    logLine(QStringLiteral("before connect bindings"));
+    logLine(QStringLiteral("connecting bindings"));
     connect(m_histogram, &OpenMVPluginHistogram::updateColorsOnMenu,
                             m_frameBuffer, &OpenMVPluginFB::updateColorsOnMenu);
     connect(m_histogram, &OpenMVPluginHistogram::statusUpdate,
@@ -828,7 +828,6 @@ void OpenMVPlugin::extensionsInitialized()
                             this, &OpenMVPlugin::stopClicked);
     connect(m_histogram, &OpenMVPluginHistogram::startClicked,
                             this, &OpenMVPlugin::startClicked);
-    logLine(QStringLiteral("after  connect bindings"));
 
     ///////////////////////////////////////////////////////////////////////////
 
