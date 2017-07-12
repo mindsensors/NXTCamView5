@@ -224,7 +224,7 @@ static inline QStringList getPluginPaths()
         pluginPath = rootDirPath;
         pluginPath += QLatin1Char('/');
         pluginPath += QLatin1String(IDE_LIBRARY_BASENAME);
-        pluginPath += QLatin1String("/qtcreator/plugins");
+        pluginPath += QLatin1String("/nxtcamview5/plugins");
         rc.push_back(pluginPath);
     }
     // 3) <localappdata>/plugins/<ideversion>
@@ -239,7 +239,7 @@ static inline QStringList getPluginPaths()
     pluginPath += QLatin1Char('/')
             + QLatin1String(Core::Constants::IDE_SETTINGSVARIANT_STR)
             + QLatin1Char('/');
-    pluginPath += QLatin1String(Utils::HostOsInfo::isMacHost() ? "Qt Creator" : "qtcreator");
+    pluginPath += QLatin1String(Utils::HostOsInfo::isMacHost() ? "NXTCamView5" : "nxtcamview5");
     pluginPath += QLatin1String("/plugins/");
     pluginPath += QLatin1String(Core::Constants::IDE_VERSION_LONG);
     rc.push_back(pluginPath);
@@ -301,7 +301,7 @@ static inline QSettings *userSettings()
 }
 
 static const char *SHARE_PATH =
-        Utils::HostOsInfo::isMacHost() ? "/../Resources" : "/../share/qtcreator";
+        Utils::HostOsInfo::isMacHost() ? "/../Resources" : "/../share/nxtcamview5";
 
 int main(int argc, char **argv)
 {

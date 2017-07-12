@@ -2552,7 +2552,7 @@ void OpenMVPlugin::restoreDefaults()
     int freeSize;
 
     QString defaultsPath = QDir::cleanPath(QCoreApplication::applicationDirPath() 
-        + QLatin1String( "/../share/qtcreator/examples/NXTCamv5-defaults/"));
+        + QLatin1String( "/../share/nxtcamview5/examples/NXTCamv5-defaults/"));
 
     logLine(QStringLiteral("Restore Defaults clicked...\n"));
 

@@ -40,7 +40,7 @@ Project {
     }
     property string ide_data_path: qbs.targetOS.contains("osx")
             ? ide_app_target + ".app/Contents/Resources"
-            : "share/qtcreator"
+            : "share/nxtcamview5"
     property string ide_libexec_path: qbs.targetOS.contains("osx")
             ? ide_data_path : qbs.targetOS.contains("windows")
             ? ide_app_path
