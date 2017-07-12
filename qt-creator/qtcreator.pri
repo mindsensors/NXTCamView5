@@ -82,7 +82,7 @@ osx {
     #OPENMV-DIFF#
     #IDE_APP_TARGET   = "Qt Creator"
     #OPENMV-DIFF#
-    IDE_APP_TARGET   = "OpenMV IDE"
+    IDE_APP_TARGET   = "NXTCamView5"
     #OPENMV-DIFF#
 
     IDE_APP_BUNDLE = $$IDE_APP_PATH/$${IDE_APP_TARGET}.app
