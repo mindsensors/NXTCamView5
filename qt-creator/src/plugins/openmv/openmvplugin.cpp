@@ -7,23 +7,21 @@
 // for development, set VIEW_DEV to 1
 #define VIEW_DEV 0
 
-static void logLine(char *msg)
+static void logLine(QString msg)
 {
-    FILE *fp;
-    char *fileName="nxtcamview_log.txt";
-    struct tm *tm;
-    time_t t;
-    char str_time[150];
+    QString logDir = QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation);
+    QDir::root().mkpath(logDir);
+    QDir::setCurrent(logDir);
 
-    t = time(NULL);
-    tm = localtime(&t);
+    QFile logFile;
+    logFile.setFileName(QStringLiteral("nxtcamview_log.txt"));
+    if (!logFile.open(QIODevice::Append)) {
+        return;
+    }
 
-    strftime(str_time, sizeof(str_time), "%H-%M-%S-%d-%m-%Y", tm);
-
-    fp = fopen(fileName, "a+");
-    fprintf(fp, "%s:%s", str_time, msg);
-    fclose(fp);
-    return;
+    QTextStream logStream(&logFile);
+    logStream << QDateTime::currentDateTime().toString(QStringLiteral("yyyy-MM-dd HH:mm:ss.zzz: "));
+    logStream << msg << QChar(QChar::SpecialCharacter::LineFeed);
 }
 
 namespace OpenMV {
@@ -80,7 +78,7 @@ bool OpenMVPlugin::initialize(const QStringList &arguments, QString *errorMessag
     splashScreen->show();
     DGP */
 
-    strcpy(m_feature, "Object");
+    m_feature = QStringLiteral("Object");
 
     return true;
 }
@@ -96,21 +94,18 @@ void OpenMVPlugin::loadFeatureFile()
     /* DGP: always the main.py from the camera SD card is opened.
      */
     Core::EditorManager *em = Core::EditorManager::instance();
-    char msg[200];
     if ( em != NULL) {
         QString fileName =
             QDir::cleanPath(QDir::fromNativeSeparators(m_portPath)) + QStringLiteral("/main.py");
         QFileInfo fi(fileName);
         if (!fi.exists()) {
-            sprintf (msg, "file %s is missing?\n", fileName.toLatin1().data());
-            logLine(msg);
+            logLine(QStringLiteral("file %1 is missing?").arg(fileName));
         } else {
-            logLine("openmvplugin.cpp: loading initial file: main.py\n");
+            logLine(QStringLiteral("openmvplugin.cpp: loading initial file: main.py"));
             em->openEditor(fileName);
         }
-
     } else {
-        logLine("em is null\n");
+        logLine(QStringLiteral("em is null"));
     }
     showFeatureStatus();
 }
@@ -208,42 +203,42 @@ void OpenMVPlugin::extensionsInitialized()
     Core::ActionManager::registerAction(featureObjectCommand,
     Core::Id("NXTCamView.ObjectTracking"));
     m_featureMenu->addAction(m_featureObjectCommand);
-    connect(featureObjectCommand, &QAction::triggered, this, [this] {chooseFeature("Object");});
+    connect(featureObjectCommand, &QAction::triggered, this, [this] {chooseFeature(QStringLiteral("Object"));});
 
     QAction *featureLineCommand = new QAction(tr("Line Tracking"), this);
     m_featureLineCommand =
     Core::ActionManager::registerAction(featureLineCommand,
     Core::Id("NXTCamView.LineTracking"));
     m_featureMenu->addAction(m_featureLineCommand);
-    connect(featureLineCommand, &QAction::triggered, this, [this] {chooseFeature("Line");});
+    connect(featureLineCommand, &QAction::triggered, this, [this] {chooseFeature(QStringLiteral("Line"));});
 
     QAction *featureFaceCommand = new QAction(tr("Face Tracking"), this);
     m_featureFaceCommand =
     Core::ActionManager::registerAction(featureFaceCommand,
     Core::Id("NXTCamView.FaceTracking"));
     m_featureMenu->addAction(m_featureFaceCommand);
-    connect(featureFaceCommand, &QAction::triggered, this, [this] {chooseFeature("Face");});
+    connect(featureFaceCommand, &QAction::triggered, this, [this] {chooseFeature(QStringLiteral("Face"));});
 
     QAction *featureEyeCommand = new QAction(tr("Eye Tracking"), this);
     m_featureEyeCommand =
     Core::ActionManager::registerAction(featureEyeCommand,
     Core::Id("NXTCamView.EyeTracking"));
     m_featureMenu->addAction(m_featureEyeCommand);
-    connect(featureEyeCommand, &QAction::triggered, this, [this] {chooseFeature("Eye");});
+    connect(featureEyeCommand, &QAction::triggered, this, [this] {chooseFeature(QStringLiteral("Eye"));});
 
     QAction *featureQRCodeCommand = new QAction(tr("QRCode Tracking"), this);
     m_featureQRCodeCommand =
     Core::ActionManager::registerAction(featureQRCodeCommand,
     Core::Id("NXTCamView.QRCodeTracking"));
     //m_featureMenu->addAction(m_featureQRCodeCommand);
-    //connect(featureQRCodeCommand, &QAction::triggered, this, [this] {chooseFeature("QRCode");});
+    //connect(featureQRCodeCommand, &QAction::triggered, this, [this] {chooseFeature(QStringLiteral("QRCode"));});
 
     QAction *featureMotionCommand = new QAction(tr("Motion Detection"), this);
     m_featureMotionCommand =
     Core::ActionManager::registerAction(featureMotionCommand,
     Core::Id("NXTCamView.MotionTracking"));
     //m_featureMenu->addAction(m_featureMotionCommand);
-    //connect(featureMotionCommand, &QAction::triggered, this, [this] {chooseFeature("Motion");});
+    //connect(featureMotionCommand, &QAction::triggered, this, [this] {chooseFeature(QStringLiteral("Motion"));});
 
     m_machineVisionToolsMenu = Core::ActionManager::createMenu(Core::Id("NXTCam5.MachineVision"));
     m_machineVisionToolsMenu->menu()->setTitle(tr("Machine Vision"));
@@ -756,12 +751,12 @@ void OpenMVPlugin::extensionsInitialized()
 
     settings->beginGroup(QStringLiteral(SETTINGS_GROUP));
 
+    /* DGP */
+    /*
     int major = settings->value(QStringLiteral(RESOURCES_MAJOR), 0).toInt();
     int minor = settings->value(QStringLiteral(RESOURCES_MINOR), 0).toInt();
     int patch = settings->value(QStringLiteral(RESOURCES_PATCH), 0).toInt();
 
-    /* DGP */
-    /*
     if((major < OMV_IDE_VERSION_MAJOR)
     || ((major == OMV_IDE_VERSION_MAJOR) && (minor < OMV_IDE_VERSION_MINOR))
     || ((major == OMV_IDE_VERSION_MAJOR) && (minor ==
@@ -820,7 +815,7 @@ void OpenMVPlugin::extensionsInitialized()
 
     settings->endGroup();
 
-    logLine("before connect bindings\n");
+    logLine(QStringLiteral("before connect bindings"));
     connect(m_histogram, &OpenMVPluginHistogram::updateColorsOnMenu,
                             m_frameBuffer, &OpenMVPluginFB::updateColorsOnMenu);
     connect(m_histogram, &OpenMVPluginHistogram::statusUpdate,
@@ -833,7 +828,7 @@ void OpenMVPlugin::extensionsInitialized()
                             this, &OpenMVPlugin::stopClicked);
     connect(m_histogram, &OpenMVPluginHistogram::startClicked,
                             this, &OpenMVPlugin::startClicked);
-    logLine("after  connect bindings\n");
+    logLine(QStringLiteral("after  connect bindings"));
 
     ///////////////////////////////////////////////////////////////////////////
 
@@ -1235,13 +1230,13 @@ void OpenMVPlugin::extensionsInitialized()
 
             if((reply->error() == QNetworkReply::NoError) && (!data.isEmpty()))
             {
+                /*
                 QRegularExpressionMatch match = QRegularExpression(QStringLiteral("(\\d+)\\.(\\d+)\\.(\\d+)")).match(QString::fromUtf8(data));
 
                 int major = match.captured(1).toInt();
                 int minor = match.captured(2).toInt();
                 int patch = match.captured(3).toInt();
 
-                /*
                 if((NXTCAMVIEW_VERSION_MAJOR < major)
                 || ((NXTCAMVIEW_VERSION_MAJOR == major) && (NXTCAMVIEW_VERSION_MINOR < minor))
                 || ((NXTCAMVIEW_VERSION_MAJOR == major) &&
@@ -1334,6 +1329,7 @@ ExtensionSystem::IPlugin::ShutdownFlag OpenMVPlugin::aboutToShutdown()
     }
 }
 
+#if 0
 static bool removeRecursively(const Utils::FileName &path, QString *error)
 {
     return Utils::FileUtils::removeRecursively(path, error);
@@ -1365,6 +1361,7 @@ static bool extractAllWrapper(QByteArray *data, const QString &path)
     loop.exec();
     return watcher.result();
 }
+#endif
 
 void OpenMVPlugin::packageUpdate()
 {
@@ -1397,8 +1394,9 @@ void OpenMVPlugin::packageUpdate()
             || ((old_major == new_major) && (old_minor < new_minor))
             || ((old_major == new_major) && (old_minor == new_minor) && (old_patch < new_patch)))
             {
-                QMessageBox box(QMessageBox::Information, tr("Update
-                Available"), tr("New NXTCamView5 reources are available (e.g. examples, firmware, documentation, etc.)."), QMessageBox::Cancel, Core::ICore::dialogParent(),
+                QMessageBox box(QMessageBox::Information, tr("Update Available"),
+                    tr("New NXTCamView5 resources are available (e.g. examples, firmware, documentation, etc.)."),
+                    QMessageBox::Cancel, Core::ICore::dialogParent(),
                     Qt::MSWindowsFixedSizeDialogHint | Qt::WindowTitleHint | Qt::WindowSystemMenuHint |
                     (Utils::HostOsInfo::isMacHost() ? Qt::WindowType(0) : Qt::WindowCloseButtonHint));
                 QPushButton *button = box.addButton(tr("Install"), QMessageBox::AcceptRole);
@@ -2483,7 +2481,7 @@ void OpenMVPlugin::connectClicked(bool forceBootloader, QString forceFirmwarePat
         m_stopCommand->action()->setVisible(false);
 
         m_statusLabel->setEnabled(true);
-        statusUpdate("NXTCam5 Connected.");
+        statusUpdate(tr("NXTCam5 Connected."));
 
         m_versionButton->setEnabled(true);
         m_versionButton->setText(tr("Firmware Version: %L1.%L2.%L3").arg(major2).arg(minor2).arg(patch2));
@@ -2556,13 +2554,13 @@ void OpenMVPlugin::restoreDefaults()
     QString defaultsPath = QDir::cleanPath(QCoreApplication::applicationDirPath() 
         + QLatin1String( "/../share/qtcreator/examples/NXTCamv5-defaults/"));
 
-    logLine("Restore Defaults clicked...\n");
+    logLine(QStringLiteral("Restore Defaults clicked...\n"));
 
     QSettings *settings = ExtensionSystem::PluginManager::settings();
     settings->beginGroup(QLatin1String("NXTCamView5"));
     drive = settings->value(QStringLiteral("CamDrive")).toString();
     settings->endGroup();
-    logLine(drive.toLatin1().data());
+    logLine(drive);
     QStorageInfo sd_card(drive);
     if (sd_card.isValid() && sd_card.isReady()) {
         freeSize = sd_card.bytesFree();
@@ -2583,7 +2581,7 @@ void OpenMVPlugin::restoreDefaults()
     // Check if folder exists, if not, it's a installation error.
     // If the folder exists, copy all files from this folder to NXTCam.
     if ( dir.exists() == false) {
-        statusUpdate("NXTCam5-defaults folder not found.");
+        statusUpdate(tr("NXTCam5-defaults folder not found."));
         QMessageBox::critical(Core::ICore::dialogParent(),
                 tr("Restore"), tr("NXTCam5-defaults folder not found."));
         return;
@@ -2610,7 +2608,7 @@ void OpenMVPlugin::restoreDefaults()
         }
 
         //statusUpdate(defaultsPath.toLatin1().data());
-        statusUpdate("NXTCam5 defaults restored.");
+        statusUpdate(tr("NXTCam5 defaults restored."));
         QMessageBox::information(Core::ICore::dialogParent(),
                 tr("Restore"), tr("NXTCam5 defaults restored.\nDisconnect and re-connect your NXTCam5."));
 
@@ -2684,7 +2682,7 @@ void OpenMVPlugin::disconnectClicked(bool reset)
             m_stopCommand->action()->setVisible(false);
 
             m_statusLabel->setDisabled(true);
-            statusUpdate("NXTCam5 disconnected.");
+            statusUpdate(tr("NXTCam5 disconnected."));
 
             m_versionButton->setDisabled(true);
             m_versionButton->setText(tr("Firmware Version:"));
@@ -2748,23 +2746,30 @@ void OpenMVPlugin::startClicked()
 
         ///////////////////////////////////////////////////////////////////////
 
-        QByteArray data;
-        char args[250];
-        char val[5];
-        if ( strcmp(m_feature, "Object") == 0 ) { strcpy(val, "4"); }
-        if ( strcmp(m_feature, "Line") == 0 ) { strcpy(val, "5"); }
-        if ( strcmp(m_feature, "Face") == 0 ) { strcpy(val, "9"); }
-        if ( strcmp(m_feature, "Eye") == 0 ) { strcpy(val, "10"); }
-        if ( strcmp(m_feature, "QRCode") == 0 ) { strcpy(val, "11"); }
-        if ( strcmp(m_feature, "Motion") == 0 ) { strcpy(val, "12"); }
-        strcpy(args, "#\n");
-        //strcat(args, "begin_tracking = 1\n");
-        strcat(args, "nxtcf = ");
-        strcat(args, val);
-        strcat(args, "\n");
-        QByteArray argString;
-        argString = QByteArray((char*)args, strlen(args));
-        data = argString + Core::EditorManager::currentEditor()->document()->contents();
+        QString val;
+        if (m_feature == QStringLiteral("Object")) {
+            val = QStringLiteral("4");
+        }
+        if (m_feature == QStringLiteral("Line")) {
+            val = QStringLiteral("5");
+        }
+        if (m_feature == QStringLiteral("Face")) {
+            val = QStringLiteral("9");
+        }
+        if (m_feature == QStringLiteral("Eye")) {
+            val = QStringLiteral("10");
+        }
+        if (m_feature == QStringLiteral("QRCode")) {
+            val = QStringLiteral("11");
+        }
+        if (m_feature == QStringLiteral("Motion")) {
+            val = QStringLiteral("12");
+        }
+
+        QByteArray argString("#\n");
+        //argString += "begin_tracking = 1\n";
+        argString += "nxtcf = " + val.toLatin1() + "\n";
+        QByteArray data = argString + Core::EditorManager::currentEditor()->document()->contents();
         //m_iodevice->scriptExec(Core::EditorManager::currentEditor()->document()->contents());
 
         m_iodevice->scriptExec(data);
@@ -2791,7 +2796,7 @@ bool OpenMVPlugin::isScriptRunning()
     bool running2 = bool();
     bool *running2Ptr = &running2;
 
-    logLine("checking for script's run status...\n");
+    logLine(QStringLiteral("checking for script's run status..."));
     QMetaObject::Connection conn = connect(m_iodevice, &OpenMVPluginIO::scriptRunning,
         this, [this, running2Ptr] (bool running) {
         *running2Ptr = running;
@@ -2824,12 +2829,12 @@ void OpenMVPlugin::restartIfNeeded()
 
     if ( isScriptRunning() ) {
         // stop and restart
-        logLine("script is running, stopping ...\n");
+        logLine(QStringLiteral("script is running, stopping ..."));
         stopClicked();
-        //logLine("starting ...\n");
+        //logLine(QStringLiteral("starting ..."));
         startClicked();
     } else {
-        logLine("script is not running.\n");
+        logLine(QStringLiteral("script is not running."));
     }
 }
 
@@ -3263,7 +3268,7 @@ void OpenMVPlugin::updateCam()
 void OpenMVPlugin::setPortPath(bool silent)
 {
     int z = 0;
-    char str[200];
+    //char str[200];
     if(!m_working)
     {
         QStringList drives;
@@ -3337,7 +3342,7 @@ void OpenMVPlugin::setPortPath(bool silent)
                     }
                 }
                 if (temp.isEmpty()) {
-                    statusUpdate("main.py not found.");
+                    statusUpdate(tr("main.py not found."));
                 }
             } else {
                 temp = QInputDialog::getItem(Core::ICore::dialogParent(),
@@ -4152,10 +4157,10 @@ void OpenMVPlugin::openKeypointsEditor()
     settings->endGroup();
 }
 
-void OpenMVPlugin::chooseFeature(char *feature)
+void OpenMVPlugin::chooseFeature(QString feature)
 {
-    logLine("into choose Feature..\n");
-    strcpy(m_feature, feature);
+    logLine(QStringLiteral("into choose Feature.."));
+    m_feature = feature;
     showFeatureStatus();
     restartIfNeeded();
 }
@@ -4337,18 +4342,15 @@ void OpenMVPlugin::openQRCodeGenerator()
     }
 }
 
-void OpenMVPlugin::statusUpdate(char *msg)
+void OpenMVPlugin::statusUpdate(QString msg)
 {
-    m_statusLabel->setText(tr(msg));
+    m_statusLabel->setText(msg);
     showFeatureStatus();
 }
 
 void OpenMVPlugin::showFeatureStatus()
 {
-    char buff[50];
-    strcpy(buff, "Tracking: ");
-    strcat(buff, m_feature);
-    m_featureLabel->setText(tr(buff));
+    m_featureLabel->setText(QStringLiteral("Tracking: ") + m_feature);
 }
 
 } // namespace Internal

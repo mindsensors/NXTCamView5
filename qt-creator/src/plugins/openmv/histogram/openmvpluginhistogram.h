@@ -39,7 +39,7 @@ public slots:
 
 signals:
     void updateColorsOnMenu(short cmap[][6]);
-    void statusUpdate(char *msg);
+    void statusUpdate(QString msg);
     bool script_checkIfRunning();
     void stopClicked();
     void startClicked();

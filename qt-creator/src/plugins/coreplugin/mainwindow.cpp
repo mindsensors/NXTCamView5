@@ -174,7 +174,7 @@ MainWindow::MainWindow() :
     QCoreApplication::setApplicationName(QLatin1String("NXTCamView5"));
     //OPENMV-DIFF// QCoreApplication::setApplicationVersion(QLatin1String(Constants::IDE_VERSION_LONG));
     QCoreApplication::setApplicationVersion(QLatin1String(Constants::NXTCAMVIEW_VERSION_LONG));
-    QCoreApplication::setOrganizationName(QLatin1String(Constants::IDE_SETTINGSVARIANT_STR));
+    QCoreApplication::setOrganizationName(QLatin1String(Constants::NXTCAMVIEW_AUTHOR));
     QString baseName = QApplication::style()->objectName();
     // Sometimes we get the standard windows 95 style as a fallback
     if (HostOsInfo::isAnyUnixHost() && !HostOsInfo::isMacHost()
