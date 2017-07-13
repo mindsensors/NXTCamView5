@@ -106,12 +106,12 @@ macx {
     #OPENMV-DIFF#
     #APPBUNDLE = "$$OUT_PWD/bin/Qt Creator.app"
     #OPENMV-DIFF#
-    APPBUNDLE = "$$OUT_PWD/bin/OpenMV IDE.app"
+    APPBUNDLE = "$$OUT_PWD/bin/NXTCamView5.app"
     #OPENMV-DIFF#
     #OPENMV-DIFF#
     #BINDIST_SOURCE = "$$OUT_PWD/bin/Qt Creator.app"
     #OPENMV-DIFF#
-    BINDIST_SOURCE = "$$OUT_PWD/bin/OpenMV IDE.app"
+    BINDIST_SOURCE = "$$OUT_PWD/bin/NXTCamView5.app"
     #OPENMV-DIFF#
     BINDIST_INSTALLER_SOURCE = $$BINDIST_SOURCE
     deployqt.commands = $$PWD/scripts/deployqtHelper_mac.sh \"$${APPBUNDLE}\" \"$$[QT_INSTALL_TRANSLATIONS]\" \"$$[QT_INSTALL_PLUGINS]\" \"$$[QT_INSTALL_IMPORTS]\" \"$$[QT_INSTALL_QML]\"

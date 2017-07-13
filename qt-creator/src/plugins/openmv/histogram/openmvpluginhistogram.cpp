@@ -1103,7 +1103,7 @@ void OpenMVPluginHistogram::writeColorMap()
     char msg[200];
     bool b;
     QString defaultsPath = QDir::cleanPath(QCoreApplication::applicationDirPath() 
-        + QLatin1String( "/../share/qtcreator/examples/NXTCamv5-defaults/"));
+        + QLatin1String( "/../share/nxtcamview5/examples/NXTCamv5-defaults/"));
 
 
     if ( m_working == false ) {

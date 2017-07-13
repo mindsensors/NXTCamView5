@@ -256,8 +256,8 @@ else:unix {
         #OPENMV-DIFF#
         #eval(image$${imagesize}.files = images/logo/$${imagesize}/QtProject-qtcreator.png)
         #OPENMV-DIFF#
-        eval(image$${imagesize}.extra = mkdir -p $$OUT_PWD/../../../install/share/icons/hicolor/$${imagesize}x$${imagesize}/apps && cp $$PWD/../../../../nxtcamview-media/icons/nxtcamview-icon/nxtcamview$${imagesize}x$${imagesize}.png $$OUT_PWD/../../../install/share/icons/hicolor/$${imagesize}x$${imagesize}/apps/NXTCamView-nxtcamview.png)
-        eval(image$${imagesize}.files = $$OUT_PWD/../../../install/share/icons/hicolor/$${imagesize}x$${imagesize}/apps/NXTCamView-nxtcamview.png)
+        eval(image$${imagesize}.extra = cp $$PWD/../../../../nxtcamview-media/icons/nxtcamview-icon/nxtcamview$${imagesize}x$${imagesize}.png \
+            $(INSTALL_ROOT)/share/icons/hicolor/$${imagesize}x$${imagesize}/apps/nxtcamview5.png)
         #OPENMV-DIFF#
         eval(image$${imagesize}.path = $$QTC_PREFIX/share/icons/hicolor/$${imagesize}x$${imagesize}/apps)
         INSTALLS += image$${imagesize}

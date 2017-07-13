@@ -1190,7 +1190,7 @@ void OpenMVPlugin::extensionsInitialized()
     Core::IEditor *editor = Core::EditorManager::currentEditor();
     if(editor ? (editor->document() ? editor->document()->contents().isEmpty() : true) : true)
     {
-        QString filePath = Core::ICore::userResourcePath() + QStringLiteral("/examples/01-Basics/NXTCam5_default.py");
+        QString filePath = Core::ICore::resourcePath() + QStringLiteral("/examples/01-Basics/NXTCam5_default.py");
 
         QFile file(filePath);
 
@@ -2550,9 +2550,6 @@ void OpenMVPlugin::restoreDefaults()
     bool scriptStatus = false;
     int freeSize;
 
-    QString defaultsPath = QDir::cleanPath(QCoreApplication::applicationDirPath() 
-        + QLatin1String( "/../share/qtcreator/examples/NXTCamv5-defaults/"));
-
     logLine(QStringLiteral("Restore Defaults clicked...\n"));
 
     QSettings *settings = ExtensionSystem::PluginManager::settings();
@@ -2575,7 +2572,7 @@ void OpenMVPlugin::restoreDefaults()
         return;
     }
 
-    //QString filePath = Core::ICore::userResourcePath() + QStringLiteral("/examples/NXTCamv5-defaults/");
+    QString defaultsPath = Core::ICore::resourcePath() + QStringLiteral("/examples/NXTCamv5-defaults/");
     QDir dir(defaultsPath);
     // Check if folder exists, if not, it's a installation error.
     // If the folder exists, copy all files from this folder to NXTCam.

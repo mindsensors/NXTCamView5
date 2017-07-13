@@ -82,7 +82,7 @@ osx {
     #OPENMV-DIFF#
     #IDE_APP_TARGET   = "Qt Creator"
     #OPENMV-DIFF#
-    IDE_APP_TARGET   = "OpenMV IDE"
+    IDE_APP_TARGET   = "NXTCamView5"
     #OPENMV-DIFF#
 
     IDE_APP_BUNDLE = $$IDE_APP_PATH/$${IDE_APP_TARGET}.app
@@ -111,28 +111,28 @@ osx {
     # target output path if not set manually
     isEmpty(IDE_OUTPUT_PATH): IDE_OUTPUT_PATH = $$IDE_BUILD_TREE
 
-    IDE_LIBRARY_PATH = $$IDE_OUTPUT_PATH/$$IDE_LIBRARY_BASENAME/qtcreator
+    IDE_LIBRARY_PATH = $$IDE_OUTPUT_PATH/$$IDE_LIBRARY_BASENAME/nxtcamview5
     IDE_PLUGIN_PATH  = $$IDE_LIBRARY_PATH/plugins
-    IDE_DATA_PATH    = $$IDE_OUTPUT_PATH/share/qtcreator
-    IDE_DOC_PATH     = $$IDE_OUTPUT_PATH/share/doc/qtcreator
+    IDE_DATA_PATH    = $$IDE_OUTPUT_PATH/share/nxtcamview5
+    IDE_DOC_PATH     = $$IDE_OUTPUT_PATH/share/doc/nxtcamview5
     IDE_BIN_PATH     = $$IDE_OUTPUT_PATH/bin
     win32: \
         IDE_LIBEXEC_PATH = $$IDE_OUTPUT_PATH/bin
     else: \
-        IDE_LIBEXEC_PATH = $$IDE_OUTPUT_PATH/libexec/qtcreator
+        IDE_LIBEXEC_PATH = $$IDE_OUTPUT_PATH/libexec/nxtcamview5
     !isEqual(IDE_SOURCE_TREE, $$IDE_OUTPUT_PATH):copydata = 1
 
-    LINK_LIBRARY_PATH = $$IDE_BUILD_TREE/$$IDE_LIBRARY_BASENAME/qtcreator
+    LINK_LIBRARY_PATH = $$IDE_BUILD_TREE/$$IDE_LIBRARY_BASENAME/nxtcamview5
     LINK_PLUGIN_PATH  = $$LINK_LIBRARY_PATH/plugins
 
-    INSTALL_LIBRARY_PATH = $$QTC_PREFIX/$$IDE_LIBRARY_BASENAME/qtcreator
+    INSTALL_LIBRARY_PATH = $$QTC_PREFIX/$$IDE_LIBRARY_BASENAME/nxtcamview5
     INSTALL_PLUGIN_PATH  = $$INSTALL_LIBRARY_PATH/plugins
     win32: \
         INSTALL_LIBEXEC_PATH = $$QTC_PREFIX/bin
     else: \
-        INSTALL_LIBEXEC_PATH = $$QTC_PREFIX/libexec/qtcreator
-    INSTALL_DATA_PATH    = $$QTC_PREFIX/share/qtcreator
-    INSTALL_DOC_PATH     = $$QTC_PREFIX/share/doc/qtcreator
+        INSTALL_LIBEXEC_PATH = $$QTC_PREFIX/libexec/nxtcamview5
+    INSTALL_DATA_PATH    = $$QTC_PREFIX/share/nxtcamview5
+    INSTALL_DOC_PATH     = $$QTC_PREFIX/share/doc/nxtcamview5
     INSTALL_BIN_PATH     = $$QTC_PREFIX/bin
 }
 

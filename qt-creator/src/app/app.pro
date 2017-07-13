@@ -5,7 +5,7 @@ TEMPLATE = app
 CONFIG += qtc_runnable
 TARGET = $$IDE_APP_TARGET
 DESTDIR = $$IDE_APP_PATH
-VERSION = $$QTCREATOR_VERSION
+VERSION = $$NXTCAMVIEW_VERSION
 QT -= testlib
 
 HEADERS += ../tools/qtcreatorcrashhandler/crashhandlersetup.h
@@ -45,6 +45,7 @@ win32 {
     #OPENMV-DIFF#
     ICON = ../../../nxtcamview-media/icons/nxtcamview-icon/nxtcamview.icns
     #OPENMV-DIFF#
+    QMAKE_TARGET_BUNDLE_PREFIX = com.mindsensors
     QMAKE_INFO_PLIST = Info.plist
 } else {
     target.path  = $$INSTALL_BIN_PATH

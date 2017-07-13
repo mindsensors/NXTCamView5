@@ -398,15 +398,15 @@ QString ICore::userInterfaceLanguage()
 QString ICore::resourcePath()
 {
     const QString sharePath = QLatin1String(Utils::HostOsInfo::isMacHost()
-                                            ? "/../Resources" : "/../share/qtcreator");
+                                            ? "/../Resources" : "/../share/nxtcamview5");
     return QDir::cleanPath(QCoreApplication::applicationDirPath() + sharePath);
 }
 
 QString ICore::userResourcePath()
 {
-    // Create qtcreator dir if it doesn't yet exist
+    // Create nxtcamview5 dir if it doesn't yet exist
     const QString configDir = QFileInfo(settings(QSettings::UserScope)->fileName()).path();
-    const QString urp = configDir + QLatin1String("/qtcreator");
+    const QString urp = configDir + QLatin1String("/nxtcamview5");
 
     if (!QFileInfo::exists(urp + QLatin1Char('/'))) {
         QDir dir;
@@ -420,7 +420,7 @@ QString ICore::userResourcePath()
 QString ICore::documentationPath()
 {
     const QString docPath = QLatin1String(Utils::HostOsInfo::isMacHost()
-                                            ? "/../Resources/doc" : "/../share/doc/qtcreator");
+                                            ? "/../Resources/doc" : "/../share/doc/nxtcamview5");
     return QDir::cleanPath(QCoreApplication::applicationDirPath() + docPath);
 }
 
@@ -441,7 +441,7 @@ QString ICore::libexecPath()
     case Utils::OsTypeLinux:
     case Utils::OsTypeOtherUnix:
     case Utils::OsTypeOther:
-        path = QCoreApplication::applicationDirPath() + QLatin1String("/../libexec/qtcreator");
+        path = QCoreApplication::applicationDirPath() + QLatin1String("/../libexec/nxtcamview5");
         break;
     }
     return QDir::cleanPath(path);
