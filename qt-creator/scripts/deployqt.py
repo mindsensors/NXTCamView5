@@ -190,7 +190,7 @@ def add_qt_conf(target_path, qt_prefix_path):
 
 def copy_translations(install_dir, qt_tr_dir):
     translations = glob(os.path.join(qt_tr_dir, '*.qm'))
-    tr_dir = os.path.join(install_dir, 'share', 'qtcreator', 'translations')
+    tr_dir = os.path.join(install_dir, 'share', 'nxtcamview5', 'translations')
 
     print "copying translations..."
     for translation in translations:
